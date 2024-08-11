@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+// @layer components {
+//     .evp-btn-primary {
+//         @apply cursor-pointer hover:opacity-85 bg-gradient-to-r from-evp-orange to-evp-yellow w-full text-evp-white text-[16px] rounded-full font-bold
+//     }
+
+//     .evp-btn-disabled {
+//         @apply cursor-pointer hover:opacity-85 bg-evp-disabled_gray text-evp-white text-[16px] rounded-full font-bold w-full
+//     }
+
+//     .bg-evp-gradient {
+//         @apply bg-gradient-to-r from-evp-orange to-evp-yellow
+//     }
+
+//     .evp-cursor-pointer {
+//         @apply cursor-pointer hover:opacity-85
+//     }
+
+//     .evp-text {
+//         @apply text-evp-white font-bold bg-gradient-to-r from-evp-orange to-evp-yellow inline-block text-transparent bg-clip-text
+//     }
+
+// }

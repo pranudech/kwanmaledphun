@@ -41,7 +41,7 @@ const ProductScreen = ({ product, attributes, relatedProducts }) => {
   const { lang, showingTranslateValue, getNumber, currency } =
     useUtilsFunction();
 
-  // console.log('product',product)
+  console.log('product',product)
 
   const { isLoading, setIsLoading } = useContext(SidebarContext);
   const { handleAddItem, item, setItem } = useAddToCart();
@@ -545,7 +545,7 @@ const ProductScreen = ({ product, attributes, relatedProducts }) => {
 
 export const getServerSideProps = async (context) => {
   const { slug } = context.params;
-
+  
   const [data, attributes] = await Promise.all([
     ProductServices.getShowingStoreProducts({
       category: "",

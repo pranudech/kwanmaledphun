@@ -7,7 +7,7 @@ const useUtilsFunction = () => {
 
   const { globalSetting } = useGetSetting();
 
-  const currency = globalSetting?.default_currency || "$";
+  const currency = globalSetting?.default_currency || "฿";
 
   //for date and time format
   const showTimeFormat = (data, timeFormat) => {
@@ -36,7 +36,7 @@ const useUtilsFunction = () => {
   const showingTranslateValue = (data) => {
     return data !== undefined && Object?.keys(data).includes(lang)
       ? data[lang]
-      : data?.en;
+      : data?.th;
   };
 
   const showingImage = (data) => {

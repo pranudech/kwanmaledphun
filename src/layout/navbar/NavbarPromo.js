@@ -133,9 +133,7 @@ const NavbarPromo = () => {
                         href="/contact-us"
                         className="font-serif mx-4 py-2 text-sm font-medium hover:text-emerald-600"
                       >
-                        {showingTranslateValue(
-                          storeCustomizationSetting?.navbar?.contact_us
-                        )}
+                        {showingTranslateValue(storeCustomizationSetting?.navbar?.contact_us)}
                       </Link>
                     )}
 

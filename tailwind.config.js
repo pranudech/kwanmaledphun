@@ -8,9 +8,10 @@ module.exports = {
 
   theme: {
     fontFamily: {
-      sans: ["Open Sans", "sans-serif"],
-      serif: ["Inter", "sans-serif"],
-      DejaVu: ["DejaVu Sans", "Arial", "sans-serif"],
+      // sans: ["Open Sans", "sans-serif"],
+      // serif: ["Inter", "sans-serif"],
+      // DejaVu: ["DejaVu Sans", "Arial", "sans-serif"],
+      lineSeedSans: ["line-seed-sans", "sans-serif"],
     },
     extend: {
       height: {

@@ -10,58 +10,59 @@ const storeCustomization = {
       faq_status: true,
       help_text: {
         en: "We are available 24/7, Need help?",
-        de: "Wir sind erreichbar 24/7, Brauchen Sie Hilfe?",
+        th: "เราพร้อมดูแลตลอด 24/7 คุณต้องการความช่วยเหลือ?",
       },
       categories: {
-        en: "Categories",
-        de: "Kategorien",
+        en: "Categories1",
+        th: "หมวดหมู่",
       },
       about_us: {
         en: "About Us",
-        de: "Uber Uns",
+        th: "เกี่ยวกับเรา",
       },
       contact_us: {
         en: "Contact Us",
-        de: "Kontaktiere Uns",
+        th: "ติดต่อเรา",
       },
       offers: {
         en: "Offers",
-        de: "Bietet an",
+        th: "ข้อเสนอ",
       },
       faq: {
         en: "FAQ",
-        de: "FAQ",
+        th: "คำถามที่พบบ่อย",
       },
       privacy_policy: {
         en: "Privacy Policy",
-        de: "Datenschutzrichtlinie",
+        th: "นโยบายความเป็นส่วนตัว",
       },
       term_and_condition: {
         en: "Terms & Conditions",
-        de: "Terms & Bedingungen",
+        th: "เงื่อนไขและเงื่อนไข",
       },
       pages: {
         en: "Pages",
-        de: "Seiten",
+        th: "หน้า",
       },
       my_account: {
         en: "My Account",
-        de: "Mein Konto",
+        th: "บัญชีของฉัน",
       },
       login: {
         en: "Login",
-        de: "Anmeldung",
+        th: "เข้าสู่ระบบ",
       },
       logout: {
         en: "Logout",
-        de: "Ausloggen",
+        th: "ออกจากระบบ",
       },
       checkout: {
         en: "Checkout",
-        de: "Kasse",
+        th: "ตรวจสอบ",
       },
       phone: "+965 505 631288",
       logo: "https://res.cloudinary.com/ahossain/image/upload/v1697687802/settings/logo-light_hls14v.svg",
+      // logo: "/kwanmaledpun/logo.jpg"
     },
     home: {
       coupon_status: true,

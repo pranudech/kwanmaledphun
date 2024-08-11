@@ -13,8 +13,9 @@ class MyDocument extends Document {
 
   render() {
     const setting = this.props.setting;
+    
     return (
-      <Html lang="en">
+      <Html lang="th">
         <Head>
           <link rel="icon" href={setting?.favicon || "/favicon.png"} />
           <meta

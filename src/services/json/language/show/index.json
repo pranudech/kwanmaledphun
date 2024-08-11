@@ -1,0 +1,22 @@
+[
+    {
+      "status": "show",
+      "_id": "66b8d71a55bcd86d6d629922",
+      "name": "ไทย",
+      "iso_code": "th",
+      "flag": "TH",
+      "__v": 0,
+      "createdAt": "2024-08-11T15:22:02.549Z",
+      "updatedAt": "2024-08-11T15:22:02.549Z"
+    },
+    {
+      "status": "show",
+      "_id": "66b8d71a55bcd86d6d629921",
+      "name": "English",
+      "iso_code": "en",
+      "flag": "US",
+      "__v": 0,
+      "createdAt": "2024-08-11T15:22:02.548Z",
+      "updatedAt": "2024-08-11T15:22:02.548Z"
+    }
+  ]

@@ -11,7 +11,7 @@ const BottomNavigation = ({ or, route, desc, pageName, loginTitle }) => {
   `;
 
   const { data, loading, error } = useAsync(SettingServices.getStoreSetting);
-  // console.log("data", data);
+  console.log("getStoreSetting ", data);
 
   return (
     <>

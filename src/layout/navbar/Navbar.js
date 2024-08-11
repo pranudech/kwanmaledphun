@@ -65,10 +65,7 @@ const Navbar = () => {
                   sizes="100vw"
                   className="w-full h-auto"
                   priority
-                  src={
-                    storeCustomizationSetting?.navbar?.logo ||
-                    "/logo/logo-light.svg"
-                  }
+                  src={storeCustomizationSetting?.navbar?.logo || "/logo/logo-light.svg"}
                   alt="logo"
                 />
               </div>

@@ -1,8 +1,8 @@
 {
   "name": "kwanmaledpun-store",
   "version": "0.1.0",
-  "description": "this is kachabazar-store built with next.js and tailwindcss",
-  "homepage": "https://kachabazar-store.vercel.app/",
+  "description": "this is kwanmaledpun-store built with next.js and tailwindcss",
+  "homepage": "",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -63,6 +63,7 @@
     "redux": "^4.2.0",
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.4.1",
+    "sass": "^1.77.8",
     "sharp": "^0.32.6",
     "socket.io-client": "^4.4.0",
     "swiper": "^8.4.7",

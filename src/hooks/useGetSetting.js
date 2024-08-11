@@ -43,7 +43,7 @@ const useGetSetting = () => {
         setLoading(true);
         // console.log("storeCustomizationSetting setting not available");
         const res = await SettingServices.getStoreCustomizationSetting();
-        // console.log("res", res);
+        // console.log("getStoreCustomizationSetting", res);
         const storeCustomizationSettingData = {
           ...res,
           name: "storeCustomizationSetting",
@@ -99,7 +99,7 @@ const useGetSetting = () => {
 
     // Check if the "lang" value is not set and set a default value
     if (!lang) {
-      Cookies.set("_lang", "en", {
+      Cookies.set("_lang", "th", {
         sameSite: "None",
         secure: true,
       });
