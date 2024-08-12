@@ -5,9 +5,12 @@ import Image from "next/image";
 //internal import
 import useGetSetting from "@hooks/useGetSetting";
 import CMSkeleton from "@components/preloader/CMSkeleton";
+import { storeCustomization } from "@utils/storeCustomizationSetting";
 
 const FooterTop = () => {
-  const { storeCustomizationSetting, loading, error } = useGetSetting();
+
+  const { loading, error } = useGetSetting();
+  const storeCustomizationSetting = storeCustomization.setting;
 
   return (
     <div
@@ -48,7 +51,7 @@ const FooterTop = () => {
                 data={storeCustomizationSetting?.home?.daily_need_description}
               />
             </p>
-            <div className="mt-8 flex">
+            {/* <div className="mt-8 flex">
               <Link
                 href={`${storeCustomizationSetting?.home?.daily_need_app_link}`}
                 className="mx-2"
@@ -89,7 +92,7 @@ const FooterTop = () => {
                   alt="play store"
                 />
               </Link>
-            </div>
+            </div> */}
           </div>
           <div className="md:hidden lg:block">
             <div className="flex-grow hidden lg:flex md:flex lg:justify-end">

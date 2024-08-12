@@ -5,8 +5,12 @@ import { FiCreditCard, FiGift, FiPhoneCall, FiTruck } from "react-icons/fi";
 import useGetSetting from "@hooks/useGetSetting";
 import useUtilsFunction from "@hooks/useUtilsFunction";
 
+import { storeCustomization } from "@utils/storeCustomizationSetting";
+
+
 const FeatureCard = () => {
-  const { storeCustomizationSetting } = useGetSetting();
+  // const { storeCustomizationSetting } = useGetSetting();
+  const storeCustomizationSetting = storeCustomization.setting;
   const { showingTranslateValue } = useUtilsFunction();
 
   const featurePromo = [

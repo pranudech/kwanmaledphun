@@ -8,19 +8,21 @@ import PageHeader from "@components/header/PageHeader";
 import CMSkeleton from "@components/preloader/CMSkeleton";
 import useUtilsFunction from "@hooks/useUtilsFunction";
 
+import { storeCustomization } from "@utils/storeCustomizationSetting";
+
 const AboutUs = () => {
-  const { storeCustomizationSetting, loading, error } = useGetSetting();
+  // storeCustomizationSetting
+  const { loading, error } = useGetSetting();
   const { showingTranslateValue } = useUtilsFunction();
 
+  const storeCustomizationSetting = storeCustomization.setting;
   // console.log("data", data, );
 
   return (
-    <Layout title="About Us" description="This is about us page">
+    <Layout title="เกี่ยวกับเรา" description="นี่คือหน้าเกี่ยวกับเรา">
       <PageHeader
         headerBg={storeCustomizationSetting?.about_us?.header_bg}
-        title={showingTranslateValue(
-          storeCustomizationSetting?.about_us?.title
-        )}
+        title={showingTranslateValue(storeCustomizationSetting?.about_us?.title)}
       />
 
       <div className="bg-white">
@@ -130,24 +132,43 @@ const AboutUs = () => {
                 height={20}
                 // error={error}
                 loading={loading}
-                data={
-                  storeCustomizationSetting?.about_us?.middle_description_one
-                }
+                data={storeCustomizationSetting?.about_us?.middle_description_one}
               />
             </p>
-
-            <p>
-              <CMSkeleton
-                count={8}
-                height={20}
-                error={error}
-                loading={loading}
-                data={
-                  storeCustomizationSetting?.about_us?.middle_description_two
-                }
-              />
-            </p>
+            <div>
+              <div>shopee: <a className="text-emerald-500 hover:underline" href="https://shp.ee/vrxzwgm">https://shp.ee/vrxzwgm</a></div>
+              <div>Lazada: <a className="text-emerald-500 hover:underline" href="https://s.lazada.co.th/s.cNV3L">https://s.lazada.co.th/s.cNV3L</a></div>
+              <div>ไลน์แอด: <a className="text-emerald-500 hover:underline" href="https://lin.ee/4fdekh7M1">https://lin.ee/4fdekh7M1</a></div>
+              <div>my shop : <a className="text-emerald-500 hover:underline" href="https://shop.line.me/@226frbjs">https://shop.line.me/@226frbjs</a></div>
+              <div>หน้าเพจ facebook : <a className="text-emerald-500 hover:underline" href="https://www.facebook.com/kwanseed">https://www.facebook.com/kwanseed</a></div>
+              <div>และหน้าเว็บไซต์ ลูกค้าสามารถเลือกหาซื้อสินค้าได้ตามความสะดวกของลูกค้า และสารมารถติดต่อโดยตรงได้ที่เบอร์ 044-372371</div>
+            </div>
           </div>
+
+          <div className="gallery mt-10 lg:mt-12">
+            <figure className="gallery__item gallery__item--1">
+              <img src="/kwanmaledpun/about-us/0.jpeg" className="gallery__img" alt="Image 1" />
+            </figure>
+            <figure className="gallery__item gallery__item--2">
+              <img src="/kwanmaledpun/about-us/1.jpeg" className="gallery__img" alt="Image 2" />
+            </figure>
+            <figure className="gallery__item gallery__item--3">
+              <img src="/kwanmaledpun/about-us/2.jpeg" className="gallery__img" alt="Image 3" />
+            </figure>
+            <figure className="gallery__item gallery__item--4">
+              <img src="/kwanmaledpun/about-us/3.jpeg" className="gallery__img" alt="Image 4" />
+            </figure>
+            <figure className="gallery__item gallery__item--5">
+              <img src="/kwanmaledpun/about-us/4.jpeg" className="gallery__img" alt="Image 5" />
+            </figure>
+            <figure className="gallery__item gallery__item--6">
+              <img src="/kwanmaledpun/about-us/6.jpeg" className="gallery__img" alt="Image 6" />
+            </figure>
+            <figure className="gallery__item gallery__item--7">
+              <img src="/kwanmaledpun/about-us/5.jpeg" className="gallery__img" alt="Image 6" />
+            </figure>
+          </div>
+
           <div className="mt-10 lg:mt-12 flex flex-col sm:grid gap-4">
             <Image
               width={1920}
@@ -160,8 +181,11 @@ const AboutUs = () => {
               className="block rounded-lg"
             />
           </div>
+
         </div>
-        <div className="bg-gray-50 lg:py-20 py-10">
+
+        {/* Our Team */}
+        {/* <div className="bg-gray-50 lg:py-20 py-10">
           <div className="max-w-screen-2xl mx-auto px-3 sm:px-10">
             <div className="relative flex flex-col sm:flex-row sm:items-end justify-between mb-8">
               <div className="max-w-2xl">
@@ -334,7 +358,8 @@ const AboutUs = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
+
       </div>
     </Layout>
   );

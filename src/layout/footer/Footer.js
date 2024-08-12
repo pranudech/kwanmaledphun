@@ -16,17 +16,20 @@ import useGetSetting from "@hooks/useGetSetting";
 import CMSkeleton from "@components/preloader/CMSkeleton";
 import useUtilsFunction from "@hooks/useUtilsFunction";
 
+import { storeCustomization } from "@utils/storeCustomizationSetting";
+
 const Footer = () => {
   const { t } = useTranslation();
   const userInfo = getUserSession();
 
   const { showingTranslateValue } = useUtilsFunction();
-  const { loading, storeCustomizationSetting } = useGetSetting();
+  // const { loading, storeCustomizationSetting } = useGetSetting();
+  const storeCustomizationSetting = storeCustomization.setting;
 
   return (
     <div className="pb-16 lg:pb-0 xl:pb-0 bg-white">
       <div className="mx-auto max-w-screen-2xl px-4 sm:px-10">
-        <div className="grid grid-cols-2 md:grid-cols-7 xl:grid-cols-12 gap-5 sm:gap-9 lg:gap-11 xl:gap-7 py-10 lg:py-16 justify-between">
+        {/* <div className="grid grid-cols-2 md:grid-cols-7 xl:grid-cols-12 gap-5 sm:gap-9 lg:gap-11 xl:gap-7 py-10 lg:py-16 justify-between">
           {storeCustomizationSetting?.footer?.block1_status && (
             <div className="pb-3.5 sm:pb-0 col-span-1 md:col-span-2 lg:col-span-3">
               <h3 className="text-md lg:leading-7 font-medium mb-4 sm:mb-5 lg:mb-6 pb-0.5">
@@ -328,11 +331,11 @@ const Footer = () => {
               </p>
             </div>
           )}
-        </div>
+        </div> */}
 
-        <hr className="hr-line"></hr>
+        {/* <hr className="hr-line"></hr> */}
 
-        <div className="mx-auto max-w-screen-2xl px-4 sm:px-10 bg-gray-50 shadow-sm border border-gray-50 rounded-lg">
+        <div className="mt-3 mx-auto max-w-screen-2xl px-4 sm:px-10 bg-gray-50 shadow-sm border border-gray-50 rounded-lg">
           <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-3 gap-5 sm:gap-9 lg:gap-11 xl:gap-7 py-8 items-center justify-between">
             <div className="col-span-1">
               {storeCustomizationSetting?.footer?.social_links_status && (
@@ -423,7 +426,6 @@ const Footer = () => {
                     {t("common:footer-call-us")}
                   </p>
                   <h5 className="text-2xl font-bold text-emerald-500 leading-7">
-                    {/* +012345-67900 */}
                     {storeCustomizationSetting?.footer?.bottom_contact}
                   </h5>
                 </div>
@@ -455,12 +457,12 @@ const Footer = () => {
         <p className="text-sm text-gray-500 leading-6">
           Copyright 2024 @{" "}
           <Link
-            href="https://themeforest.net/user/htmllover"
+            href="https://google.com"
             target="_blank"
             rel="noopener noreferrer"
             className="text-emerald-500"
           >
-            HtmlLover
+            kwanmaledpun
           </Link>
           , All rights reserved.
         </p>
