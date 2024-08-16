@@ -35,6 +35,8 @@
     "js-cookie": "^3.0.1",
     "jwt-decode": "^4.0.0",
     "local-storage": "^2.0.0",
+    "mysql2": "^3.11.0",
+    "net": "^1.0.2",
     "next": "^14.2.3",
     "next-auth": "^4.24.7",
     "next-pwa": "^5.6.0",
@@ -68,6 +70,7 @@
     "socket.io-client": "^4.4.0",
     "swiper": "^8.4.7",
     "tailwind-scrollbar-hide": "^1.0.4",
+    "tls": "^0.0.1",
     "use-local-storage-state": "^13.0.0"
   },
   "author": "HtmlLover",
