@@ -7,15 +7,16 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
+import { storeCustomization } from "@utils/storeCustomizationSetting";
 //internal import
 
 import useGetSetting from "@hooks/useGetSetting";
 import useUtilsFunction from "@hooks/useUtilsFunction";
 
 const MainCarousel = () => {
-  const { storeCustomizationSetting } = useGetSetting();
-  const { showingTranslateValue, showingUrl, showingImage } =
-    useUtilsFunction();
+  const { storeCustomizationSetting: tempString } = useGetSetting();
+  const storeCustomizationSetting = storeCustomization.setting;
+  const { showingTranslateValue, showingUrl, showingImage } = useUtilsFunction();
 
   const sliderData = [
     {
@@ -107,7 +108,7 @@ const MainCarousel = () => {
         spaceBetween={30}
         centeredSlides={true}
         autoplay={{
-          delay: 2000,
+          delay: 10000,
           disableOnInteraction: false,
         }}
         loop={true}
@@ -132,14 +133,15 @@ const MainCarousel = () => {
             key={i + 1}
           >
             <div className="text-sm text-gray-600 hover:text-emerald-dark">
-              <Image
+              <img className="w-full h-full object-cover" src={item.image} alt={item.title}/>
+              {/* <Image
                 width={950}
                 height={400}
                 src={item.image}
                 alt={item.title}
                 className="object-cover"
                 priority
-              />
+              /> */}
             </div>
             <div className="absolute top-0 left-0 z-10 p-r-16 flex-col flex w-full h-full place-items-start justify-center">
               <div className="pl-4 pr-12 sm:pl-10 sm:pr-16 w-10/12 lg:w-8/12 xl:w-7/12">

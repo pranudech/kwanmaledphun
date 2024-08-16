@@ -1,12 +1,15 @@
 import Link from "next/link";
 import React from "react";
 
+import { storeCustomization } from "@utils/storeCustomizationSetting";
+
 //internal import
 import useGetSetting from "@hooks/useGetSetting";
 import useUtilsFunction from "@hooks/useUtilsFunction";
 
 const Banner = () => {
-  const { storeCustomizationSetting } = useGetSetting();
+  const { storeCustomizationSetting: tempString } = useGetSetting();
+  const storeCustomizationSetting = storeCustomization.setting;
   const { showingTranslateValue } = useUtilsFunction();
 
   return (

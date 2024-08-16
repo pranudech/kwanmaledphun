@@ -16,28 +16,49 @@ const FeatureCategory = () => {
   const { isLoading, setIsLoading } = useContext(SidebarContext);
   const { showingTranslateValue } = useUtilsFunction();
 
-  const { data, error, loading } = useAsync(
-    CategoryServices.getShowingCategory
-  );
+  const { data, error, loading } = useAsync(CategoryServices.getShowingCategory);
 
-  // console.log('category',data)
+  // console.log('category', data)
 
   const handleCategoryClick = (id, categoryName) => {
-    const category_name = categoryName
-      .toLowerCase()
-      .replace(/[^A-Z0-9]+/gi, "-");
+    const category_name = categoryName.toLowerCase().replace(/[^A-Z0-9]+/gi, "-");
     const url = `/search?category=${category_name}&_id=${id}`;
     router.push(url);
     setIsLoading(!isLoading);
   };
+
+  const placeholderImage = 'https://res.cloudinary.com/ahossain/image/upload/v1655097002/placeholder_kvepfp.png'
 
   return (
     <>
       {loading ? (
         <CMSkeleton count={10} height={20} error={error} loading={loading} />
       ) : (
-        <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-6">
-          {data[0]?.children?.map((category, i) => (
+        <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 gap-4">
+          {data?.map((category, i) => {
+            return (
+              <li className="group" key={i + 1}>
+                <div className="flex justify-center w-full h-full border border-gray-100 shadow-sm bg-white rounded-lg p-4 cursor-pointer transition duration-200 ease-linear transform group-hover:shadow-lg">
+                  <div className="flex items-center">
+                    <div>
+                      <Image
+                        src={category?.icon || placeholderImage}
+                        alt="category"
+                        width={35}
+                        height={35}
+                      />
+                    </div>
+
+                    <div className="pl-4">
+                      <h3>{category?.type_name}</h3>
+                    </div>
+
+                  </div>
+                </div>
+              </li>
+            )
+          })}
+          {/* {data[0]?.children?.map((category, i) => (
             <li className="group" key={i + 1}>
               <div className="flex w-full h-full border border-gray-100 shadow-sm bg-white p-4 cursor-pointer transition duration-200 ease-linear transform group-hover:shadow-lg">
                 <div className="flex items-center">
@@ -95,7 +116,7 @@ const FeatureCategory = () => {
                 </div>
               </div>
             </li>
-          ))}
+          ))} */}
         </ul>
       )}
     </>

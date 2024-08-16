@@ -2,13 +2,16 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
+import { storeCustomization } from "@utils/storeCustomizationSetting";
+
 //internal import
 import useGetSetting from "@hooks/useGetSetting";
 import CMSkeleton from "@components/preloader/CMSkeleton";
 import useUtilsFunction from "@hooks/useUtilsFunction";
 
 const CardTwo = () => {
-  const { storeCustomizationSetting, error, loading } = useGetSetting();
+  const { storeCustomizationSetting: tempString, error, loading } = useGetSetting();
+  const storeCustomizationSetting = storeCustomization.setting;
   const { showingTranslateValue } = useUtilsFunction();
 
   return (
@@ -16,7 +19,7 @@ const CardTwo = () => {
       <div className="w-full bg-white shadow-sm lg:px-10 lg:py-5 p-6 rounded-lg">
         <div className="flex justify-between items-center">
           <div className="lg:w-3/5">
-            <span className="text-base lg:text-lg">
+            <h2 className="font-serif text-lg lg:text-2xl font-bold mb-1">
               <CMSkeleton
                 count={1}
                 height={20}
@@ -24,8 +27,8 @@ const CardTwo = () => {
                 loading={loading}
                 data={storeCustomizationSetting?.home?.quick_delivery_subtitle}
               />
-            </span>
-            <h2 className="font-serif text-lg lg:text-2xl font-bold mb-1">
+            </h2>
+            <h2 className="text-base lg:text-lg">
               <CMSkeleton
                 count={1}
                 height={30}
@@ -35,25 +38,14 @@ const CardTwo = () => {
               />
             </h2>
             <p className="text-sm font-sans leading-6">
-              <CMSkeleton
-                count={4}
-                height={20}
-                error={error}
-                loading={loading}
-                data={
-                  storeCustomizationSetting?.home?.quick_delivery_description
-                }
-              />
+              ☎️ สั่งมาได้เลย พร้อมจัดส่งครับ🛒 <br />
+              (ส่งของทุกวัน)❗️ <br />
+              🚚ปลีก-ส่งราคาถูกเป็นกันเอง <br />
+              📥FB:Inbox: <a className="text-blue-500 hover:text-blue-600 underline" href="https://m.me/kwanseed/?ref=bookmarks">https://m.me/kwanseed/?ref=bookmarks</a> <br />
+              📱สายด่วน❗️<a className="text-blue-500 hover:text-blue-600 underline" href="tel:064-450-0005">064-450-0005</a> <br />
+              ☎️สอบถาม <a className="text-blue-500 hover:text-blue-600 underline" href="tel:044-342371">044-342371</a> <br />
+              🆔ไลน์แอด : <a className="text-blue-500 hover:text-blue-600 underline" href="https://line.me/ti/p/~@kwanmaledpunkorat">kwanmaledpunkorat</a>
             </p>
-            <Link
-              href={`${storeCustomizationSetting?.home?.quick_delivery_link}`}
-              className="lg:w-1/3  text-xs font-serif font-medium inline-block mt-5 px-8 py-3 bg-emerald-500 text-center text-white rounded-full hover:text-white contact-btn"
-              target="_blank"
-            >
-              {showingTranslateValue(
-                storeCustomizationSetting?.home?.quick_delivery_button
-              )}
-            </Link>
           </div>
           <div className="w-1/5 flex-grow hidden lg:flex md:flex md:justify-items-center lg:justify-end">
             <Image

@@ -4,7 +4,7 @@ const storeCustomization = {
       categories_menu_status: true,
       about_menu_status: true,
       contact_menu_status: true,
-      offers_menu_status: true,
+      offers_menu_status: false,
       term_and_condition_status: true,
       privacy_policy_status: true,
       faq_status: true,
@@ -82,46 +82,58 @@ const storeCustomization = {
       },
       promotion_title: {
         en: "100% Natural Quality Organic Product",
-        th: "100 % natürliches Bio-Qualitätsprodukt",
+        th: "ขวัญ เมล็ดพันธุ์ โคราช จำหน่ายทุกช่องทางสินค้า ปลีก-ส่ง",
       },
       promotion_description: {
         en: "See Our latest discounted products from here and get a special discount product",
-        th: "Sehen Sie sich hier unsere neuesten reduzierten Produkte an und sichern Sie sich ein spezielles Rabattprodukt",
+        th: "ดูสินค้าล่าสุดของเราด้านล่าง เลือกสินค้าที่ต้องการจากร้านค้าของเราและโปรโมชั่นอีกมากมาย",
       },
       promotion_button_name: {
-        en: "Shop Now",
-        th: "Jetzt einkaufen",
+        en: "View All Product",
+        th: "ดูรายการสินค้า",
       },
       promotion_button_link: "/search?category=breakfast",
       feature_title: {
         en: "Featured Categories",
-        th: "Beliebte Kategorien",
+        th: "หมวดหมู่ที่แนะนำ",
       },
       feature_description: {
         en: "Choose your necessary products from this feature categories.",
-        th: "Wählen Sie aus diesen Funktionskategorien die gewünschten Produkte aus.",
+        th: "ท่านสามารถเลือกสินค้าที่จำเป็นจากหมวดหมู่นี้ได้",
       },
       feature_product_limit: 18,
       popular_title: {
         en: "Popular Products for Daily Shopping",
-        th: "Beliebte Produkte für den täglichen Einkauf",
+        th: "สินค้าที่มีความนิยมสำหรับการซื้อสินค้ารายวัน",
       },
       popular_description: {
         en: "See all our popular products in this week. You can choose your daily needs products from this list and get some special offer with free shipping.",
-        th: "Sehen Sie sich diese Woche alle unsere beliebten Produkte an. Aus dieser Liste können Sie Produkte für den täglichen Bedarf auswählen und ein Sonderangebot mit kostenlosem Versand erhalten.",
+        th: "ดูสินค้าที่มีความนิยมของเราสำหรับการซื้อสินค้ารายวันนี้ คุณสามารถเลือกสินค้าที่ต้องการจากรายการนี้และรับส่วนลดพิเศษและโปรโมชั่นอีกมากมาย",
       },
       popular_product_limit: 18,
       quick_delivery_subtitle: {
-        en: "Organic Products and Food",
-        th: "Bio-Produkte und Lebensmittel",
+        en: "Kwan Seed Korat",
+        th: "ขวัญ เมล็ดพันธุ์ โคราช จำหน่ายทุกช่องทางสินค้า ปลีก-ส่ง",
       },
       quick_delivery_title: {
         en: "Quick Delivery to Your Home",
-        th: "Schnelle Lieferung zu Ihnen nach Hause",
+        th: "พร้อมจัดส่งไปยังบ้านของคุณ",
       },
       quick_delivery_description: {
-        en: "There are many products you will find in our shop, Choose your daily necessary product from our KachaBazar shop and get some special offers. See Our latest discounted products from here and get a special discount.",
-        th: "Es gibt viele Produkte, die Sie in unserem Shop finden. Wählen Sie Ihr täglich benötigtes Produkt aus unserem KachaBazar-Shop und erhalten Sie einige Sonderangebote. Sehen Sie sich hier unsere neuesten reduzierten Produkte an und sichern Sie sich einen Sonderrabatt.",
+        en: `☎️ สั่งมาได้เลย พร้อมจัดส่งครับ🛒
+            (ส่งของทุกวัน)❗️
+            🚚ปลีก-ส่งราคาถูกเป็นกันเอง
+            📥FB:Inbox: https://m.me/kwanseed/?ref=bookmarks
+            📱สายด่วน❗️064-450-0005
+            ☎️สอบถาม 044-342371
+            🆔ไลน์แอด : kwanmaledpunkorat`,
+        th: `☎️ สั่งมาได้เลย พร้อมจัดส่งครับ🛒
+            (ส่งของทุกวัน)❗️
+            🚚ปลีก-ส่งราคาถูกเป็นกันเอง
+            📥FB:Inbox: https://m.me/kwanseed/?ref=bookmarks
+            📱สายด่วน❗️064-450-0005
+            ☎️สอบถาม 044-342371
+            🆔ไลน์แอด : kwanmaledpunkorat`,
       },
       quick_delivery_button: {
         en: "Download App",
@@ -293,11 +305,11 @@ const storeCustomization = {
         "https://res.cloudinary.com/ahossain/image/upload/v1697472924/settings/contact-us_zvwn2n.png",
       title: {
         en: "Contact Us",
-        th: "Kontaktiere uns",
+        th: "ติดต่อเรา",
       },
       email_box_title: {
         en: "Email Us",
-        th: "Schreiben Sie uns eine E-Mail",
+        th: "ส่งอีเมลถึงเรา",
       },
       email_box_email: {
         en: "info@kachabazar.com ",
@@ -305,11 +317,11 @@ const storeCustomization = {
       },
       email_box_text: {
         en: "Interactively grow empowered for process-centric total linkage. ",
-        th: " Interactively grow empowered for process-centric total linkage.",
+        th: "เติบโตอย่างมีพลังสำหรับการเชื่อมโยงทั้งหมดที่เน้นกระบวนการ",
       },
       call_box_title: {
         en: "Call Us ",
-        th: "Rufen Sie uns an",
+        th: "โทรหาเรา",
       },
       call_box_phone: {
         en: "029-00124667",
@@ -317,31 +329,31 @@ const storeCustomization = {
       },
       call_box_text: {
         en: "Distinctively disseminate focused solutions clicks-and-mortar ministate. ",
-        th: "Distinctively disseminate focused solutions clicks-and-mortar ministate.",
+        th: "เผยแพร่โซลูชันที่เน้นการคลิกและมอร์ตาร์อย่างชัดเจน",
       },
       address_box_title: {
         en: "Location ",
-        th: "Ort",
+        th: "ที่ตั้ง",
       },
       address_box_address_one: {
         en: "Boho One, Bridge Street West, Middlesbrough, North Yorkshire, TS2 1AE.",
-        th: "Cecilia Chapman",
+        th: "โบโฮ วัน, บริดจ์ สตรีท เวสต์, มิดเดิลสโบรห์, นอร์ท ยอร์กเชียร์, TS2 1AE",
       },
       address_box_address_two: {
         en: "561-4535 Nulla LA ",
-        th: "561-4535 Nulla LA",
+        th: "561-4535 นัลลา แอลเอ",
       },
       address_box_address_three: {
         en: "United States 96522. ",
-        th: "United States 96522",
+        th: "สหรัฐอเมริกา 96522",
       },
       form_title: {
-        en: "For any suppoort just send your query ",
-        th: "Für Unterstützung senden Sie einfach Ihre Anfrage",
+        en: "For any support just send your query ",
+        th: "สำหรับการสนับสนุนใด ๆ เพียงส่งคำถามของคุณ",
       },
       form_description: {
         en: "Collaboratively promote client-focused convergence vis-a-vis customer-directed alignments via plagiarized strategic users and standardized infrastructures. ",
-        th: "Fördern Sie gemeinsam die kundenorientierte Konvergenz gegenüber kundenorientierten Ausrichtungen durch Plagiate strategischer Benutzer und standardisierter Infrastrukturen.",
+        th: "ส่งเสริมการบรรจบกันที่มุ่งเน้นลูกค้าร่วมกันผ่านการจัดตำแหน่งที่มุ่งเน้นลูกค้าผ่านผู้ใช้เชิงกลยุทธ์ที่ลอกเลียนแบบและโครงสร้างพื้นฐานที่ได้มาตรฐาน",
       },
     },
     offers: {
@@ -459,78 +471,75 @@ const storeCustomization = {
       left_right_arrow: false,
       bottom_dots: true,
       both_slider: false,
-      first_img:
-        "https://res.cloudinary.com/ahossain/image/upload/v1697688491/settings/slider-1_rl8qdc.jpg",
+      first_img: "https://res.cloudinary.com/ahossain/image/upload/v1697688491/settings/slider-1_rl8qdc.jpg",
       first_title: {
         en: "The Best Quality Products Guaranteed!",
-        th: "Die besten Qualitätsprodukte garantiert!",
+        th: "สินค้าคุณภาพสูงสุดที่รับประกัน!",
       },
       first_description: {
         en: "The Best Quality Products Guaranteed!",
-        th: "Die besten Qualitätsprodukte garantiert!",
+        th: "สินค้าคุณภาพสูงสุดที่รับประกัน!",
       },
       first_button: {
         en: "Shop Now",
-        th: "Jetzt einkaufen",
+        th: "ดูรายการสินค้า",
       },
       first_link: "/search?category=milk-dairy",
-      second_img:
-        "https://res.cloudinary.com/ahossain/image/upload/v1697688491/settings/slider-2_o6aezc.jpg",
+      second_img: "https://res.cloudinary.com/ahossain/image/upload/v1697688491/settings/slider-2_o6aezc.jpg",
       second_title: {
         en: "Best Different Type of Grocery Store",
-        th: "Bestes anderes Lebensmittelgeschäft",
+        th: "ร้านค้าสินค้าอาหารที่ดีที่สุด",
       },
       second_description: {
         en: "Quickly aggregate empowered networks after emerging products...",
-        th: "Schnelle Bündelung leistungsstarker Netzwerke nach neuen Produkten ...",
+        th: "รวมกลุ่มกำลังพลังหลังจากผลิตภัณฑ์ที่เกิดขึ้น...",
       },
       second_button: {
         en: "Shop Now",
-        th: "Jetzt einkaufen",
+        th: "ดูรายการสินค้า",
       },
       second_link: "/search?category=fish-meat",
-      third_img:
-        "https://res.cloudinary.com/ahossain/image/upload/v1697688492/settings/slider-3_iw4nnf.jpg",
+      third_img: "https://res.cloudinary.com/ahossain/image/upload/v1697688492/settings/slider-3_iw4nnf.jpg",
       third_title: {
         en: "Quality Freshness Guaranteed!",
-        th: "Qualitätsfrische garantiert!",
+        th: "ความบริสุทธิ์ความสดชื่นที่รับประกัน!",
       },
       third_description: {
         en: "Intrinsicly fashion performance based products rather than accurate benefits...",
-        th: "Gestalten Sie Produkte grundsätzlich auf Leistung und nicht auf konkrete Vorteile ...",
+        th: "ออกแบบผลิตภัณฑ์ตามประสิทธิภาพพื้นฐานแทนที่จะเป็นผลประโยชน์ที่แน่นอน...",
       },
       third_button: {
         en: "Shop Now",
-        th: "Jetzt einkaufen",
+        th: "ดูรายการสินค้า",
       },
       third_link: "/search?category=fruits-vegetable",
       four_img: "https://i.postimg.cc/rscqZJNz/slider-1.webp",
       four_title: {
         en: "The Best Quality Products Guaranteed!",
-        th: "Die besten Qualitätsprodukte garantiert!",
+        th: "สินค้าคุณภาพสูงสุดที่รับประกัน!",
       },
       four_description: {
         en: "Dramatically facilitate effective total linkage for go forward processes...",
-        th: "Ermöglichen Sie eine effektive Gesamtverknüpfung für weitere Prozesse erheblich.",
+        th: "อนุมัติการเชื่อมโยงทั้งหมดที่มีประสิทธิภาพอย่างมีประสิทธิภาพสำหรับการดำเนินการข้างหน้า...",
       },
       four_button: {
         en: "Shop Now",
-        th: "Jetzt einkaufen",
+        th: "ดูรายการสินค้า",
       },
       four_link: "/search?category=fruits-vegetable",
       five_img:
         "https://res.cloudinary.com/ahossain/image/upload/v1697688491/settings/slider-2_o6aezc.jpg",
       five_title: {
         en: "Best Different Type of Grocery Store",
-        th: "Bestes anderes Lebensmittelgeschäft",
+        th: "ร้านค้าสินค้าอาหารที่ดีที่สุด",
       },
       five_description: {
         en: "Quickly aggregate empowered networks after emerging products...",
-        th: "Schnelle Bündelung leistungsstarker Netzwerke nach neuen Produkten ...",
+        th: "รวมกลุ่มกำลังพลังหลังจากผลิตภัณฑ์ที่เกิดขึ้น...",
       },
       five_button: {
         en: "Shop Now",
-        th: "Jetzt einkaufen",
+        th: "ดูรายการสินค้า",
       },
       five_link: "/search?category=fish-meat",
     },
@@ -633,83 +642,83 @@ const storeCustomization = {
     dashboard: {
       invoice_message_first: {
         en: "Thank You",
-        th: "Danke",
+        th: "ขอบคุณ",
       },
       invoice_message_last: {
         en: "Your order have been received !",
-        th: "Ihre Bestellung ist eingegangen!",
+        th: "คำสั่งซื้อของคุณได้รับแล้ว!",
       },
       print_button: {
         en: "Print Invoice",
-        th: "Rechnung Drucken",
+        th: "พิมพ์ใบแจ้งหนี้",
       },
       download_button: {
         en: "Download Invoice",
-        th: "Download Rechnung",
+        th: "ดาวน์โหลดใบแจ้งหนี้",
       },
       dashboard_title: {
         en: "Dashboard",
-        th: "Armaturenbrett",
+        th: "แผงควบคุม",
       },
       total_order: {
         en: "Total Orders",
-        th: "Gesamtbestellungen",
+        th: "ยอดสั่งซื้อทั้งหมด",
       },
       pending_order: {
         en: "Pending Orders",
-        th: "Ausstehende Bestellungen",
+        th: "คำสั่งซื้อที่รอดำเนินการ",
       },
       processing_order: {
         en: "Processing Order",
-        th: "Bearbeitungsauftrag",
+        th: "กำลังดำเนินการสั่งซื้อ",
       },
       complete_order: {
         en: "Complete Orders",
-        th: "Bestellungen abschließen",
+        th: "คำสั่งซื้อที่เสร็จสมบูรณ์",
       },
       recent_order: {
         en: "Recent Orders",
-        th: "letzte Bestellungen",
+        th: "คำสั่งซื้อล่าสุด",
       },
       my_order: {
         en: "My Orders",
-        th: "Meine Bestellungen",
+        th: "คำสั่งซื้อของฉัน",
       },
       update_profile: {
         en: "Update Profile",
-        th: "Profil aktualisieren",
+        th: "อัปเดตโปรไฟล์",
       },
       full_name: {
         en: "Full Name",
-        th: "Vollständiger Name",
+        th: "ชื่อเต็ม",
       },
       address: {
         en: "Address",
-        th: "Adresse",
+        th: "ที่อยู่",
       },
       user_phone: {
         en: "Phone/Mobile",
-        th: "Mobiltelefon",
+        th: "โทรศัพท์/มือถือ",
       },
       user_email: {
         en: "Email Address",
-        th: "E-Mail-Adresse",
+        th: "ที่อยู่อีเมล",
       },
       update_button: {
         en: "Update Profile",
-        th: "Profil aktualisieren",
+        th: "อัปเดตโปรไฟล์",
       },
       current_password: {
         en: "Current Password",
-        th: "Aktuelles Passwort",
+        th: "รหัสผ่านปัจจุบัน",
       },
       new_password: {
         en: "New Password",
-        th: "Neues Kennwort",
+        th: "รหัสผ่านใหม่",
       },
       change_password: {
         en: "Change Password",
-        th: "Kennwort ändern",
+        th: "เปลี่ยนรหัสผ่าน",
       },
     },
     footer: {

@@ -13,7 +13,8 @@
             {
                 "_id": "66b859ad6d3a00000cd4f10c",
                 "name": {
-                    "en": "TEST"
+                    "en": "TEST",
+                    "th": "ทดสอบ"
                 },
                 "parentId": "62c827b5a427b63741da9175",
                 "parentName": "Home",
@@ -27,7 +28,8 @@
             {
                 "_id": "66af45c4d6a435000c3789e8",
                 "name": {
-                    "en": "Jazlyn Kub"
+                    "en": "Jazlyn Kub",
+                    "th": "จารุลีน คุบ"
                 },
                 "parentId": "62c827b5a427b63741da9175",
                 "parentName": "Home",
@@ -41,7 +43,8 @@
             {
                 "_id": "66af45b45dcae2000c32aa2e",
                 "name": {
-                    "en": "Colleen Barrows"
+                    "en": "Colleen Barrows",
+                    "th": "คุณสมบัติ บารม"
                 },
                 "parentId": "62c827b5a427b63741da9175",
                 "parentName": "Home",
@@ -55,7 +58,8 @@
             {
                 "_id": "632aca6d4d87ff2494210c24",
                 "name": {
-                    "en": "Fish & Meat"
+                    "en": "Fish & Meat",
+                    "th": "ปลดล็อคนัดทราย"
                 },
                 "parentId": "62c827b5a427b63741da9175",
                 "parentName": "Home",
@@ -69,7 +73,8 @@
             {
                 "_id": "632aca2b4d87ff2494210be8",
                 "name": {
-                    "en": "Fruits & Vegetable"
+                    "en": "Fruits & Vegetable",
+                    "th": "ผักเกานต์"
                 },
                 "parentId": "62c827b5a427b63741da9175",
                 "parentName": "Home",
@@ -82,7 +87,8 @@
                     {
                         "_id": "63f12afdcc480f0454f475dd",
                         "name": {
-                            "en": "Baby Food"
+                            "en": "Baby Food",
+                            "th": "อาหารสำหรับเด็ก"
                         },
                         "parentId": "632aca2b4d87ff2494210be8",
                         "parentName": "Fruits & Vegetable",
@@ -95,7 +101,8 @@
                             {
                                 "_id": "632aca754d87ff2494210c2c",
                                 "name": {
-                                    "en": "Meat"
+                                    "en": "Meat",
+                                    "th": "อาหาร"
                                 },
                                 "parentId": "63f12afdcc480f0454f475dd",
                                 "parentName": "Baby Food",

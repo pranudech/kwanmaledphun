@@ -1,6 +1,7 @@
 import { SidebarContext } from "@context/SidebarContext";
 import { useContext, useEffect } from "react";
 import { useRouter } from "next/router";
+import { storeCustomization } from "@utils/storeCustomizationSetting";
 
 //internal import
 import Layout from "@layout/Layout";
@@ -20,9 +21,8 @@ import CMSkeleton from "@components/preloader/CMSkeleton";
 const Home = ({ popularProducts, discountProducts, attributes }) => {
   const router = useRouter();
   const { isLoading, setIsLoading } = useContext(SidebarContext);
-  const { loading, error, storeCustomizationSetting } = useGetSetting();
-
-  // console.log("storeCustomizationSetting", storeCustomizationSetting);
+  const { loading, error, storeCustomizationSetting: tempString } = useGetSetting();
+  const storeCustomizationSetting = storeCustomization.setting;
 
   useEffect(() => {
     if (router.asPath === "/") {
@@ -39,17 +39,18 @@ const Home = ({ popularProducts, discountProducts, attributes }) => {
       ) : (
         <Layout>
           <div className="min-h-screen">
-            <StickyCart />
+            {/* <StickyCart /> */}
             <div className="bg-white">
               <div className="mx-auto py-5 max-w-screen-2xl px-3 sm:px-10">
-                <div className="flex w-full">
+                <MainCarousel />
+                {/* <div className="flex w-full">
                   <div className="flex-shrink-0 xl:pr-6 lg:block w-full lg:w-3/5">
                     <MainCarousel />
                   </div>
                   <div className="w-full hidden lg:flex">
                     <OfferCard />
                   </div>
-                </div>
+                </div> */}
                 {storeCustomizationSetting?.home?.promotion_banner_status && (
                   <div className="bg-orange-100 px-10 py-6 rounded-lg mt-6">
                     <Banner />
@@ -86,7 +87,6 @@ const Home = ({ popularProducts, discountProducts, attributes }) => {
                       </p>
                     </div>
                   </div>
-
                   <FeatureCategory />
                 </div>
               </div>
@@ -226,6 +226,7 @@ const Home = ({ popularProducts, discountProducts, attributes }) => {
                   </div>
                 </div>
               )}
+
           </div>
         </Layout>
       )}

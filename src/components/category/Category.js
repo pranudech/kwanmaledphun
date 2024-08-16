@@ -57,13 +57,14 @@ const Category = () => {
           <Loading loading={loading} />
         ) : (
           <div className="relative grid gap-2 p-6">
-            {data[0]?.children?.map((category) => (
+            {data?.map((category) => (
               <CategoryCard
                 key={category._id}
                 id={category._id}
                 icon={category.icon}
                 nested={category.children}
-                title={showingTranslateValue(category?.name)}
+                // title={showingTranslateValue(category?.name)}
+                title={category?.type_name}
               />
             ))}
           </div>
