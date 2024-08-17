@@ -54,7 +54,21 @@ const SettingServices = {
   },
 
   getGlobalSetting: async () => {
-    return requests.get("/setting/global/all");
+    return {
+      "number_of_image_per_product": "5",
+      "shop_name": "Kwanmaledpun",
+      "address": "59 Station Rd, Purls Bridge, United Kingdom",
+      "company_name": "HtmlLover ltd",
+      "vat_number": "47589",
+      "post_code": "2030",
+      "contact": "019579034",
+      "email": "kachabazar@gmail.com",
+      "website": "kachabazar-admin.vercel.app",
+      "default_currency": "$",
+      "default_time_zone": "Europe/London",
+      "default_date_format": "MMM D, YYYY",
+      "receipt_size": "57-mm"
+    };
   },
 };
 

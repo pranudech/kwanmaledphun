@@ -36,8 +36,7 @@ const ProductCard = ({ product, attributes }) => {
       setModalOpen(!modalOpen);
       return;
     }
-    const { slug, variants, categories, description, ...updatedProduct } =
-      product;
+    const { slug, variants, categories, description, ...updatedProduct } = product;
     const newItem = {
       ...updatedProduct,
       title: showingTranslateValue(p?.title),
@@ -67,8 +66,9 @@ const ProductCard = ({ product, attributes }) => {
 
       <div className="group box-border overflow-hidden flex rounded-md shadow-sm pe-0 flex-col items-center bg-white relative">
         <div className="w-full flex justify-between">
-          <Stock product={product} stock={product.stock} card />
-          <Discount product={product} />
+          {/* <Stock product={product} stock={product.stock} card /> */}
+          {/* <Discount product={product} /> */}
+          <div className="text-xs text-gray-4000 m-3 bg-blue-100 p-1 rounded-md">{product.subtype_name}</div>
         </div>
         <div
           onClick={() => {
@@ -81,8 +81,8 @@ const ProductCard = ({ product, attributes }) => {
           className="relative flex justify-center cursor-pointer pt-2 w-full h-44"
         >
           <div className="relative w-full h-full p-2">
-            {product.image[0] ? (
-              <ImageWithFallback src={product.image[0]} alt="product" />
+            {product?.product_image1 ? (
+              <ImageWithFallback src={"/" + product?.product_image1} alt="product" />
             ) : (
               <Image
                 src="https://res.cloudinary.com/ahossain/image/upload/v1655097002/placeholder_kvepfp.png"
@@ -99,9 +99,6 @@ const ProductCard = ({ product, attributes }) => {
         </div>
         <div className="w-full px-3 lg:px-4 pb-4 overflow-hidden">
           <div className="relative mb-1">
-            <span className="text-gray-400 font-medium text-xs d-block mb-1">
-              {product.unit}
-            </span>
             <h2 className="text-heading truncate mb-0 block text-sm font-medium text-gray-600">
               <span className="line-clamp-2">
                 {showingTranslateValue(product?.title)}
@@ -110,23 +107,24 @@ const ProductCard = ({ product, attributes }) => {
           </div>
 
           <div className="flex justify-between items-center text-heading text-sm sm:text-base space-s-2 md:text-base lg:text-xl">
-            <Price
+            <div>
+              <div>{product.product_name}</div>
+              <div className="text-gray-400 font-medium text-xs d-block my-1 line-clamp-2">
+                {product.company_name}
+              </div>
+              <div className="text-gray-400 font-medium text-xs d-block my-1 line-clamp-2">
+                {product.detail}
+              </div>
+            </div>
+            {/* <Price
               card
               product={product}
               currency={currency}
-              price={
-                product?.isCombination
-                  ? product?.variants[0]?.price
-                  : product?.prices?.price
-              }
-              originalPrice={
-                product?.isCombination
-                  ? product?.variants[0]?.originalPrice
-                  : product?.prices?.originalPrice
-              }
-            />
+              price={10}
+              originalPrice={12}
+            /> */}
 
-            {inCart(product._id) ? (
+            {/* {inCart(product._id) ? (
               <div>
                 {items.map(
                   (item) =>
@@ -173,7 +171,7 @@ const ProductCard = ({ product, attributes }) => {
                   <IoBagAddSharp />
                 </span>{" "}
               </button>
-            )}
+            )} */}
           </div>
         </div>
       </div>

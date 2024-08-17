@@ -20,6 +20,8 @@ const Category = () => {
     CategoryServices.getShowingCategory()
   );
 
+  // console.log('data', data)
+
   return (
     <div className="flex flex-col w-full h-full bg-white cursor-pointer scrollbar-hide">
       {categoryDrawerOpen && (
@@ -59,12 +61,12 @@ const Category = () => {
           <div className="relative grid gap-2 p-6">
             {data?.map((category) => (
               <CategoryCard
-                key={category._id}
-                id={category._id}
+                key={category.type_id}
+                id={category.type_id}
                 icon={category.icon}
                 nested={category.children}
-                // title={showingTranslateValue(category?.name)}
                 title={category?.type_name}
+                // title={showingTranslateValue(category?.name)}
               />
             ))}
           </div>

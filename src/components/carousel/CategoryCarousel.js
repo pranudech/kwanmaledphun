@@ -14,7 +14,7 @@ import { SidebarContext } from "@context/SidebarContext";
 import CategoryServices from "@services/CategoryServices";
 import useUtilsFunction from "@hooks/useUtilsFunction";
 
-const CategoryCarousel = () => {
+const CategoryCarousel = ({ subtypeList }) => {
   const router = useRouter();
 
   const prevRef = useRef(null);
@@ -22,13 +22,11 @@ const CategoryCarousel = () => {
 
   const { showingTranslateValue } = useUtilsFunction();
   const { isLoading, setIsLoading } = useContext(SidebarContext);
-  const { data, error } = useAsync(() => CategoryServices.getShowingCategory());
+  // const { data, error } = useAsync(() => CategoryServices.getShowingCategory());
+  const data = subtypeList;
 
   const handleCategoryClick = (id, category) => {
-    const category_name = showingTranslateValue(category)
-      ?.toLowerCase()
-      .replace(/[^A-Z0-9]+/gi, "-");
-
+    const category_name = showingTranslateValue(category)?.toLowerCase().replace(/[^A-Z0-9]+/gi, "-");
     router.push(`/search?category=${category_name}&_id=${id}`);
     setIsLoading(!isLoading);
   };
@@ -92,43 +90,36 @@ const CategoryCarousel = () => {
         modules={[Navigation]}
         className="mySwiper category-slider my-10"
       >
-        {error ? (
-          <p className="flex justify-center align-middle items-center m-auto text-xl text-red-500">
-            <span> {error}</span>
-          </p>
-        ) : (
-          <div>
-            {data[0]?.children?.map((category, i) => (
-              <SwiperSlide key={i + 1} className="group">
-                <div
-                  onClick={() =>
-                    handleCategoryClick(category?._id, category.name)
-                  }
-                  className="text-center cursor-pointer p-3 bg-white rounded-lg"
-                >
-                  <div className="bg-white p-2 mx-auto w-10 h-10 rounded-full shadow-md">
-                    <div className="relative w-9 h-9">
-                      <Image
-                        src={
-                          category?.icon ||
-                          "https://res.cloudinary.com/ahossain/image/upload/v1655097002/placeholder_kvepfp.png"
-                        }
-                        alt="category"
-                        width={40}
-                        height={40}
-                        className="object-fill"
-                      />
-                    </div>
+        <div>
+          {data?.map((category, i) => (
+            <SwiperSlide key={i + 1} className="group">
+              <div
+                onClick={() =>
+                  handleCategoryClick(category?.subtype_id, category.subtype_name)
+                }
+                className="text-center cursor-pointer p-3 bg-white rounded-lg"
+              >
+                <div className="bg-white p-2 mx-auto w-[50px] h-[50px] rounded-full shadow-md flex justify-center items-center">
+                  <div className="relative">
+                    <Image
+                      src={category?.icon || "https://res.cloudinary.com/ahossain/image/upload/v1655097002/placeholder_kvepfp.png"}
+                      alt="category"
+                      width={40}
+                      height={40}
+                      className="object-fill"
+                    />
                   </div>
-
-                  <h3 className="text-xs text-gray-600 mt-2 font-serif group-hover:text-emerald-500">
-                    {showingTranslateValue(category?.name)}
-                  </h3>
                 </div>
-              </SwiperSlide>
-            ))}
-          </div>
-        )}
+
+                <h3 className="text-[14px] text-gray-600 mt-2 font-serif group-hover:text-emerald-500">
+                  {/* {showingTranslateValue(category?.name)} */}
+                  {category.subtype_name}
+                </h3>
+              </div>
+            </SwiperSlide>
+          ))}
+        </div>
+
         <button ref={prevRef} className="prev">
           <IoChevronBackOutline />
         </button>

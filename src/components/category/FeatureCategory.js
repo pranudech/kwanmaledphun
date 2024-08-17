@@ -21,8 +21,9 @@ const FeatureCategory = () => {
   // console.log('category', data)
 
   const handleCategoryClick = (id, categoryName) => {
-    const category_name = categoryName.toLowerCase().replace(/[^A-Z0-9]+/gi, "-");
-    const url = `/search?category=${category_name}&_id=${id}`;
+    // const category_name = categoryName.toLowerCase().replace(/[^A-Z0-9]+/gi, "-");
+    const url = `/search?type_name=${categoryName}&type_id=${id}`;
+    console.log('url', url)
     router.push(url);
     setIsLoading(!isLoading);
   };
@@ -38,7 +39,10 @@ const FeatureCategory = () => {
           {data?.map((category, i) => {
             return (
               <li className="group" key={i + 1}>
-                <div className="flex justify-center w-full h-full border border-gray-100 shadow-sm bg-white rounded-lg p-4 cursor-pointer transition duration-200 ease-linear transform group-hover:shadow-lg">
+                <div 
+                  className="flex justify-center w-full h-full border border-gray-100 shadow-sm bg-white rounded-lg p-4 cursor-pointer transition duration-200 ease-linear transform group-hover:shadow-lg"
+                  onClick={() => handleCategoryClick(category.type_id, category?.type_name)}
+                >
                   <div className="flex items-center">
                     <div>
                       <Image

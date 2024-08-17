@@ -26,28 +26,27 @@ const CategoryCard = ({ title, icon, nested, id }) => {
 
   // handle show category
   const showCategory = (id, categoryName) => {
-    const name = categoryName.toLowerCase().replace(/[^A-Z0-9]+/gi, "-");
-
     setShow(!show);
-    router.push(`/search?category=${name}&_id=${id}`);
+    const url = `/search?type_name=${categoryName}&type_id=${id}`;
+    router.push(url);
     closeCategoryDrawer;
     setIsLoading(!isLoading);
   };
 
   // handle sub nested category
   const handleSubNestedCategory = (id, categoryName) => {
-    const name = categoryName.toLowerCase().replace(/[^A-Z0-9]+/gi, "-");
-
+    console.log('categoryName', categoryName)
     setShowSubCategory({ id: id, show: showSubCategory.show ? false : true });
-    router.push(`/search?category=${name}&_id=${id}`);
+    const url = `/search?type_name=${categoryName}&type_id=${id}`;
+    router.push(url);
     closeCategoryDrawer;
     setIsLoading(!isLoading);
   };
 
   const handleSubCategory = (id, categoryName) => {
-    const name = categoryName.toLowerCase().replace(/[^A-Z0-9]+/gi, "-");
-
-    router.push(`/search?category=${name}&_id=${id}`);
+    console.log('categoryName', categoryName)
+    const url = `/search?type_name=${categoryName}&type_id=${id}`;
+    router.push(url);
     closeCategoryDrawer;
     setIsLoading(!isLoading);
   };
@@ -81,80 +80,75 @@ const CategoryCard = ({ title, icon, nested, id }) => {
       </a>
       {show && nested.length > 0 && (
         <ul className="pl-6 pb-3 pt-1 -mt-1">
-          {nested.map((children) => (
-            <li key={children._id}>
-              {children.children.length > 0 ? (
-                <a
-                  onClick={() =>
-                    handleSubNestedCategory(
-                      children._id,
-                      showingTranslateValue(children.name)
-                    )
-                  }
-                  className="flex items-center font-serif pr-2 text-sm text-gray-600 hover:text-emerald-600 py-1 cursor-pointer"
-                >
-                  <span className="text-xs text-gray-500">
-                    <IoRemoveSharp />
-                  </span>
+          {nested.map((children) => {
+            return (
+              <li key={children.subtype_id}>
+                {children.length > 0 ? (
+                  <a
+                    onClick={() => handleSubNestedCategory(children.subtype_id, children.subtype_name)}
+                    className="flex items-center font-serif pr-2 text-sm text-gray-600 hover:text-emerald-600 py-1 cursor-pointer"
+                  >
+                    <span className="text-xs text-gray-500">
+                      <IoRemoveSharp />
+                    </span>
 
-                  <div className="inline-flex items-center justify-between ml-3 text-sm font-medium w-full hover:text-emerald-600">
-                    {showingTranslateValue(children.name)}
+                    <div className="inline-flex items-center justify-between ml-3 text-sm font-medium w-full hover:text-emerald-600">
+                      {showingTranslateValue(children.name)}
 
-                    {children.children.length > 0 ? (
-                      <span className="transition duration-700 ease-in-out inline-flex loading-none items-end text-gray-400">
-                        {showSubCategory.id === children._id &&
-                        showSubCategory.show ? (
-                          <IoChevronDownOutline />
-                        ) : (
-                          <IoChevronForwardOutline />
-                        )}
-                      </span>
-                    ) : null}
-                  </div>
-                </a>
-              ) : (
-                <a
-                  onClick={() =>
-                    handleSubCategory(
-                      children._id,
-                      showingTranslateValue(children.name)
-                    )
-                  }
-                  className="flex items-center font-serif py-1 text-sm text-gray-600 hover:text-emerald-600 cursor-pointer"
-                >
-                  <span className="text-xs text-gray-500 pr-2">
-                    <IoRemoveSharp />
-                  </span>
-                  {showingTranslateValue(children.name)}
-                </a>
-              )}
-
-              {/* sub children category */}
-              {showSubCategory.id === children._id &&
-              showSubCategory.show === true ? (
-                <ul className="pl-6 pb-3">
-                  {children.children.map((subChildren) => (
-                    <li key={subChildren._id}>
-                      <a
-                        onClick={() =>
-                          handleSubCategory(
-                            subChildren._id,
-                            showingTranslateValue(subChildren?.name)
-                          )
-                        }
-                        className="flex items-center font-serif py-1 text-sm text-gray-600 hover:text-emerald-600 cursor-pointer"
-                      >
-                        <span className="text-xs text-gray-500 pr-2">
-                          <IoRemoveSharp />
+                      {children.length > 0 ? (
+                        <span className="transition duration-700 ease-in-out inline-flex loading-none items-end text-gray-400">
+                          {showSubCategory.id === children.subtype_id &&
+                            showSubCategory.show ? (
+                            <IoChevronDownOutline />
+                          ) : (
+                            <IoChevronForwardOutline />
+                          )}
                         </span>
-                        {showingTranslateValue(subChildren?.name)}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              ) : null}
-            </li>
-          ))}
+                      ) : null}
+                    </div>
+                  </a>
+                ) : (
+                  <a
+                    onClick={() =>
+                      handleSubCategory(children.subtype_id, children.subtype_name)
+                    }
+                    className="flex items-center font-serif py-1 text-sm text-gray-600 hover:text-emerald-600 cursor-pointer"
+                  >
+                    <span className="text-xs text-gray-500 pr-2">
+                      <IoRemoveSharp />
+                    </span>
+                    {/* {showingTranslateValue(children.subtype_name)} */}
+                    {children.subtype_name}
+                  </a>
+                )}
+
+                {/* sub children category */}
+                {showSubCategory.id === children.subtype_id &&
+                  showSubCategory.show === true ? (
+                  <ul className="pl-6 pb-3">
+                    {children.children.map((subChildren) => (
+                      <li key={subChildren.subtype_id}>
+                        <a
+                          onClick={() =>
+                            handleSubCategory(
+                              subChildren.subtype_id,
+                              showingTranslateValue(subChildren?.name)
+                            )
+                          }
+                          className="flex items-center font-serif py-1 text-sm text-gray-600 hover:text-emerald-600 cursor-pointer"
+                        >
+                          <span className="text-xs text-gray-500 pr-2">
+                            <IoRemoveSharp />
+                          </span>
+                          {showingTranslateValue(subChildren?.name)}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                ) : null}
+              </li>
+            )
+          })}
         </ul>
       )}
     </>

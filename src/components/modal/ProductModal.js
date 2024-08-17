@@ -25,6 +25,7 @@ const ProductModal = ({
   attributes,
   currency,
 }) => {
+  console.log('product', product)
   const router = useRouter();
   const { setIsLoading, isLoading } = useContext(SidebarContext);
   const { t } = useTranslation("ns1");
@@ -119,7 +120,7 @@ const ProductModal = ({
       setOriginalPrice(originalPrice);
     } else {
       setStock(product?.stock);
-      setImg(product?.image[0]);
+      setImg(product?.image);
       const price = getNumber(product?.prices?.price);
       const originalPrice = getNumber(product?.prices?.originalPrice);
       const discountPercentage = getNumber(
@@ -142,11 +143,11 @@ const ProductModal = ({
   // console.log("product", product);
 
   useEffect(() => {
-    const res = Object.keys(Object.assign({}, ...product?.variants));
+    // const res = Object.keys(Object.assign({}, ...product?.variants));
 
-    const varTitle = attributes?.filter((att) => res.includes(att?._id));
+    // const varTitle = attributes?.filter((att) => res.includes(att?._id));
 
-    setVariantTitle(varTitle?.sort());
+    // setVariantTitle(varTitle?.sort());
   }, [variants, attributes]);
 
   const handleAddToCart = (p) => {
@@ -165,24 +166,22 @@ const ProductModal = ({
       const { variants, categories, description, ...updatedProduct } = product;
       const newItem = {
         ...updatedProduct,
-        id: `${
-          p?.variants.length <= 0
-            ? p._id
-            : p._id +
-              "-" +
-              variantTitle?.map((att) => selectVariant[att._id]).join("-")
-        }`,
-        title: `${
-          p?.variants.length <= 0
-            ? showingTranslateValue(p.title)
-            : showingTranslateValue(p.title) +
-              "-" +
-              variantTitle
-                ?.map((att) =>
-                  att.variants?.find((v) => v._id === selectVariant[att._id])
-                )
-                .map((el) => showingTranslateValue(el?.name))
-        }`,
+        id: `${p?.variants.length <= 0
+          ? p._id
+          : p._id +
+          "-" +
+          variantTitle?.map((att) => selectVariant[att._id]).join("-")
+          }`,
+        title: `${p?.variants.length <= 0
+          ? showingTranslateValue(p.title)
+          : showingTranslateValue(p.title) +
+          "-" +
+          variantTitle
+            ?.map((att) =>
+              att.variants?.find((v) => v._id === selectVariant[att._id])
+            )
+            .map((el) => showingTranslateValue(el?.name))
+          }`,
         image: img,
         variant: selectVariant || {},
         price:
@@ -222,27 +221,27 @@ const ProductModal = ({
       <MainModal modalOpen={modalOpen} setModalOpen={setModalOpen}>
         <div className="inline-block overflow-y-auto h-full align-middle transition-all transform bg-white shadow-xl rounded-2xl">
           <div className="flex flex-col lg:flex-row md:flex-row w-full max-w-4xl overflow-hidden">
-            <Link href={`/product/${product.slug}`} passHref>
+            <Link href={`/product/${product.product_id}`} passHref>
               <div
                 onClick={() => setModalOpen(false)}
                 className="flex-shrink-0 flex items-center justify-center h-auto cursor-pointer"
               >
-                <Discount product={product} discount={discount} modal />
-                {product.image[0] ? (
+                {/* <Discount product={product} discount={discount} modal /> */}
+                {/* {product.image ? (
                   <Image
                     src={img || product.image[0]}
                     width={420}
                     height={420}
                     alt="product"
                   />
-                ) : (
-                  <Image
-                    src="https://res.cloudinary.com/ahossain/image/upload/v1655097002/placeholder_kvepfp.png"
-                    width={420}
-                    height={420}
-                    alt="product Image"
-                  />
-                )}
+                ) : ( */}
+                <Image
+                  src="https://res.cloudinary.com/ahossain/image/upload/v1655097002/placeholder_kvepfp.png"
+                  width={420}
+                  height={420}
+                  alt="product Image"
+                />
+                {/* )} */}
               </div>
             </Link>
 
@@ -256,25 +255,28 @@ const ProductModal = ({
                     {showingTranslateValue(product?.title)}
                   </h1>
                 </Link>
-                <div
+                {/* <div
                   className={`${
                     stock <= 0 ? "relative py-1 mb-2" : "relative"
                   }`}
                 >
                   <Stock stock={stock} />
+                </div> */}
+                <div className="flex">
+                  <div className="text-[16px] text-gray-4000 bg-blue-100 px-2 py-1 rounded-md">{product.subtype_name}</div>
                 </div>
               </div>
-              <p className="text-sm leading-6 text-gray-500 md:leading-6">
+              {/* <p className="text-sm leading-6 text-gray-500 md:leading-6">
                 {showingTranslateValue(product?.description)}
-              </p>
-              <div className="flex items-center my-4">
+              </p> */}
+              {/* <div className="flex items-center my-4">
                 <Price
                   product={product}
                   price={price}
                   currency={currency}
                   originalPrice={originalPrice}
                 />
-              </div>
+              </div> */}
 
               <div className="mb-1">
                 {variantTitle?.map((a, i) => (
@@ -299,7 +301,7 @@ const ProductModal = ({
                 ))}
               </div>
 
-              <div className="flex items-center mt-4">
+              {/* <div className="flex items-center mt-4">
                 <div className="flex items-center justify-between space-s-3 sm:space-s-4 w-full">
                   <div className="group flex items-center justify-between rounded-md overflow-hidden flex-shrink-0 border h-11 md:h-12 border-gray-300">
                     <button
@@ -334,46 +336,46 @@ const ProductModal = ({
                     {t("common:addToCart")}
                   </button>
                 </div>
+              </div> */}
+              <div className="text-[18px] font-bold">
+                {product.product_name}
               </div>
-              <div className="flex items-center mt-4">
-                <div className="flex items-center justify-between space-s-3 sm:space-s-4 w-full">
-                  <div>
-                    <span className="font-serif font-semibold py-1 text-sm d-block">
-                      <span className="text-gray-700">
-                        {t("common:category")}:
-                      </span>{" "}
-                      <Link
-                        href={`/search?category=${category_name}&_id=${product?.category?._id}`}
-                      >
-                        <button
-                          type="button"
-                          className="text-gray-600 font-serif font-medium underline ml-2 hover:text-teal-600"
-                          onClick={() => setIsLoading(!isLoading)}
-                        >
-                          {category_name}
-                        </button>
-                      </Link>
-                    </span>
-
-                    <Tags product={product} />
-                  </div>
-
-                  <div>
-                    <button
-                      onClick={() => handleMoreInfo(product.slug)}
-                      className="font-sans font-medium text-sm text-orange-500"
-                    >
-                      {t("common:moreInfo")}
-                    </button>
-                  </div>
+              <div className="mt-3">
+                {product.detail}
+              </div>
+              <div className="grid grid-cols-4 mt-3">
+                <div>
+                  <span className="text-emerald-500 mr-3">ขนาด</span>
+                </div>
+                <div>
+                  {product.size_product}
                 </div>
               </div>
-              <div className="flex justify-end mt-2">
-                <p className="text-xs sm:text-sm text-gray-600">
-                  Call Us To Order By Mobile Number :{" "}
-                  <span className="text-emerald-700 font-semibold">
-                    +0044235234
-                  </span>{" "}
+              <div className="grid grid-cols-4">
+                <div>
+                  <span className="text-emerald-500 mr-3">ประเภทสินค้า</span>
+                </div>
+                <div>
+                  {product.type_name} / {product.subtype_name}
+                </div>
+              </div>
+              <div className="grid grid-cols-4">
+                <div>
+                  <span className="text-emerald-500 mr-3">บริษัท</span>
+                </div>
+                <div>
+                  {product.company_name}
+                </div>
+              </div>
+              <div className="flex justify-start mt-4">
+                <p className="text-sm font-sans leading-6">
+                  ☎️ สั่งมาได้เลย พร้อมจัดส่งครับ🛒 <br />
+                  (ส่งของทุกวัน)❗️ <br />
+                  🚚ปลีก-ส่งราคาถูกเป็นกันเอง <br />
+                  📥FB:Inbox: <a className="text-blue-500 hover:text-blue-600 underline" href="https://m.me/kwanseed/?ref=bookmarks">https://m.me/kwanseed/?ref=bookmarks</a> <br />
+                  📱สายด่วน❗️<a className="text-blue-500 hover:text-blue-600 underline" href="tel:064-450-0005">064-450-0005</a> <br />
+                  ☎️สอบถาม <a className="text-blue-500 hover:text-blue-600 underline" href="tel:044-342371">044-342371</a> <br />
+                  🆔ไลน์แอด : <a className="text-blue-500 hover:text-blue-600 underline" href="https://line.me/ti/p/~@kwanmaledpunkorat">kwanmaledpunkorat</a>
                 </p>
               </div>
             </div>

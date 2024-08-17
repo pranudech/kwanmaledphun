@@ -7,13 +7,14 @@ import Layout from "@layout/Layout";
 import useFilter from "@hooks/useFilter";
 import Card from "@components/cta-card/Card";
 import ProductServices from "@services/ProductServices";
+import CategoryServices from "@services/CategoryServices";
 import ProductCard from "@components/product/ProductCard";
 import CategoryCarousel from "@components/carousel/CategoryCarousel";
 import { SidebarContext } from "@context/SidebarContext";
 import Loading from "@components/preloader/Loading";
 import AttributeServices from "@services/AttributeServices";
 
-const Search = ({ products, attributes }) => {
+const Search = ({ products, attributes, type_name, type_id, subtypeList }) => {
   const { t } = useTranslation();
   const { isLoading, setIsLoading } = useContext(SidebarContext);
   const [visibleProduct, setVisibleProduct] = useState(18);
@@ -24,17 +25,22 @@ const Search = ({ products, attributes }) => {
 
   const { setSortedField, productData } = useFilter(products);
 
+  // console.log('productData', productData)
+  // console.log('subtype', subtype)
+
   return (
     <Layout title="Search" description="This is search page">
       <div className="mx-auto max-w-screen-2xl px-3 sm:px-10">
         <div className="flex py-10 lg:py-12">
           <div className="flex w-full">
             <div className="w-full">
-              <div className="w-full grid grid-col gap-4 grid-cols-1 2xl:gap-6 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2">
+              {/* <div className="w-full grid grid-col gap-4 grid-cols-1 2xl:gap-3 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-3">
                 <Card />
-              </div>
+              </div> */}
               <div className="relative">
-                <CategoryCarousel />
+                <CategoryCarousel
+                  subtypeList={subtypeList}
+                />
               </div>
               {productData?.length === 0 ? (
                 <div className="mx-auto p-5 my-5">
@@ -50,13 +56,14 @@ const Search = ({ products, attributes }) => {
                   </h2>
                 </div>
               ) : (
-                <div className="flex justify-between my-3 bg-orange-100 border border-gray-100 rounded p-3">
-                  <h6 className="text-sm font-serif">
+                <div className="flex justify-center mt-3 mb-4 bg-orange-100 border border-gray-100 rounded p-3">
+                  <h6 className="text-[16px] font-serif">
+                    <span className="font-bold mx-2 text-emerald-500">{type_name}</span>
                     {t("common:totalI")}{" "}
-                    <span className="font-bold">{productData?.length}</span>{" "}
+                    <span className="font-bold text-red-500">{productData?.length}</span>{" "}
                     {t("common:itemsFound")}
                   </h6>
-                  <span className="text-sm font-serif">
+                  {/* <span className="text-sm font-serif">
                     <select
                       onChange={(e) => setSortedField(e.target.value)}
                       className="py-0 text-sm font-serif font-medium block w-full rounded border-0 bg-white pr-10 cursor-pointer focus:ring-0"
@@ -71,7 +78,7 @@ const Search = ({ products, attributes }) => {
                         {t("common:highToLow")}
                       </option>
                     </select>
-                  </span>
+                  </span> */}
                 </div>
               )}
 
@@ -110,20 +117,20 @@ const Search = ({ products, attributes }) => {
 export default Search;
 
 export const getServerSideProps = async (context) => {
-  const { query, _id } = context.query;
+  const { type_name, type_id } = context.query;
 
-  const [data, attributes] = await Promise.all([
-    ProductServices.getShowingStoreProducts({
-      category: _id ? _id : "",
-      title: query ? encodeURIComponent(query) : "",
-    }),
+  const [data, attributes, subtypeList] = await Promise.all([
+    ProductServices.getShowingStoreProducts({ type_name }),
     AttributeServices.getShowingAttributes({}),
+    CategoryServices.getSubType(type_id)
   ]);
 
   return {
     props: {
-      products: data?.products,
+      ...context.query,
+      products: data,
       attributes,
+      subtypeList
     },
   };
 };

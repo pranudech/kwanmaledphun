@@ -18,7 +18,7 @@ import FeatureCategory from "@components/category/FeatureCategory";
 import AttributeServices from "@services/AttributeServices";
 import CMSkeleton from "@components/preloader/CMSkeleton";
 
-const Home = ({ popularProducts, discountProducts, attributes }) => {
+const Home = ({ popularProducts = [], discountProducts = [], attributes = [] }) => {
   const router = useRouter();
   const { isLoading, setIsLoading } = useContext(SidebarContext);
   const { loading, error, storeCustomizationSetting: tempString } = useGetSetting();
@@ -120,7 +120,7 @@ const Home = ({ popularProducts, discountProducts, attributes }) => {
                   </div>
                 </div>
                 <div className="flex">
-                  <div className="w-full">
+                  {/* <div className="w-full">
                     {loading ? (
                       <CMSkeleton
                         count={20}
@@ -145,7 +145,7 @@ const Home = ({ popularProducts, discountProducts, attributes }) => {
                           ))}
                       </div>
                     )}
-                  </div>
+                  </div> */}
                 </div>
               </div>
             )}
@@ -162,7 +162,7 @@ const Home = ({ popularProducts, discountProducts, attributes }) => {
             )}
 
             {/* discounted products */}
-            {storeCustomizationSetting?.home?.discount_product_status &&
+            {/* {storeCustomizationSetting?.home?.discount_product_status &&
               discountProducts?.length > 0 && (
                 <div
                   id="discount"
@@ -225,7 +225,7 @@ const Home = ({ popularProducts, discountProducts, attributes }) => {
                     </div>
                   </div>
                 </div>
-              )}
+              )} */}
 
           </div>
         </Layout>
@@ -249,8 +249,8 @@ export const getServerSideProps = async (context) => {
 
   return {
     props: {
-      popularProducts: data.popularProducts,
-      discountProducts: data.discountedProducts,
+      // popularProducts: data.popularProducts,
+      // discountProducts: data.discountedProducts,
       cookies: cookies,
       attributes,
     },
