@@ -92,7 +92,7 @@ const storeCustomization = {
         en: "View All Product",
         th: "ดูรายการสินค้า",
       },
-      promotion_button_link: "/search?category=breakfast",
+      promotion_button_link: "/search?type_name=เมล็ดพันธุ์&type_id=2",
       feature_title: {
         en: "Featured Categories",
         th: "หมวดหมู่ที่แนะนำ",
