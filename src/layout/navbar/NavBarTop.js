@@ -61,12 +61,12 @@ const NavBarTop = () => {
               <a
                 href={`tel:${
                   storeCustomizationSetting?.navbar?.phone_number ||
-                  "+099949343"
+                  "044-342371"
                 }`}
                 className="font-bold text-emerald-500 ml-1"
               >
                 {storeCustomizationSetting?.navbar?.phone_number ||
-                  "+099949343"}
+                  "044-342371"}
               </a>
             </span>
 
