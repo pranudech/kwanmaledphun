@@ -308,44 +308,44 @@ const storeCustomization = {
         th: "ติดต่อเรา",
       },
       email_box_title: {
-        en: "Email Us",
-        th: "ส่งอีเมลถึงเรา",
+        en: "Facebook Inbox",
+        th: "Facebook Inbox",
       },
       email_box_email: {
         en: "info@kachabazar.com ",
-        th: "info@kachabazar.com",
+        th: "https://m.me/kwanseed/?ref=bookmarks",
       },
       email_box_text: {
-        en: "Interactively grow empowered for process-centric total linkage. ",
-        th: "เติบโตอย่างมีพลังสำหรับการเชื่อมโยงทั้งหมดที่เน้นกระบวนการ",
+        en: "",
+        th: "",
       },
       call_box_title: {
         en: "Call Us ",
         th: "โทรหาเรา",
       },
       call_box_phone: {
-        en: "029-00124667",
-        th: "029-00124667",
+        en: "044-342371",
+        th: "สายด่วน❗️064-450-0005 สอบถาม 044-342371",
       },
       call_box_text: {
-        en: "Distinctively disseminate focused solutions clicks-and-mortar ministate. ",
-        th: "เผยแพร่โซลูชันที่เน้นการคลิกและมอร์ตาร์อย่างชัดเจน",
+        en: "",
+        th: "",
       },
       address_box_title: {
         en: "Location ",
         th: "ที่ตั้ง",
       },
       address_box_address_one: {
-        en: "Boho One, Bridge Street West, Middlesbrough, North Yorkshire, TS2 1AE.",
-        th: "โบโฮ วัน, บริดจ์ สตรีท เวสต์, มิดเดิลสโบรห์, นอร์ท ยอร์กเชียร์, TS2 1AE",
+        en: "438/1 ตลาดสุรนคร ถนนมิตรภาพ-หนองคาย",
+        th: "438/1 ตลาดสุรนคร ถนนมิตรภาพ-หนองคาย",
       },
       address_box_address_two: {
-        en: "561-4535 Nulla LA ",
-        th: "561-4535 นัลลา แอลเอ",
+        en: "",
+        th: "",
       },
       address_box_address_three: {
-        en: "United States 96522. ",
-        th: "สหรัฐอเมริกา 96522",
+        en: "",
+        th: "",
       },
       form_title: {
         en: "For any support just send your query ",

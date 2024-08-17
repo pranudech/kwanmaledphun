@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useForm } from "react-hook-form";
 import useTranslation from "next-translate/useTranslation";
 import { FiMail, FiMapPin, FiBell } from "react-icons/fi";
+import { storeCustomization } from "@utils/storeCustomizationSetting";
 
 //internal import
 import Layout from "@layout/Layout";
@@ -24,7 +25,8 @@ const ContactUs = () => {
   } = useForm();
 
   const { showingTranslateValue } = useUtilsFunction();
-  const { storeCustomizationSetting, loading, error } = useGetSetting();
+  const { loading, error, storeCustomizationSetting: tempString } = useGetSetting();
+  const storeCustomizationSetting = storeCustomization.setting;
 
   const submitHandler = () => {
     notifySuccess(
@@ -96,14 +98,11 @@ const ContactUs = () => {
                   )}
                 </h5>
                 <p className="mb-0 text-base opacity-90 leading-7">
-                  <a
-                    href={`mailto:${storeCustomizationSetting?.contact_us?.call_box_phone}`}
-                    className="text-emerald-500"
-                  >
+                  <div>
                     {showingTranslateValue(
                       storeCustomizationSetting?.contact_us?.call_box_phone
                     )}
-                  </a>{" "}
+                  </div>{" "}
                   {showingTranslateValue(
                     storeCustomizationSetting?.contact_us?.call_box_text
                   )}
