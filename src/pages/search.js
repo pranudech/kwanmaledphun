@@ -14,7 +14,7 @@ import { SidebarContext } from "@context/SidebarContext";
 import Loading from "@components/preloader/Loading";
 import AttributeServices from "@services/AttributeServices";
 
-const Search = ({ products, attributes, type_name, type_id, subtypeList }) => {
+const Search = ({ products, attributes, type_name, type_id, subtypeList, query }) => {
   const { t } = useTranslation();
   const { isLoading, setIsLoading } = useContext(SidebarContext);
   const [visibleProduct, setVisibleProduct] = useState(18);
@@ -37,9 +37,10 @@ const Search = ({ products, attributes, type_name, type_id, subtypeList }) => {
               {/* <div className="w-full grid grid-col gap-4 grid-cols-1 2xl:gap-3 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-3">
                 <Card />
               </div> */}
-              <div className="relative">
+              <div className={`relative ${query ? 'hidden' : ''}`}>
                 <CategoryCarousel
                   subtypeList={subtypeList}
+                  type_id={type_id}
                 />
               </div>
               {productData?.length === 0 ? (
@@ -58,7 +59,7 @@ const Search = ({ products, attributes, type_name, type_id, subtypeList }) => {
               ) : (
                 <div className="flex justify-center mt-3 mb-4 bg-orange-100 border border-gray-100 rounded p-3">
                   <h6 className="text-[16px] font-serif">
-                    <span className="font-bold mx-2 text-emerald-500">{type_name}</span>
+                    <span className="font-bold mx-2 text-emerald-500">{type_name || query}</span>
                     {t("common:totalI")}{" "}
                     <span className="font-bold text-red-500">{productData?.length}</span>{" "}
                     {t("common:itemsFound")}
@@ -117,10 +118,10 @@ const Search = ({ products, attributes, type_name, type_id, subtypeList }) => {
 export default Search;
 
 export const getServerSideProps = async (context) => {
-  const { type_name, type_id } = context.query;
-
+  const { type_name, type_id, query, id, category } = context.query;
+  console.log('getServerSideProps => ', context.query)
   const [data, attributes, subtypeList] = await Promise.all([
-    ProductServices.getShowingStoreProducts({ type_name }),
+    ProductServices.getShowingStoreProducts({ type_name, query, id, category }),
     AttributeServices.getShowingAttributes({}),
     CategoryServices.getSubType(type_id)
   ]);

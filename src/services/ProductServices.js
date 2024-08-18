@@ -7,11 +7,8 @@ const ProductServices = {
   getShowingProducts: async () => {
     return requests.get("/products/show");
   },
-  getShowingStoreProducts: async ({ type_name }) => {
-    // console.log('getShowingStoreProducts', `/products/store?category=${category}&title=${title}&slug=${slug}`)
-    // return requests.get(`/products/store?category=${category}&title=${title}&slug=${slug}`);
-    // return product;
-    return requests.get(`${BASE_URL}/search/product_type?type_name=${type_name}`);
+  getShowingStoreProducts: async ({ type_name, query, id, category }) => {
+    return requests.get(`${BASE_URL}/search/product_type?type_name=${type_name}&query=${query}&id=${id}&category=${category}`);
   },
   getDiscountedProducts: async () => {
     return requests.get("/products/discount");

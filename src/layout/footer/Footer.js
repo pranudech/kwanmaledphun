@@ -8,6 +8,9 @@ import {
   PinterestIcon,
   TwitterIcon,
   WhatsappIcon,
+  LineIcon,
+  TiktokIcon,
+  InstagramIcon,
 } from "react-share";
 
 //internal import
@@ -341,14 +344,14 @@ const Footer = () => {
               {storeCustomizationSetting?.footer?.social_links_status && (
                 <div>
                   {(storeCustomizationSetting?.footer?.social_facebook ||
-                    storeCustomizationSetting?.footer?.social_twitter ||
-                    storeCustomizationSetting?.footer?.social_pinterest ||
-                    storeCustomizationSetting?.footer?.social_linkedin ||
-                    storeCustomizationSetting?.footer?.social_whatsapp) && (
-                    <span className="text-base leading-7 font-medium block mb-2 pb-0.5">
-                      {t("common:footer-follow-us")}
-                    </span>
-                  )}
+                    storeCustomizationSetting?.footer?.social_line ||
+                    storeCustomizationSetting?.footer?.social_shopee ||
+                    storeCustomizationSetting?.footer?.social_lazada ||
+                    storeCustomizationSetting?.footer?.social_line_shop) && (
+                      <span className="text-base leading-7 font-medium block mb-2 pb-0.5">
+                        {t("common:footer-follow-us")}
+                      </span>
+                    )}
                   <ul className="text-sm flex">
                     {storeCustomizationSetting?.footer?.social_facebook && (
                       <li className="flex items-center mr-3 transition ease-in-out duration-500">
@@ -363,7 +366,60 @@ const Footer = () => {
                         </Link>
                       </li>
                     )}
-                    {storeCustomizationSetting?.footer?.social_twitter && (
+                    {storeCustomizationSetting?.footer?.social_line && (
+                      <li className="flex items-center mr-3 transition ease-in-out duration-500">
+                        <Link
+                          href={`${storeCustomizationSetting?.footer?.social_line}`}
+                          aria-label="Social Link"
+                          rel="noreferrer"
+                          target="_blank"
+                          className="block text-center mx-auto text-gray-500 hover:text-white"
+                        >
+                          <LineIcon size={34} round />
+                        </Link>
+                      </li>
+                    )}
+                    {storeCustomizationSetting?.footer?.social_shopee && (
+                      <li className="flex items-center mr-3 transition ease-in-out duration-500">
+                        <Link
+                          href={`${storeCustomizationSetting?.footer?.social_shopee}`}
+                          aria-label="Social Link"
+                          rel="noreferrer"
+                          target="_blank"
+                          className="block text-center mx-auto text-gray-500 hover:text-white"
+                        >
+                          <img className="min-w-[34px]" src="/kwanmaledpun/icon/shopee.png" alt="shopee" width={34} height={34} />
+                        </Link>
+                      </li>
+                    )}
+                    {storeCustomizationSetting?.footer?.social_line_shop && (
+                      <li className="flex items-center mr-3 transition ease-in-out duration-500">
+                        <Link
+                          href={`${storeCustomizationSetting?.footer?.social_line_shop}`}
+                          aria-label="Social Link"
+                          rel="noreferrer"
+                          target="_blank"
+                          className="block text-center mx-auto text-gray-500 hover:text-white"
+                        >
+                          <img className="min-w-[34px]" src="/kwanmaledpun/icon/line-shop.png" alt="line-shop" width={34} height={34} />
+                        </Link>
+                      </li>
+                    )}
+                    {storeCustomizationSetting?.footer?.social_lazada && (
+                      <li className="flex items-center mr-3 transition ease-in-out duration-500">
+                        <Link
+                          href={`${storeCustomizationSetting?.footer?.social_lazada}`}
+                          aria-label="Social Link"
+                          rel="noreferrer"
+                          target="_blank"
+                          className="block text-center mx-auto text-gray-500 hover:text-white"
+                        >
+                          <img className="min-w-[34px]" src="/kwanmaledpun/icon/lazada.png" alt="lazada" width={34} height={34} />
+                        </Link>
+                      </li>
+                    )}
+
+                    {/* {storeCustomizationSetting?.footer?.social_twitter && (
                       <li className="flex items-center  mr-3 transition ease-in-out duration-500">
                         <Link
                           href={`${storeCustomizationSetting?.footer?.social_twitter}`}
@@ -375,8 +431,8 @@ const Footer = () => {
                           <TwitterIcon size={34} round />
                         </Link>
                       </li>
-                    )}
-                    {storeCustomizationSetting?.footer?.social_pinterest && (
+                    )} */}
+                    {/* {storeCustomizationSetting?.footer?.social_pinterest && (
                       <li className="flex items-center mr-3 transition ease-in-out duration-500">
                         <Link
                           href={`${storeCustomizationSetting?.footer?.social_pinterest}`}
@@ -388,8 +444,8 @@ const Footer = () => {
                           <PinterestIcon size={34} round />
                         </Link>
                       </li>
-                    )}
-                    {storeCustomizationSetting?.footer?.social_linkedin && (
+                    )} */}
+                    {/* {storeCustomizationSetting?.footer?.social_linkedin && (
                       <li className="flex items-center  mr-3 transition ease-in-out duration-500">
                         <Link
                           href={`${storeCustomizationSetting?.footer?.social_linkedin}`}
@@ -401,8 +457,8 @@ const Footer = () => {
                           <LinkedinIcon size={34} round />
                         </Link>
                       </li>
-                    )}
-                    {storeCustomizationSetting?.footer?.social_whatsapp && (
+                    )} */}
+                    {/* {storeCustomizationSetting?.footer?.social_whatsapp && (
                       <li className="flex items-center  mr-3 transition ease-in-out duration-500">
                         <Link
                           href={`${storeCustomizationSetting?.footer?.social_whatsapp}`}
@@ -414,7 +470,7 @@ const Footer = () => {
                           <WhatsappIcon size={34} round />
                         </Link>
                       </li>
-                    )}
+                    )} */}
                   </ul>
                 </div>
               )}

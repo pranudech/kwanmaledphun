@@ -24,46 +24,46 @@ const pages = [
   //   href: '/user/dashboard',
   //   icon: FiUser,
   // },
+  // {
+  //   title: "offer-page",
+  //   href: "/offer",
+  //   icon: FiGift,
+  // },
+  // {
+  //   title: "checkout-page",
+  //   href: "/checkout",
+  //   icon: FiShoppingBag,
+  // },
+  // {
+  //   title: "faq-page",
+  //   href: "/faq",
+  //   icon: FiHelpCircle,
+  // },
   {
-    title: "offer-page",
-    href: "/offer",
-    icon: FiGift,
-  },
-  {
-    title: "checkout-page",
-    href: "/checkout",
-    icon: FiShoppingBag,
-  },
-  {
-    title: "faq-page",
-    href: "/faq",
-    icon: FiHelpCircle,
-  },
-  {
-    title: "about-us-page",
+    title: "เกี่ยวกับเรา",
     href: "/about-us",
     icon: FiUsers,
   },
   {
-    title: "contact-us-page",
+    title: "ติดต่อเรา",
     href: "/contact-us",
     icon: FiPhoneIncoming,
   },
   {
-    title: "privacy-policy-page",
+    title: "นโยบายความเป็นส่วนตัว",
     href: "/privacy-policy",
     icon: FiPocket,
   },
   {
-    title: "terms-and-conditions-page",
+    title: "เงื่อข้อตกลง",
     href: "/terms-and-conditions",
     icon: FiFileText,
   },
-  {
-    title: "not-found-page",
-    href: "/404",
-    icon: FiAlertCircle,
-  },
+  // {
+  //   title: "not-found-page",
+  //   href: "/404",
+  //   icon: FiAlertCircle,
+  // },
 ];
 
 const userSidebar = [

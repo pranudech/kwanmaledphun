@@ -38,7 +38,7 @@ const storeCustomization = {
       },
       term_and_condition: {
         en: "Terms & Conditions",
-        th: "เงื่อนไขและเงื่อนไข",
+        th: "เงื่อนไขและข้อตกลง",
       },
       pages: {
         en: "Pages",
@@ -727,7 +727,7 @@ const storeCustomization = {
       block2_status: true,
       block3_status: true,
       block4_status: true,
-      payment_method_status: true,
+      payment_method_status: false,
       bottom_contact_status: true,
       social_links_status: true,
       shipping_card: {
@@ -826,11 +826,15 @@ const storeCustomization = {
       },
       block4_phone: "02.356.1666",
       block4_email: "ccruidk@test.com",
-      social_facebook: "https://www.facebook.com/",
-      social_twitter: "https://twitter.com/",
-      social_pinterest: "https://www.pinterest.com/",
-      social_linkedin: "https://www.linkedin.com/",
-      social_whatsapp: "https://web.whatsapp.com/",
+      social_facebook: "https://www.facebook.com/kwanseed/?locale=th_TH",
+      social_twitter: "",
+      social_pinterest: "",
+      social_linkedin: "",
+      social_whatsapp: "",
+      social_line: "https://line.me/ti/p/~@kwanmaledpunkorat",
+      social_shopee: "https://shp.ee/vrxzwgm",
+      social_lazada: "https://s.lazada.co.th/s.cNV3L",
+      social_line_shop: "https://shop.line.me/@226frbjs",
       payment_method_img:
         "https://res.cloudinary.com/ahossain/image/upload/v1697688607/settings/payment-logo_qhslgz.webp",
       bottom_contact: "044-342371",

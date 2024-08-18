@@ -21,7 +21,7 @@ const MobileFooter = () => {
       <div className="flex flex-col h-full justify-between align-middle bg-white rounded cursor-pointer overflow-y-scroll flex-grow scrollbar-hide w-full">
         <CategoryDrawer className="w-6 h-6 drop-shadow-xl" />
       </div>
-      <footer className="lg:hidden fixed z-30 bottom-0 bg-emerald-500 flex items-center justify-between w-full h-16 px-3 sm:px-10">
+      <footer className="lg:hidden fixed z-30 bottom-0 bg-emerald-500 flex items-center justify-around w-full h-16 px-3 sm:px-10">
         <button
           aria-label="Bar"
           onClick={toggleCategoryDrawer}
@@ -40,16 +40,18 @@ const MobileFooter = () => {
           <FiHome className="w-6 h-6 drop-shadow-xl" />
         </Link>
 
-        <button
-          onClick={toggleCartDrawer}
-          className="h-9 w-9 relative whitespace-nowrap inline-flex items-center justify-center text-white text-lg"
-        >
-          <span className="absolute z-10 top-0 right-0 inline-flex items-center justify-center p-1 h-5 w-5 text-xs font-bold leading-none text-red-100 transform translate-x-1/2 bg-red-500 rounded-full">
-            {totalItems}
-          </span>
-          <FiShoppingCart className="w-6 h-6 drop-shadow-xl" />
-        </button>
-        <button
+        {/* 
+          <button
+            onClick={toggleCartDrawer}
+            className="h-9 w-9 relative whitespace-nowrap inline-flex items-center justify-center text-white text-lg"
+          >
+            <span className="absolute z-10 top-0 right-0 inline-flex items-center justify-center p-1 h-5 w-5 text-xs font-bold leading-none text-red-100 transform translate-x-1/2 bg-red-500 rounded-full">
+              {totalItems}
+            </span>
+            <FiShoppingCart className="w-6 h-6 drop-shadow-xl" />
+          </button> 
+        */}
+        {/* <button
           aria-label="User"
           type="button"
           className="text-xl text-white indicator justify-center"
@@ -76,7 +78,7 @@ const MobileFooter = () => {
               <FiUser className="w-6 h-6 drop-shadow-xl" />
             </Link>
           )}
-        </button>
+        </button> */}
       </footer>
     </>
   );

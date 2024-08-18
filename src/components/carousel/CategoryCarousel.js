@@ -14,7 +14,7 @@ import { SidebarContext } from "@context/SidebarContext";
 import CategoryServices from "@services/CategoryServices";
 import useUtilsFunction from "@hooks/useUtilsFunction";
 
-const CategoryCarousel = ({ subtypeList }) => {
+const CategoryCarousel = ({ subtypeList, type_id }) => {
   const router = useRouter();
 
   const prevRef = useRef(null);
@@ -25,9 +25,8 @@ const CategoryCarousel = ({ subtypeList }) => {
   // const { data, error } = useAsync(() => CategoryServices.getShowingCategory());
   const data = subtypeList;
 
-  const handleCategoryClick = (id, category) => {
-    const category_name = showingTranslateValue(category)?.toLowerCase().replace(/[^A-Z0-9]+/gi, "-");
-    router.push(`/search?category=${category_name}&_id=${id}`);
+  const handleCategoryClick = (id, name) => {
+    router.push(`/search?category=${name}&id=${id}&type_id=${type_id}`);
     setIsLoading(!isLoading);
   };
 
@@ -91,33 +90,36 @@ const CategoryCarousel = ({ subtypeList }) => {
         className="mySwiper category-slider my-10"
       >
         <div>
-          {data?.map((category, i) => (
-            <SwiperSlide key={i + 1} className="group">
-              <div
-                onClick={() =>
-                  handleCategoryClick(category?.subtype_id, category.subtype_name)
-                }
-                className="text-center cursor-pointer p-3 bg-white rounded-lg"
-              >
-                <div className="bg-white p-2 mx-auto w-[50px] h-[50px] rounded-full shadow-md flex justify-center items-center">
-                  <div className="relative">
-                    <Image
-                      src={category?.icon || "https://res.cloudinary.com/ahossain/image/upload/v1655097002/placeholder_kvepfp.png"}
-                      alt="category"
-                      width={40}
-                      height={40}
-                      className="object-fill"
-                    />
+          {data?.map((category, i) => {
+            // console.log(category);
+            return (
+              <SwiperSlide key={i + 1} className="group">
+                <div
+                  onClick={() =>
+                    handleCategoryClick(category?.subtype_id, category.subtype_name)
+                  }
+                  className="text-center cursor-pointer p-3 bg-white rounded-lg"
+                >
+                  <div className="bg-white p-2 mx-auto w-[50px] h-[50px] rounded-full shadow-md flex justify-center items-center">
+                    <div className="relative">
+                      <Image
+                        src={category?.icon || "https://res.cloudinary.com/ahossain/image/upload/v1655097002/placeholder_kvepfp.png"}
+                        alt="category"
+                        width={40}
+                        height={40}
+                        className="object-fill"
+                      />
+                    </div>
                   </div>
-                </div>
 
-                <h3 className="text-[14px] text-gray-600 mt-2 font-serif group-hover:text-emerald-500">
-                  {/* {showingTranslateValue(category?.name)} */}
-                  {category.subtype_name}
-                </h3>
-              </div>
-            </SwiperSlide>
-          ))}
+                  <h3 className="text-[16px] text-gray-600 mt-2 group-hover:text-emerald-500">
+                    {/* {showingTranslateValue(category?.name)} */}
+                    {category.subtype_name}
+                  </h3>
+                </div>
+              </SwiperSlide>
+            )
+          })}
         </div>
 
         <button ref={prevRef} className="prev">
