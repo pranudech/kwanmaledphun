@@ -31,7 +31,9 @@ export const getDynamicAuthOptions = async () => {
         password: { label: "Password", type: "password" },
       },
       authorize: async (credentials) => {
+        console.log('credentials', credentials)
         const userInfo = await CustomerServices.loginCustomer(credentials);
+        console.log('userInfo', userInfo)
         return userInfo;
       },
     }),
@@ -44,12 +46,11 @@ export const getDynamicAuthOptions = async () => {
         if (account.provider !== "credentials") {
           try {
             const res = await CustomerServices.signUpWithOauthProvider(user);
-
-            // if (error) {
-            //   console.error("OAuth sign-in error:", error);
-            //   return false;
-            // }
-
+            console.log('signUpWithOauthProvider => ', res)
+            if (error) {
+              console.error("OAuth sign-in error:", error);
+              return false;
+            }
             if (res.token) {
               user.token = res.token;
               user._id = res._id;

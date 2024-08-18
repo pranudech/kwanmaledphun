@@ -23,8 +23,8 @@ const useLoginSubmit = () => {
     setLoading(true);
     const result = await signIn("credentials", {
       redirect: false, // Changed to false to handle redirection manually
-      email,
-      password,
+      email: "justin@gmail.com",
+      password: "12345678",
       callbackUrl: "/user/dashboard",
     });
 

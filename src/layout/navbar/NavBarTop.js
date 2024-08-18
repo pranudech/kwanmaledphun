@@ -59,10 +59,9 @@ const NavBarTop = () => {
                 storeCustomizationSetting?.navbar?.help_text
               )}
               <a
-                href={`tel:${
-                  storeCustomizationSetting?.navbar?.phone_number ||
+                href={`tel:${storeCustomizationSetting?.navbar?.phone_number ||
                   "044-342371"
-                }`}
+                  }`}
                 className="font-bold text-emerald-500 ml-1"
               >
                 {storeCustomizationSetting?.navbar?.phone_number ||
@@ -105,7 +104,10 @@ const NavBarTop = () => {
                   storeCustomizationSetting?.navbar?.my_account
                 )}
               </Link> */}
-              <span className="mx-2">|</span>
+              {/* 
+              ==============================================================
+              */}
+              {/* <span className="mx-2">|</span>
               {userInfo?.email ? (
                 <button
                   onClick={handleLogOut}
@@ -131,7 +133,7 @@ const NavBarTop = () => {
                     storeCustomizationSetting?.navbar?.login
                   )}
                 </Link>
-              )}
+              )} */}
             </div>
           </div>
         </div>

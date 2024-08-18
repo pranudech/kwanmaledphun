@@ -14,6 +14,7 @@ const CustomerServices = {
   },
 
   signUpWithOauthProvider: async (body) => {
+    console.log('signUpWithOauthProvider => ', body)
     return requests.post(`/customer/signup/oauth`, body);
   },
 

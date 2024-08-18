@@ -116,7 +116,7 @@ const Navbar = () => {
               </button> */}
               {/* Profile dropdown */}
 
-              <button
+              {/* <button
                 className="pl-5 text-white text-2xl font-bold"
                 aria-label="Login"
               >
@@ -145,7 +145,7 @@ const Navbar = () => {
                     <FiUser className="w-6 h-6 drop-shadow-xl" />
                   </Link>
                 )}
-              </button>
+              </button> */}
             </div>
           </div>
         </div>
