@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Card = ({ title, Icon, quantity, className }) => {
+const Card = ({ title, Icon, quantity, className, text = "" }) => {
   return (
     <div className="flex h-full">
       <div className="flex items-center border border-gray-200 w-full rounded-lg p-4">
@@ -16,6 +16,7 @@ const Card = ({ title, Icon, quantity, className }) => {
           <p className="text-xl font-bold font-serif leading-none text-gray-800">
             {quantity}
           </p>
+          {text}
         </div>
       </div>
     </div>

@@ -18,7 +18,7 @@ const OrderServices = {
   },
 
   getOrderCustomer: async ({ page = 1, limit = 8 }) => {
-    return requests.get(`/order?limit=${limit}&page=${page}`);
+    return requests.get(`https://kachabazar-backend-theta.vercel.app/api/order?limit=10&page=1`);
   },
   getOrderById: async (id, body) => {
     return requests.get(`/order/${id}`, body);

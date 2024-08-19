@@ -39,11 +39,11 @@ const RecentOrder = ({ data, loading, error }) => {
             </div>
           ) : (
             <div className="flex flex-col">
-              <h3 className="text-lg font-serif font-medium mb-5">
+              {/* <h3 className="text-lg font-serif font-medium mb-5">
                 {showingTranslateValue(
                   storeCustomizationSetting?.dashboard?.recent_order
                 )}
-              </h3>
+              </h3> */}
               <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div className="align-middle inline-block border border-gray-100 rounded-md min-w-full pb-2 sm:px-6 lg:px-8">
                   <div className="overflow-hidden border-b last:border-b-0 border-gray-100 rounded-md">

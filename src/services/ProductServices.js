@@ -17,6 +17,10 @@ const ProductServices = {
   getProductBySlug: async (slug) => {
     return requests.get(`/products/${slug}`);
   },
+
+  getProductsAll: async () => {
+    return requests.get(`${BASE_URL}/products/all`);
+  },
 };
 
 export default ProductServices;

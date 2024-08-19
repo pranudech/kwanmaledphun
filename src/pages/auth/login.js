@@ -1,4 +1,4 @@
-import { FiLock, FiMail } from "react-icons/fi";
+import { FiLock, FiMail, FiUser } from "react-icons/fi";
 
 //internal  import
 import Layout from "@layout/Layout";
@@ -28,12 +28,12 @@ const Login = () => {
                   <div className="form-group">
                     <InputArea
                       register={register}
-                      defaultValue="justin@gmail.com"
+                      defaultValue=""
                       label="Username"
-                      name="emil"
-                      type="username"
+                      name="username"
+                      type="text"
                       placeholder="Username"
-                      Icon={FiMail}
+                      Icon={FiUser}
                       autocomplete="Username"
                     />
                     <Error errorName={errors.email} />
@@ -41,7 +41,7 @@ const Login = () => {
                   <div className="form-group">
                     <InputArea
                       register={register}
-                      defaultValue="12345678"
+                      defaultValue=""
                       label="Password"
                       name="password"
                       type="password"

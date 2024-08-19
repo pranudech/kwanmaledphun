@@ -19,26 +19,29 @@ const useLoginSubmit = () => {
     formState: { errors },
   } = useForm();
 
-  const submitHandler = async ({ email, password }) => {
-    setLoading(true);
-    const result = await signIn("credentials", {
-      redirect: false, // Changed to false to handle redirection manually
-      email: "justin@gmail.com",
-      password: "12345678",
-      callbackUrl: "/user/dashboard",
-    });
-
-    setLoading(false);
-    // console.log("result", result, "redirectUrl", redirectUrl);
-
-    if (result?.error) {
-      notifyError(result?.error);
-      console.error("Error during sign-in:", result.error);
-      // Handle error display here
-    } else if (result?.ok) {
-      const url = redirectUrl ? "/checkout" : result.url;
-      router.push(url);
+  const submitHandler = async ({ username, password }) => {
+    if (username === "kwanmaledpun" && password === "12345678") {
+      router.push("/system/dashboard");
     }
+    // setLoading(true);
+    // const result = await signIn("credentials", {
+    //   redirect: false, // Changed to false to handle redirection manually
+    //   email: "justin@gmail.com",
+    //   password: "12345678",
+    //   callbackUrl: "/user/dashboard",
+    // });
+
+    // setLoading(false);
+    // // console.log("result", result, "redirectUrl", redirectUrl);
+
+    // if (result?.error) {
+    //   notifyError(result?.error);
+    //   console.error("Error during sign-in:", result.error);
+    //   // Handle error display here
+    // } else if (result?.ok) {
+    //   const url = redirectUrl ? "/checkout" : result.url;
+    //   router.push(url);
+    // }
   };
 
   return {

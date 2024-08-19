@@ -28,6 +28,7 @@
     "@tawk.to/tawk-messenger-react": "^2.0.2",
     "axios": "^1.4.0",
     "browser-image-compression": "^2.0.2",
+    "chart.js": "^4.4.3",
     "currency-symbol-map": "^5.0.1",
     "dayjs": "^1.10.7",
     "html-react-parser": "^3.0.4",
