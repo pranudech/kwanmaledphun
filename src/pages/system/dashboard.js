@@ -38,10 +38,6 @@ const Dashboard = ({ title, description, children }) => {
     const { storeCustomizationSetting } = useGetSetting();
     const { showingTranslateValue } = useUtilsFunction();
 
-
-    const canvasRef = useRef(null);
-    const [dataChart, setDataChart] = useState(dataSet);
-
     const [data, setData] = useState({});
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(true);
@@ -107,51 +103,6 @@ const Dashboard = ({ title, description, children }) => {
             icon: FiHome,
         },
     ];
-
-    useChart(canvasRef, {
-        type: "line",
-
-        data: {
-            labels: Object.keys(data).filter(key => data[key].isVisible),
-
-            datasets: [
-                {
-                    label: "# of Votes",
-
-                    data: Object.keys(data)
-                        .filter(key => data[key].isVisible)
-                        .map(key => data[key].value),
-
-                    backgroundColor: Object.keys(data)
-                        .filter(key => data[key].isVisible)
-                        .map(key => data[key].bgColor),
-
-                    borderColor: Object.keys(data)
-                        .filter(key => data[key].isVisible)
-                        .map(key => data[key].borderColor),
-
-                    borderWidth: 1
-                }
-            ]
-        },
-        options: {
-            legend: {
-                display: true,
-                labels: {
-                    fontColor: "#ff0000"
-                }
-            },
-            scales: {
-                yAxes: [
-                    {
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }
-                ]
-            }
-        }
-    });
 
     const handleToggleBars = color => {
         setData(prev => ({
