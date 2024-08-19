@@ -107,7 +107,7 @@ const NavBarTop = () => {
               {/* 
               ==============================================================
               */}
-              {/* <span className="mx-2">|</span>
+              <span className="mx-2">|</span>
               {userInfo?.email ? (
                 <button
                   onClick={handleLogOut}
@@ -133,7 +133,7 @@ const NavBarTop = () => {
                     storeCustomizationSetting?.navbar?.login
                   )}
                 </Link>
-              )} */}
+              )}
             </div>
           </div>
         </div>
