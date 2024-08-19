@@ -30,8 +30,6 @@ import { SidebarContext } from "@context/SidebarContext";
 import Loading from "@components/preloader/Loading";
 import useGetSetting from "@hooks/useGetSetting";
 import useUtilsFunction from "@hooks/useUtilsFunction";
-import useChart from "@hooks/useChart";
-import { dataSet } from "./dataChart";
 
 const Dashboard = ({ title, description, children }) => {
     const router = useRouter();
@@ -243,15 +241,6 @@ const Dashboard = ({ title, description, children }) => {
                                             />
                                         </div>
                                         {/* <RecentOrder data={data} loading={loading} error={error} /> */}
-                                        {/* <div>
-                                            <canvas ref={canvasRef} width="400" height="200" />
-                                            {Object.keys(dataSet).map(key => (
-                                                <button
-                                                    key={key}
-                                                    handleToggleBars={handleToggleBars}
-                                                />
-                                            ))}
-                                        </div> */}
                                     </div>
                                 )}
                                 {children}
