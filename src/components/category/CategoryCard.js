@@ -35,7 +35,7 @@ const CategoryCard = ({ title, icon, nested, id }) => {
 
   // handle sub nested category
   const handleSubNestedCategory = (id, categoryName) => {
-    console.log('categoryName', categoryName)
+    console.log('sub nested category', categoryName)
     setShowSubCategory({ id: id, show: showSubCategory.show ? false : true });
     const url = `/search?type_name=${categoryName}&type_id=${id}`;
     router.push(url);
@@ -43,9 +43,9 @@ const CategoryCard = ({ title, icon, nested, id }) => {
     setIsLoading(!isLoading);
   };
 
-  const handleSubCategory = (id, categoryName) => {
-    console.log('categoryName', categoryName)
-    const url = `/search?type_name=${categoryName}&type_id=${id}`;
+  const handleSubCategory = (subid, categoryName) => {
+    console.log('type', categoryName)
+    const url = `/search?category=${categoryName}&id=${subid}&type_id=${id}`;
     router.push(url);
     closeCategoryDrawer;
     setIsLoading(!isLoading);
@@ -123,17 +123,14 @@ const CategoryCard = ({ title, icon, nested, id }) => {
                 )}
 
                 {/* sub children category */}
-                {showSubCategory.id === children.subtype_id &&
+                {/* {showSubCategory.id === children.subtype_id &&
                   showSubCategory.show === true ? (
                   <ul className="pl-6 pb-3">
                     {children.children.map((subChildren) => (
                       <li key={subChildren.subtype_id}>
                         <a
                           onClick={() =>
-                            handleSubCategory(
-                              subChildren.subtype_id,
-                              showingTranslateValue(subChildren?.name)
-                            )
+                            handleSubCategory(children.subtype_id, children.subtype_name)
                           }
                           className="flex items-center font-serif py-1 text-sm text-gray-600 hover:text-emerald-600 cursor-pointer"
                         >
@@ -145,7 +142,7 @@ const CategoryCard = ({ title, icon, nested, id }) => {
                       </li>
                     ))}
                   </ul>
-                ) : null}
+                ) : null} */}
               </li>
             )
           })}
