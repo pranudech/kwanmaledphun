@@ -5,7 +5,6 @@ import { FiUploadCloud, FiXCircle } from "react-icons/fi";
 
 const Uploader = ({ setImageFile, imageFile }) => {
   const [files, setFiles] = useState([]);
-  const uploadUrl = `http://localhost:3010/api/upload/image`; //process.env.NEXT_PUBLIC_CLOUDINARY_URL;
 
   const { getRootProps, getInputProps } = useDropzone({
     accept: {
