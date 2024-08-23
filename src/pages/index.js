@@ -23,7 +23,7 @@ const Home = ({ popularProducts = [], discountProducts = [], attributes = [] }) 
   const { isLoading, setIsLoading } = useContext(SidebarContext);
   const { loading, error, storeCustomizationSetting: tempString } = useGetSetting();
   const storeCustomizationSetting = storeCustomization.setting;
-
+  console.log('popularProducts', popularProducts)
   useEffect(() => {
     if (router.asPath === "/") {
       setIsLoading(false);
@@ -120,7 +120,7 @@ const Home = ({ popularProducts = [], discountProducts = [], attributes = [] }) 
                   </div>
                 </div>
                 <div className="flex">
-                  {/* <div className="w-full">
+                  <div className="w-full">
                     {loading ? (
                       <CMSkeleton
                         count={20}
@@ -145,7 +145,7 @@ const Home = ({ popularProducts = [], discountProducts = [], attributes = [] }) 
                           ))}
                       </div>
                     )}
-                  </div> */}
+                  </div>
                 </div>
               </div>
             )}
@@ -239,20 +239,16 @@ export const getServerSideProps = async (context) => {
   const { query, _id } = context.query;
 
   const [data, attributes] = await Promise.all([
-    ProductServices.getShowingStoreProducts({
-      category: _id ? _id : "",
-      title: query ? query : "",
-    }),
-
+    ProductServices.getProductsRecommended({}),
     AttributeServices.getShowingAttributes(),
   ]);
 
   return {
     props: {
-      // popularProducts: data.popularProducts,
+      popularProducts: data.filter((item) => item.recommended_product === 1),
       // discountProducts: data.discountedProducts,
       cookies: cookies,
-      attributes,
+      // attributes,
     },
   };
 };

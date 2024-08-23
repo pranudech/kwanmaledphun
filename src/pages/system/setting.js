@@ -10,14 +10,6 @@ import Loading from "@components/preloader/Loading";
 import { SidebarContext } from "@context/SidebarContext";
 import useGetSetting from "@hooks/useGetSetting";
 import useUtilsFunction from "@hooks/useUtilsFunction";
-import MainModal from "@components/modal/MainModal";
-import Uploader from "@components/image-uploader/UploaderInternal";
-import {
-    FiSave,
-    FiPlusCircle,
-    FiXCircle
-} from "react-icons/fi";
-import UploadFileService from "@services/UploadFileService";
 
 const MyOrders = () => {
     const { currentPage, handleChangePage, isLoading, setIsLoading } = useContext(SidebarContext);
@@ -29,14 +21,6 @@ const MyOrders = () => {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(true);
     const [search, setSearch] = useState("");
-
-    const [modalOpen, setModalOpen] = useState(false);
-    const [imageFile, setImageFile] = useState(null);
-
-    const [objectForm, setObjectForm] = useState({
-        company_name: "",
-        company_image: ""
-    });
 
     useEffect(() => {
         let isMounted = true; // Track if the component is mounted
@@ -74,16 +58,8 @@ const MyOrders = () => {
         return item.company_name.toLowerCase().includes(search.toLowerCase());
     });
 
-    const handleSaveCompany = () => {
-        UploadFileService.uploadImage(imageFile, 'company', (res) => {
-            console.log('uploadImage => ', res.data)
-            setObjectForm({
-                company_name: "",
-                company_image: ""
-            })
-            setModalOpen(false)
-        }).catch((err) => console.log(err))
-    }
+    //   console.log('data', data)
+
     return (
         <>
             {isLoading ? (
@@ -121,10 +97,7 @@ const MyOrders = () => {
                                         <input type="text" placeholder="ค้นหาชื่อบริษัท" className="rounded-md w-[25rem] border-gray-300" onChange={(e) => setSearch(e.target.value)} />
                                     </div>
                                     <div className="">
-                                        <button
-                                            onClick={() => setModalOpen(true)}
-                                            className="bg-emerald-500 text-white px-4 py-0 my-0 h-[44px] rounded-md flex items-center gap-2"
-                                        ><FiPlusCircle />เพิ่มบริษัท</button>
+                                        <button className="bg-emerald-500 text-white px-4 py-2 rounded-md">เพิ่มบริษัท</button>
                                     </div>
                                 </div>
                                 <div className="my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -156,6 +129,7 @@ const MyOrders = () => {
                                                 {filteredData.length > 0 ?
                                                     <tbody className="bg-white divide-y divide-gray-200 text-[14px]">
                                                         {filteredData?.map((item, index) => {
+                                                            console.log('item', item)
                                                             return (
                                                                 <tr
                                                                     key={item.company_id}
@@ -167,8 +141,7 @@ const MyOrders = () => {
                                                                     <td
                                                                         className="hover:text-emerald-500 hover:underline text-start"
                                                                         onClick={() => {
-                                                                            setObjectForm({ ...objectForm, company_name: item.company_name, company_image: item.company_image })
-                                                                            setModalOpen(true)
+                                                                            console.log('item', item)
                                                                         }}
                                                                     >
                                                                         {item.company_name}
@@ -241,46 +214,6 @@ const MyOrders = () => {
                     </div>
                 </Dashboard>
             )}
-
-            <MainModal modalOpen={modalOpen} setModalOpen={setModalOpen}>
-                <div className="inline-block overflow-y-auto h-full align-middle transition-all transform bg-white shadow-xl rounded-2xl">
-                    <div className="flex flex-col lg:flex-row md:flex-row w-full max-w-4xl overflow-hidden">
-                        <div className="w-full p-5 md:p-8 text-left min-w-[50rem]">
-                            <div className="text-2xl font-semibold mb-5">
-                                เพิ่มบริษัท
-                            </div>
-                            <div className="mb-3">
-                                <h1 className="mb-2">ชื่อบริษัท</h1>
-                                <input
-                                    type="text"
-                                    placeholder="ชื่อบริษัท"
-                                    className="rounded-md w-full border-gray-300"
-                                    value={objectForm.company_name}
-                                    onChange={(e) => setObjectForm({ ...objectForm, company_name: e.target.value })}
-                                />
-                            </div>
-                            <div className="mb-3">
-                                <h1 className="mb-2">รูปภาพ</h1>
-                                <Uploader imageUrl={objectForm.company_image} setImageFile={setImageFile} />
-                            </div>
-                            <div className="flex justify-end gap-3">
-                                <button
-                                    onClick={() => handleSaveCompany()}
-                                    className="bg-emerald-500 text-white px-4 py-0 my-0 h-[44px] rounded-md flex items-center gap-2"
-                                >
-                                    <FiSave /> บันทึก
-                                </button>
-                                <button
-                                    onClick={() => setModalOpen(false)}
-                                    className="bg-gray-500 text-white px-4 py-0 my-0 h-[44px] rounded-md flex items-center gap-2"
-                                >
-                                    <FiXCircle /> ยกเลิก
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </MainModal>
         </>
     );
 };

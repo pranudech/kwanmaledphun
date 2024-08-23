@@ -6,18 +6,13 @@ import React, { useContext, useEffect, useState, useRef } from "react";
 import { IoLockOpenOutline } from "react-icons/io5";
 import {
     FiEye,
-    FiFileText,
     FiGrid,
     FiHome,
-    FiList,
-    FiRefreshCw,
-    FiSettings,
-    FiShoppingCart,
-    FiTruck,
     FiUsers,
     FiHardDrive,
     FiShoppingBag,
-    FiInfo
+    FiInfo,
+    FiSettings
 } from "react-icons/fi";
 import { signOut } from "next-auth/react";
 
@@ -88,6 +83,11 @@ const Dashboard = ({ title, description, children }) => {
             icon: FiGrid,
         },
         {
+            title: "ตั้งค่าระบบ",
+            href: "/system/setting",
+            icon: FiSettings,
+        },
+        {
             title: "สินค้า",
             href: "/system/product",
             icon: FiShoppingBag,
@@ -119,7 +119,7 @@ const Dashboard = ({ title, description, children }) => {
             {isLoading ? (
                 <Loading loading={isLoading} />
             ) : (
-                <div className="bg-gray-100">
+                <div className="bg-gray-100 h-full">
                     <div className="mx-auto max-w-screen-2xl px-3 sm:px-10">
                         <div className="py-10 lg:py-12 flex flex-col lg:flex-row w-full">
                             <div className="flex-shrink-0 w-full lg:w-80 mr-7 lg:mr-10  xl:mr-10 ">

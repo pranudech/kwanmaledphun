@@ -104,11 +104,11 @@ const storeCustomization = {
       feature_product_limit: 18,
       popular_title: {
         en: "Popular Products for Daily Shopping",
-        th: "สินค้าที่มีความนิยมสำหรับการซื้อสินค้ารายวัน",
+        th: "สินค้าแนะนำ",
       },
       popular_description: {
         en: "See all our popular products in this week. You can choose your daily needs products from this list and get some special offer with free shipping.",
-        th: "ดูสินค้าที่มีความนิยมของเราสำหรับการซื้อสินค้ารายวันนี้ คุณสามารถเลือกสินค้าที่ต้องการจากรายการนี้และรับส่วนลดพิเศษและโปรโมชั่นอีกมากมาย",
+        th: "ดูสินค้าที่มีความนิยมของเราสำหรับการซื้อสินค้า คุณสามารถเลือกสินค้าที่ต้องการจากรายการนี้และรับส่วนลดพิเศษและโปรโมชั่นอีกมากมาย",
       },
       popular_product_limit: 18,
       quick_delivery_subtitle: {

@@ -21,6 +21,10 @@ const ProductServices = {
   getProductsAll: async () => {
     return requests.get(`${BASE_URL}/products/all`);
   },
+
+  getProductsRecommended: async () => {
+    return requests.get(`${BASE_URL}/products/recommended`);
+  },
 };
 
 export default ProductServices;

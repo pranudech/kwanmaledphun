@@ -20,7 +20,7 @@ const Category = () => {
     CategoryServices.getShowingCategory()
   );
 
-  console.log('data', data)
+  // console.log('data', data)
 
   return (
     <div className="flex flex-col w-full h-full bg-white cursor-pointer scrollbar-hide">
