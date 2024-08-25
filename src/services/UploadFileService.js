@@ -22,6 +22,9 @@ const UploadFileService = {
             }).catch((err) => console.log(err));
         });
     },
+    deleteImage: async (image) => {
+        return requests.post(`${BASE_URL}/upload/delete`, { image });
+    }
 };
 
 export default UploadFileService;

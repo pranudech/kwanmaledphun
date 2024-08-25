@@ -1,5 +1,7 @@
 import requests from './httpServices';
 
+const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL_ENDPOINT;
+
 const AttributeServices = {
   getAllAttributes: async () => {
     return requests.get('/attributes');
@@ -31,6 +33,10 @@ const AttributeServices = {
 
   deleteAttribute: async (id, body) => {
     return requests.delete(`/attributes/${id}`, body);
+  },
+
+  getMaxId: async (body, column) => {
+    return requests.get(`${BASE_URL}/getMax?table=${body.table}&column=${body.column}`);
   },
 };
 

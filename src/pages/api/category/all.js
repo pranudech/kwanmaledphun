@@ -5,7 +5,7 @@ export default async function handler(req, res) {
     const promisePool = mysqlPool.promise()
     const [rows, fields] = await promisePool.query(
         `
-        SELECT * FROM company ORDER BY company_id
+        SELECT * FROM product_type ORDER BY type_id
         `
     )
     return res.status(200).json(rows);

@@ -17,8 +17,33 @@ const CategoryServices = {
     });
     return result;
   },
+
+  // CATEGORY
+  getCategoryAll: async () => {
+    return requests.get(`${BASE_URL}/category/all`);
+  },
+  addCategory: async (data) => {
+    return requests.post(`${BASE_URL}/category/add`, data);
+  },
+  updateCategory: async (data) => {
+    return requests.post(`${BASE_URL}/category/update`, data);
+  },
+  deleteCategory: async (id) => {
+    return requests.post(`${BASE_URL}/category/delete`, id);
+  },
+
+  // SUB CATEGORY
   getSubType: async (type_id) => {
     return requests.get(`${BASE_URL}/product_subtype?type_id=${type_id}`);
+  },
+  addSubCategory: async (data) => {
+    return requests.post(`${BASE_URL}/categorySub/add`, data);
+  },
+  updateSubCategory: async (data) => {
+    return requests.post(`${BASE_URL}/categorySub/update`, data);
+  },
+  deleteSubCategory: async (id) => {
+    return requests.post(`${BASE_URL}/categorySub/delete`, id);
   },
 };
 

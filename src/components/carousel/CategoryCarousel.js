@@ -22,7 +22,7 @@ const CategoryCarousel = ({ subtypeList, type_id }) => {
 
   const { showingTranslateValue } = useUtilsFunction();
   const { isLoading, setIsLoading } = useContext(SidebarContext);
-  // const { data, error } = useAsync(() => CategoryServices.getShowingCategory());
+  // const { data, error } = useAsync(() => CategoryServices.getSubType(type_id));
   const data = subtypeList;
 
   const handleCategoryClick = (id, name) => {
@@ -42,7 +42,7 @@ const CategoryCarousel = ({ subtypeList, type_id }) => {
         spaceBetween={8}
         navigation={true}
         allowTouchMove={false}
-        loop={true}
+        // loop={data?.length > 6}
         breakpoints={{
           // when window width is >= 640px
           375: {
@@ -93,7 +93,7 @@ const CategoryCarousel = ({ subtypeList, type_id }) => {
           {data?.map((category, i) => {
             // console.log(category);
             return (
-              <SwiperSlide key={i + 1} className="group">
+              <SwiperSlide key={i + category?.subtype_id} className="group">
                 <div
                   onClick={() =>
                     handleCategoryClick(category?.subtype_id, category.subtype_name)
@@ -113,7 +113,6 @@ const CategoryCarousel = ({ subtypeList, type_id }) => {
                   </div>
 
                   <h3 className="text-[16px] text-gray-600 mt-2 group-hover:text-emerald-500">
-                    {/* {showingTranslateValue(category?.name)} */}
                     {category.subtype_name}
                   </h3>
                 </div>
@@ -134,3 +133,4 @@ const CategoryCarousel = ({ subtypeList, type_id }) => {
 };
 
 export default React.memo(CategoryCarousel);
+// export default CategoryCarousel;

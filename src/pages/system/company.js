@@ -15,9 +15,12 @@ import Uploader from "@components/image-uploader/UploaderInternal";
 import {
     FiSave,
     FiPlusCircle,
-    FiXCircle
+    FiXCircle,
+    FiTrash2
 } from "react-icons/fi";
 import UploadFileService from "@services/UploadFileService";
+import AttributeServices from "@services/AttributeServices";
+import { dialog } from "@components/sweetalert2";
 
 const MyOrders = () => {
     const { currentPage, handleChangePage, isLoading, setIsLoading } = useContext(SidebarContext);
@@ -74,16 +77,90 @@ const MyOrders = () => {
         return item.company_name.toLowerCase().includes(search.toLowerCase());
     });
 
-    const handleSaveCompany = () => {
-        UploadFileService.uploadImage(imageFile, 'company', (res) => {
-            console.log('uploadImage => ', res.data)
-            setObjectForm({
-                company_name: "",
-                company_image: ""
-            })
-            setModalOpen(false)
-        }).catch((err) => console.log(err))
+    const handleGetCompanyAll = async () => {
+        const res = await CompanyServices.getCompanyAll({});
+        setData(res);
+        setLoading(false);
     }
+
+    const handleAddCompany = () => {
+        UploadFileService.uploadImage(imageFile, "company", (resImage) => {
+            AttributeServices.getMaxId({
+                table: "company",
+                column: "company_id"
+            }).then((res) => {
+                CompanyServices.addCompany({
+                    company_id: res.maxId,
+                    company_name: objectForm.company_name,
+                    company_image: resImage.data.imagePath
+                }).then((res) => {
+                    console.log('addCompany => ', res.data)
+                    setObjectForm({
+                        company_name: "",
+                        company_image: ""
+                    })
+                    setImageFile(null)
+                    setModalOpen(false)
+                    handleGetCompanyAll()
+                })
+            })
+        })
+    }
+
+    const handleUpdateCompany = () => {
+        if (imageFile.length > 0) {
+            UploadFileService.uploadImage(imageFile, "company", (resImage) => {
+                UploadFileService.deleteImage(objectForm.company_image).then((res) => {
+                    CompanyServices.updateCompany({
+                        id: objectForm.company_id,
+                        company_name: objectForm.company_name,
+                        company_image: resImage.data.imagePath
+                    }).then((res) => {
+                        console.log('updateCompany => ', res.data)
+                        setObjectForm({
+                            company_name: "",
+                            company_image: ""
+                        })
+                        setImageFile(null)
+                        setModalOpen(false)
+                        handleGetCompanyAll()
+                    })
+                })
+            })
+        } else {
+            CompanyServices.updateCompany({
+                id: objectForm.company_id,
+                company_name: objectForm.company_name,
+                company_image: objectForm.company_image
+            }).then((res) => {
+                setObjectForm({
+                    company_id: "",
+                    company_name: "",
+                    company_image: ""
+                })
+                setImageFile(null)
+                setModalOpen(false)
+                handleGetCompanyAll()
+            })
+        }
+    }
+
+    const handleDeleteCompany = (item) => {
+        dialog.showModalWarning({
+            title: "ลบบริษัท",
+            message: "คุณต้องการลบบริษัทนี้ใช่หรือไม่?",
+            icon: "warning",
+            textSubmit: "ลบ",
+            textCancel: "ยกเลิก",
+            classNameBTN: "flex justify-center gap-3 mt-2",
+            onSubmit: () => {
+                CompanyServices.deleteCompany({ id: item.company_id, image: item.company_image }).then((res) => {
+                    handleGetCompanyAll()
+                })
+            },
+        })
+    }
+
     return (
         <>
             {isLoading ? (
@@ -122,7 +199,13 @@ const MyOrders = () => {
                                     </div>
                                     <div className="">
                                         <button
-                                            onClick={() => setModalOpen(true)}
+                                            onClick={() => {
+                                                setModalOpen(true)
+                                                setObjectForm({
+                                                    company_name: "",
+                                                    company_image: "",
+                                                })
+                                            }}
                                             className="bg-emerald-500 text-white px-4 py-0 my-0 h-[44px] rounded-md flex items-center gap-2"
                                         ><FiPlusCircle />เพิ่มบริษัท</button>
                                     </div>
@@ -137,7 +220,7 @@ const MyOrders = () => {
                                                             scope="col"
                                                             className="text-center font-serif font-semibold px-6 py-2 text-gray-700 uppercase tracking-wider"
                                                         >
-                                                            ID
+                                                            ลำดับ
                                                         </th>
                                                         <th
                                                             scope="col"
@@ -151,6 +234,12 @@ const MyOrders = () => {
                                                         >
                                                             รูปภาพ
                                                         </th>
+                                                        <th
+                                                            scope="col"
+                                                            className="text-center font-serif font-semibold px-6 py-2 text-gray-700 uppercase tracking-wider"
+                                                        >
+
+                                                        </th>
                                                     </tr>
                                                 </thead>
                                                 {filteredData.length > 0 ?
@@ -162,19 +251,31 @@ const MyOrders = () => {
                                                                     className="hover:bg-gray-100 cursor-pointer"
                                                                 >
                                                                     <td className="text-center py-4">
-                                                                        {item.company_id}
+                                                                        {(index + 1)}
                                                                     </td>
                                                                     <td
                                                                         className="hover:text-emerald-500 hover:underline text-start"
                                                                         onClick={() => {
-                                                                            setObjectForm({ ...objectForm, company_name: item.company_name, company_image: item.company_image })
+                                                                            setObjectForm({ ...objectForm, ...item })
                                                                             setModalOpen(true)
                                                                         }}
                                                                     >
                                                                         {item.company_name}
                                                                     </td>
-                                                                    <td className="flex justify-center">
-                                                                        <img src={item.company_image} alt="icon" className="w-10 h-10" />
+                                                                    <td>
+                                                                        <div className="flex justify-center p-2">
+                                                                            <img src={item.company_image} alt="icon" className="w-[50px] h-[50px]" onError={(e) => {
+                                                                                e.target.src = "https://res.cloudinary.com/ahossain/image/upload/v1655097002/placeholder_kvepfp.png"
+                                                                            }} />
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div
+                                                                            onClick={() => handleDeleteCompany(item)}
+                                                                            className="flex justify-center hover:opacity-50"
+                                                                        >
+                                                                            <FiTrash2 size={20} className="text-red-500" />
+                                                                        </div>
                                                                     </td>
                                                                 </tr>
                                                             )
@@ -201,6 +302,12 @@ const MyOrders = () => {
                                                                     </td>
                                                                     <td className="">
                                                                         {item.icon}
+                                                                    </td>
+                                                                    <td className="flex justify-end items-center">
+                                                                        <div
+                                                                            onClick={() => handleDeleteCompany(item)}
+                                                                            className="flex items-center gap-2"
+                                                                        ><FiTrash2 /></div>
                                                                     </td>
                                                                 </tr>
                                                             )
@@ -262,10 +369,16 @@ const MyOrders = () => {
                             <div className="mb-3">
                                 <h1 className="mb-2">รูปภาพ</h1>
                                 <Uploader imageUrl={objectForm.company_image} setImageFile={setImageFile} />
+                                {objectForm.company_image && (
+                                    <div className="border mt-[40px] p-2 rounded-md">
+                                        <div className="text-[14px] text-gray-500 flex items-center gap-2">**โฟลเดอร์ที่เก็บรูปภาพ <span className="h-[5px] w-[5px] bg-green-500 rounded-full inline-block"></span>Server</div>
+                                        <div className="text-[14px] text-gray-500">{objectForm.company_image}</div>
+                                    </div>
+                                )}
                             </div>
                             <div className="flex justify-end gap-3">
                                 <button
-                                    onClick={() => handleSaveCompany()}
+                                    onClick={() => objectForm.company_id ? handleUpdateCompany() : handleAddCompany()}
                                     className="bg-emerald-500 text-white px-4 py-0 my-0 h-[44px] rounded-md flex items-center gap-2"
                                 >
                                     <FiSave /> บันทึก

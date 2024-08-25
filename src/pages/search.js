@@ -37,12 +37,12 @@ const Search = ({ products, attributes, type_name, type_id, subtypeList, query }
               {/* <div className="w-full grid grid-col gap-4 grid-cols-1 2xl:gap-3 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-3">
                 <Card />
               </div> */}
-              <div className={`relative ${query ? 'hidden' : ''}`}>
-                <CategoryCarousel
-                  subtypeList={subtypeList}
-                  type_id={type_id}
-                />
-              </div>
+              {/* <div className={`relative ${query ? 'hidden' : ''}`}> */}
+              <CategoryCarousel
+                subtypeList={subtypeList}
+                type_id={type_id}
+              />
+              {/* </div> */}
               {productData?.length === 0 ? (
                 <div className="mx-auto p-5 my-5">
                   <Image

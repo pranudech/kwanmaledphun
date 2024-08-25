@@ -3,7 +3,7 @@ import axios from "axios";
 import { useDropzone } from "react-dropzone";
 import { FiUploadCloud, FiXCircle } from "react-icons/fi";
 
-const Uploader = ({ setImageFile, imageFile }) => {
+const Uploader = ({ setImageFile, imageFile, imageUrl }) => {
   const [files, setFiles] = useState([]);
 
   const { getRootProps, getInputProps } = useDropzone({
@@ -71,17 +71,18 @@ const Uploader = ({ setImageFile, imageFile }) => {
         : (
           thumbs
         )}
-      {/* <div className="">
-        {imageUrl ? (
-          <img
-            className="inline-flex rounded-md p-2"
-            src={imageUrl}
-            alt="product"
-          />
-        ) : (
-          thumbs
+      <div className="">
+        {imageUrl && (
+          <>
+            <div className="text-center mt-5">รูปใช้งานปัจจุบัน</div>
+            <img
+              className="inline-flex max-w-[350px]"
+              src={imageUrl}
+              alt="product"
+            />
+          </>
         )}
-      </div> */}
+      </div>
     </div>
   );
 };
