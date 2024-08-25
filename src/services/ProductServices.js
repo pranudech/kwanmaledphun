@@ -18,8 +18,8 @@ const ProductServices = {
     return requests.get(`/products/${slug}`);
   },
 
-  getProductsAll: async () => {
-    return requests.get(`${BASE_URL}/products/all`);
+  getProductsAll: async (params) => {
+    return requests.post(`${BASE_URL}/products/all`, params);
   },
 
   getProductsRecommended: async () => {

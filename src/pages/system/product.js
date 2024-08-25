@@ -47,6 +47,11 @@ const MyOrders = () => {
     const [companyData, setCompanyData] = useState([]);
     const [subCategory, setSubCategory] = useState([]);
 
+    const [filter, setFilter] = useState({
+        subtype_id: -1,
+        recommended_product: -1
+    })
+
     useEffect(() => {
         let isMounted = true; // Track if the component is mounted
 
@@ -118,6 +123,12 @@ const MyOrders = () => {
         setData(res)
     }
 
+    const handleFilter = async (filter) => {
+        const res = await ProductServices.getProductsAll(filter)
+        setFilter(filter)
+        setData(res)
+    }
+
     const handleAddProduct = async () => {
         AttributeServices.getMaxId({
             table: "product",
@@ -171,6 +182,62 @@ const MyOrders = () => {
                     description="This is user order history page"
                 >
                     <div className="overflow-hidden rounded-md font-serif">
+                        <div>
+
+                            <h2 className="text-xl font-serif font-semibold mb-5">
+                                {`รายการสินค้าทั้งหมด ${data?.length} รายการ`}
+                            </h2>
+                            <div className="my-2 flex justify-between w-full gap-2">
+                                <div className="w-full">
+                                    <label htmlFor="">ค้นหา</label>
+                                    <input type="text" placeholder="ค้นหาชื่อสินค้า" className="rounded-md w-full border-gray-300" onChange={(e) => setSearch(e.target.value)} />
+                                </div>
+                                <div className="w-full">
+                                    <label htmlFor="">ประเภทสินค้า</label>
+                                    <select className="rounded-md w-full border-gray-300" onChange={(e) => {
+                                        handleFilter({ ...filter, subtype_id: e.target.value })
+                                    }}>
+                                        <option value={0}>ทั้งหมด</option>
+                                        {subCategory?.map((item, index) => {
+                                            return (
+                                                <option value={item.subtype_id}>{item.subtype_name}</option>
+                                            )
+                                        })}
+                                    </select>
+                                </div>
+                                <div className="w-full">
+                                    <label htmlFor="">สินค้าที่แนะนำ</label>
+                                    <select className="rounded-md w-full border-gray-300" onChange={(e) => {
+                                        handleFilter({ ...filter, recommended_product: e.target.value })
+                                    }}>
+                                        <option value={0}>ทั้งหมด</option>
+                                        <option value={1}>สินค้าที่แนะนำ</option>
+                                    </select>
+                                </div>
+                                <div className="min-w-[10rem]">
+                                    <br />
+                                    <button onClick={() => {
+                                        setModalOpen(true)
+                                        setObjectForm({
+                                            product_id: 0,
+                                            product_name: "",
+                                            price: 0,
+                                            size_product: "",
+                                            detail: "",
+                                            company_id: 0,
+                                            subtype_id: 0,
+                                            product_image1: "",
+                                            product_image2: "",
+                                            product_image3: "",
+                                            recommended_product: 0,
+                                        })
+                                    }} className="bg-emerald-500 text-white px-4 py-2 rounded-md flex items-center gap-2">
+                                        <FiPlusCircle />
+                                        เพิ่มสินค้า
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                         {loading ? (
                             <Loading loading={loading} />
                         ) : error ? (
@@ -188,35 +255,6 @@ const MyOrders = () => {
                             </div>
                         ) : (
                             <div className="flex flex-col">
-                                <h2 className="text-xl font-serif font-semibold mb-5">
-                                    {`รายการสินค้าทั้งหมด ${data?.length} รายการ`}
-                                </h2>
-                                <div className="my-2 flex justify-between">
-                                    <div>
-                                        <input type="text" placeholder="ค้นหาชื่อสินค้า" className="rounded-md w-[25rem] border-gray-300" onChange={(e) => setSearch(e.target.value)} />
-                                    </div>
-                                    <div className="">
-                                        <button onClick={() => {
-                                            setModalOpen(true)
-                                            setObjectForm({
-                                                product_id: 0,
-                                                product_name: "",
-                                                price: 0,
-                                                size_product: "",
-                                                detail: "",
-                                                company_id: 0,
-                                                subtype_id: 0,
-                                                product_image1: "",
-                                                product_image2: "",
-                                                product_image3: "",
-                                                recommended_product: 0,
-                                            })
-                                        }} className="bg-emerald-500 text-white px-4 py-2 rounded-md flex items-center gap-2">
-                                            <FiPlusCircle />
-                                            เพิ่มสินค้า
-                                        </button>
-                                    </div>
-                                </div>
                                 <div className="my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                                     <div className="align-middle inline-block border border-gray-100 rounded-md min-w-full pb-2 sm:px-6 lg:px-8">
                                         <div className="overflow-hidden border-b last:border-b-0 border-gray-100 rounded-md">
