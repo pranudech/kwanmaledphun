@@ -25,6 +25,14 @@ const ProductServices = {
   getProductsRecommended: async () => {
     return requests.get(`${BASE_URL}/products/recommended`);
   },
+
+  // system
+  addProduct: async (data) => {
+    return requests.post(`${BASE_URL}/products/add`, data);
+  },
+  updateProduct: async (data) => {
+    return requests.post(`${BASE_URL}/products/update`, data);
+  },
 };
 
 export default ProductServices;

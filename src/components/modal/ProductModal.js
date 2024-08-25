@@ -224,24 +224,24 @@ const ProductModal = ({
             <Link href={`/product/${product.product_id}`} passHref>
               <div
                 onClick={() => setModalOpen(false)}
-                className="flex-shrink-0 flex items-center justify-center h-auto cursor-pointer"
+                className="flex-shrink-0 flex items-center justify-center h-auto cursor-pointer p-3"
               >
                 {/* <Discount product={product} discount={discount} modal /> */}
-                {/* {product.image ? (
-                  <Image
-                    src={img || product.image[0]}
-                    width={420}
-                    height={420}
+                {product.product_image1 ? (
+                  <img
+                    src={product.product_image1}
+                    // width={420}
+                    // height={420}
                     alt="product"
+                    className="aspect-[1/1] w-full h-full object-cover min-w-[420px] max-w-[420px]"
                   />
-                ) : ( */}
-                <Image
-                  src="https://res.cloudinary.com/ahossain/image/upload/v1655097002/placeholder_kvepfp.png"
-                  width={420}
-                  height={420}
-                  alt="product Image"
-                />
-                {/* )} */}
+                ) : (
+                  <img
+                    src="https://res.cloudinary.com/ahossain/image/upload/v1655097002/placeholder_kvepfp.png"
+                    alt="product Image"
+                    className="aspect-[1/1] w-full h-full object-cover min-w-[420px] max-w-[420px]"
+                  />
+                )}
               </div>
             </Link>
 

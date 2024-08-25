@@ -17,7 +17,7 @@ const ImageWithFallback = ({
   }, [src]);
 
   return (
-    <Image
+    <img
       alt={alt}
       onError={setError}
       src={error ? fallbackImage : src}

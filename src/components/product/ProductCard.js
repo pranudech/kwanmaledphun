@@ -72,7 +72,7 @@ const ProductCard = ({ product, attributes }) => {
         </div>
         <div
           onClick={() => {
-            handleModalOpen(!modalOpen, product._id);
+            handleModalOpen(!modalOpen, product.product_id);
             handleLogEvent(
               "product",
               `opened ${showingTranslateValue(product?.title)} product modal`
@@ -82,9 +82,9 @@ const ProductCard = ({ product, attributes }) => {
         >
           <div className="relative w-full h-full p-2">
             {product?.product_image1 ? (
-              <ImageWithFallback src={"/" + product?.product_image1} alt="product" />
+              <ImageWithFallback src={product?.product_image1} alt="product" />
             ) : (
-              <Image
+              <img
                 src="https://res.cloudinary.com/ahossain/image/upload/v1655097002/placeholder_kvepfp.png"
                 fill
                 style={{

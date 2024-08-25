@@ -33,6 +33,9 @@ const CategoryServices = {
   },
 
   // SUB CATEGORY
+  getSubCategoryAll: async () => {
+    return requests.get(`${BASE_URL}/categorySub/all`);
+  },
   getSubType: async (type_id) => {
     return requests.get(`${BASE_URL}/product_subtype?type_id=${type_id}`);
   },

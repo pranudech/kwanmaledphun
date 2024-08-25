@@ -22,7 +22,7 @@ export default async function handler(req, res) {
         p.product_image3 ,
         p.recommended_product 
         FROM product_type pt JOIN product_subtype ps ON pt.type_id = ps.type_id JOIN product p ON p.subtype_id = ps.subtype_id 
-        ORDER BY p.product_id 
+        ORDER BY p.product_name 
         `
     )
     return res.status(200).json(rows);

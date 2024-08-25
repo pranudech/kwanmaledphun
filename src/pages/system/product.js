@@ -10,6 +10,13 @@ import Loading from "@components/preloader/Loading";
 import { SidebarContext } from "@context/SidebarContext";
 import useGetSetting from "@hooks/useGetSetting";
 import useUtilsFunction from "@hooks/useUtilsFunction";
+import Uploader from "@components/image-uploader/UploaderInternal";
+import { FiSave, FiPlusCircle, FiXCircle, FiTrash2 } from "react-icons/fi";
+import MainModal from "@components/modal/MainModal";
+import UploadFileService from "@services/UploadFileService";
+import AttributeServices from "@services/AttributeServices";
+import CompanyServices from "@services/CompanyServices";
+import CategoryServices from "@services/CategoryServices";
 
 const MyOrders = () => {
     const { currentPage, handleChangePage, isLoading, setIsLoading } = useContext(SidebarContext);
@@ -17,10 +24,28 @@ const MyOrders = () => {
     const { storeCustomizationSetting } = useGetSetting();
     const { showingTranslateValue } = useUtilsFunction();
 
+    const [imageFile, setImageFile] = useState(null);
+
     const [data, setData] = useState([]);
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(true);
     const [search, setSearch] = useState("");
+    const [modalOpen, setModalOpen] = useState(false);
+    const [objectForm, setObjectForm] = useState({
+        product_id: 0,
+        product_name: "",
+        price: 0,
+        size_product: "",
+        detail: "",
+        company_id: 0,
+        subtype_id: 0,
+        product_image1: "",
+        product_image2: "",
+        product_image3: "",
+        recommended_product: 0,
+    });
+    const [companyData, setCompanyData] = useState([]);
+    const [subCategory, setSubCategory] = useState([]);
 
     useEffect(() => {
         let isMounted = true; // Track if the component is mounted
@@ -52,13 +77,87 @@ const MyOrders = () => {
 
     useEffect(() => {
         setIsLoading(false);
+        handleGetCompanyAll();
+        handleGetSubCategoryAll()
     }, []);
 
     const filteredData = data?.filter((item) => {
         return item.product_name.toLowerCase().includes(search.toLowerCase());
     });
 
-    //   console.log('data', data)
+    const handleImageUpload = async (files, name) => {
+        UploadFileService.uploadImage(files, "product", (res) => {
+            ProductServices.updateProduct({
+                ...objectForm,
+                [name]: res.data.imagePath,
+                id: objectForm.product_id
+            })
+            setObjectForm({
+                ...objectForm,
+                [name]: res.data.imagePath,
+            })
+            handleGetProductAll()
+        })
+    }
+
+    const handleGetCompanyAll = async () => {
+        const res = await CompanyServices.getCompanyAll({});
+        setCompanyData(res);
+    }
+
+    const handleGetSubCategoryAll = async () => {
+        // console.log('item', item)
+        const res = await CategoryServices.getSubCategoryAll()
+        // console.log('res', res)
+        setSubCategory(res);
+        // setModalOpen(true);
+    }
+
+    const handleGetProductAll = async () => {
+        const res = await ProductServices.getProductsAll({})
+        setData(res)
+    }
+
+    const handleAddProduct = async () => {
+        AttributeServices.getMaxId({
+            table: "product",
+            column: "product_id"
+        }).then((res) => {
+            ProductServices.addProduct({
+                ...objectForm,
+                price: parseInt(objectForm.price),
+                company_id: parseInt(objectForm.company_id),
+                subtype_id: parseInt(objectForm.subtype_id),
+                product_id: res.maxId,
+            }).then((res) => {
+                setModalOpen(false)
+                handleGetProductAll()
+                setObjectForm({
+                    product_id: 0,
+                    product_name: "",
+                    price: 0,
+                    size_product: "",
+                    detail: "",
+                    company_id: 0,
+                    subtype_id: 0,
+                    product_image1: "",
+                    product_image2: "",
+                    product_image3: "",
+                    recommended_product: 0,
+                })
+            })
+        })
+    }
+
+    const handleUpdateProduct = async () => {
+        ProductServices.updateProduct({
+            ...objectForm,
+            id: objectForm.product_id
+        })
+        handleGetProductAll()
+        setModalOpen(false)
+    }
+
 
     return (
         <>
@@ -97,7 +196,25 @@ const MyOrders = () => {
                                         <input type="text" placeholder="ค้นหาชื่อสินค้า" className="rounded-md w-[25rem] border-gray-300" onChange={(e) => setSearch(e.target.value)} />
                                     </div>
                                     <div className="">
-                                        <button className="bg-emerald-500 text-white px-4 py-2 rounded-md">เพิ่มประเภทสินค้า</button>
+                                        <button onClick={() => {
+                                            setModalOpen(true)
+                                            setObjectForm({
+                                                product_id: 0,
+                                                product_name: "",
+                                                price: 0,
+                                                size_product: "",
+                                                detail: "",
+                                                company_id: 0,
+                                                subtype_id: 0,
+                                                product_image1: "",
+                                                product_image2: "",
+                                                product_image3: "",
+                                                recommended_product: 0,
+                                            })
+                                        }} className="bg-emerald-500 text-white px-4 py-2 rounded-md flex items-center gap-2">
+                                            <FiPlusCircle />
+                                            เพิ่มสินค้า
+                                        </button>
                                     </div>
                                 </div>
                                 <div className="my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -106,12 +223,6 @@ const MyOrders = () => {
                                             <table className="table-auto min-w-full border border-gray-100 divide-y divide-gray-200">
                                                 <thead className="bg-gray-50">
                                                     <tr className="bg-gray-100">
-                                                        <th
-                                                            scope="col"
-                                                            className="text-left font-serif font-semibold px-6 py-2 text-gray-700 uppercase tracking-wider"
-                                                        >
-                                                            ID
-                                                        </th>
                                                         <th
                                                             scope="col"
                                                             className="text-center font-serif font-semibold px-6 py-2 text-gray-700 uppercase tracking-wider"
@@ -142,6 +253,11 @@ const MyOrders = () => {
                                                         >
                                                             ราคา
                                                         </th>
+                                                        <th
+                                                            scope="col"
+                                                            className="text-center font-serif font-semibold px-6 py-2 text-gray-700 uppercase tracking-wider"
+                                                        >
+                                                        </th>
                                                     </tr>
                                                 </thead>
                                                 {filteredData.length > 0 ?
@@ -152,16 +268,26 @@ const MyOrders = () => {
                                                                     key={item.product_id}
                                                                     className="hover:bg-gray-100 cursor-pointer"
                                                                 >
-                                                                    <td className="text-center py-4">
-                                                                        {item.product_id}
-                                                                    </td>
-                                                                    <td 
+                                                                    <td
                                                                         className="hover:text-emerald-500 hover:underline"
                                                                         onClick={() => {
                                                                             console.log('item', item)
+                                                                            setObjectForm(item)
+                                                                            setModalOpen(true)
+                                                                            // handleGetSubCategoryAll(item)
                                                                         }}
                                                                     >
-                                                                        {item.product_name}
+                                                                        <div className="flex items-center gap-2 p-2">
+                                                                            <img
+                                                                                src={item.product_image1}
+                                                                                alt=""
+                                                                                className="w-[60px] h-[60px]"
+                                                                                onError={(e) => {
+                                                                                    e.target.src = "https://res.cloudinary.com/ahossain/image/upload/v1655097002/placeholder_kvepfp.png"
+                                                                                }}
+                                                                            />
+                                                                            <div>{item.product_name}</div>
+                                                                        </div>
                                                                     </td>
                                                                     <td className="">
                                                                         {item.company_name}
@@ -174,6 +300,14 @@ const MyOrders = () => {
                                                                     </td>
                                                                     <td className="text-end pr-2">
                                                                         {item.price}
+                                                                    </td>
+                                                                    <td>
+                                                                        <div
+                                                                            onClick={() => handleDeleteProduct(item)}
+                                                                            className="flex justify-center hover:opacity-50"
+                                                                        >
+                                                                            <FiTrash2 size={20} className="text-red-500" />
+                                                                        </div>
                                                                     </td>
                                                                 </tr>
                                                             )
@@ -247,6 +381,139 @@ const MyOrders = () => {
                     </div>
                 </Dashboard>
             )}
+
+            <MainModal modalOpen={modalOpen} setModalOpen={setModalOpen}>
+                <div className="inline-block overflow-y-auto h-full align-middle transition-all transform bg-white shadow-xl rounded-2xl">
+                    <div className="flex flex-col lg:flex-row md:flex-row w-full max-w-4xl overflow-hidden">
+                        <div className="w-full p-5 md:p-8 text-left min-w-[50rem]">
+                            <div className="text-2xl font-semibold mb-5">
+                                เพิ่มสินค้า
+                            </div>
+                            <div className="mb-3">
+                                <h1 className="mb-2">ชื่อสินค้า</h1>
+                                <input
+                                    type="text"
+                                    placeholder="ชื่อสินค้า"
+                                    className="rounded-md w-full border-gray-300"
+                                    value={objectForm.product_name}
+                                    onChange={(e) => setObjectForm({ ...objectForm, product_name: e.target.value })}
+                                />
+                            </div>
+                            <div className="mb-3">
+                                <h1 className="mb-2">รายละเอียด</h1>
+                                <textarea
+                                    type="text"
+                                    placeholder="ชื่อสินค้า"
+                                    className="rounded-md w-full border-gray-300 h-[10rem]"
+                                    value={objectForm.detail}
+                                    onChange={(e) => setObjectForm({ ...objectForm, detail: e.target.value })}
+                                />
+                            </div>
+                            <div className="flex gap-3 w-full mb-3">
+                                <div className="w-full">
+                                    <h1 className="mb-2">ราคา</h1>
+                                    <input
+                                        type="text"
+                                        placeholder="ราคา"
+                                        className="rounded-md w-full border-gray-300"
+                                        value={objectForm.price}
+                                        onChange={(e) => setObjectForm({ ...objectForm, price: e.target.value })}
+                                    />
+                                </div>
+                                <div className="w-full">
+                                    <h1 className="mb-2">ขนาด</h1>
+                                    <select className="rounded-md w-full border-gray-300" value={objectForm.size_product} onChange={(e) => setObjectForm({ ...objectForm, size_product: e.target.value })}>
+                                        <option value={0}>ไม่ระบุ</option>
+                                        <option value="ขนาดเล็ก">ขนาดเล็ก</option>
+                                        <option value="ขนาดกลาง">ขนาดกลาง</option>
+                                        <option value="ขนาดใหญ่">ขนาดใหญ่</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div className="flex gap-3 w-full mb-3">
+                                <div className="w-full">
+                                    <h1 className="mb-2">บริษัท</h1>
+                                    <select className="rounded-md w-full border-gray-300" value={objectForm.company_id} onChange={(e) => setObjectForm({ ...objectForm, company_id: e.target.value })}>
+                                        <option value="0">ไม่ระบุ</option>
+                                        {companyData?.map((item, index) => {
+                                            return (
+                                                <option value={item.company_id}>{item.company_name}</option>
+                                            )
+                                        })}
+                                    </select>
+                                </div>
+                                <div className="w-full">
+                                    <h1 className="mb-2">ประเภทสินค้า</h1>
+                                    <select className="rounded-md w-full border-gray-300" value={objectForm.subtype_id} onChange={(e) => setObjectForm({ ...objectForm, subtype_id: e.target.value })}>
+                                        <option value={0}>ไม่ระบุ</option>
+                                        {subCategory?.map((item, index) => {
+                                            return (
+                                                <option value={item.subtype_id}>{item.subtype_name}</option>
+                                            )
+                                        })}
+                                    </select>
+                                </div>
+                            </div>
+                            <div className="mb-3">
+                                <h1 className="mb-2">รูปภาพ 1</h1>
+                                <Uploader imageUrl={objectForm.product_image1} setImageFile={(files) => {
+                                    if (files.length > 0) {
+                                        handleImageUpload(files, "product_image1")
+                                    }
+                                }} />
+                                {objectForm.product_image1 && (
+                                    <div className="border mt-[40px] p-2 rounded-md">
+                                        <div className="text-[14px] text-gray-500 flex items-center gap-2">**โฟลเดอร์ที่เก็บรูปภาพ <span className="h-[5px] w-[5px] bg-green-500 rounded-full inline-block"></span>Server</div>
+                                        <div className="text-[14px] text-gray-500">{objectForm.product_image1}</div>
+                                    </div>
+                                )}
+                            </div>
+                            <div className="mb-3">
+                                <h1 className="mb-2">รูปภาพ 2</h1>
+                                <Uploader imageUrl={objectForm.product_image2} setImageFile={(files) => {
+                                    if (files.length > 0) {
+                                        handleImageUpload(files, "product_image2")
+                                    }
+                                }} />
+                                {objectForm.product_image2 && (
+                                    <div className="border mt-[40px] p-2 rounded-md">
+                                        <div className="text-[14px] text-gray-500 flex items-center gap-2">**โฟลเดอร์ที่เก็บรูปภาพ <span className="h-[5px] w-[5px] bg-green-500 rounded-full inline-block"></span>Server</div>
+                                        <div className="text-[14px] text-gray-500">{objectForm.product_image2}</div>
+                                    </div>
+                                )}
+                            </div>
+                            <div className="mb-3">
+                                <h1 className="mb-2">รูปภาพ 3</h1>
+                                <Uploader imageUrl={objectForm.product_image3} setImageFile={(files) => {
+                                    if (files.length > 0) {
+                                        handleImageUpload(files, "product_image3")
+                                    }
+                                }} />
+                                {objectForm.product_image3 && (
+                                    <div className="border mt-[40px] p-2 rounded-md">
+                                        <div className="text-[14px] text-gray-500 flex items-center gap-2">**โฟลเดอร์ที่เก็บรูปภาพ <span className="h-[5px] w-[5px] bg-green-500 rounded-full inline-block"></span>Server</div>
+                                        <div className="text-[14px] text-gray-500">{objectForm.product_image3}</div>
+                                    </div>
+                                )}
+                            </div>
+                            <div className="flex justify-end gap-3">
+                                <button
+                                    onClick={() => objectForm.product_id !== 0 ? handleUpdateProduct() : handleAddProduct()}
+                                    className="bg-emerald-500 text-white px-4 py-0 my-0 h-[44px] rounded-md flex items-center gap-2"
+                                >
+                                    <FiSave /> บันทึก
+                                </button>
+                                <button
+                                    onClick={() => setModalOpen(false)}
+                                    className="bg-gray-500 text-white px-4 py-0 my-0 h-[44px] rounded-md flex items-center gap-2"
+                                >
+                                    <FiXCircle /> ยกเลิก
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </MainModal>
         </>
     );
 };
