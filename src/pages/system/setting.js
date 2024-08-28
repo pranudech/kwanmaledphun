@@ -12,6 +12,8 @@ import useGetSetting from "@hooks/useGetSetting";
 import useUtilsFunction from "@hooks/useUtilsFunction";
 import Uploader from "@components/image-uploader/UploaderInternal";
 import MainCarousel from "@components/carousel/MainCarousel";
+import MainImageServices from "@services/MainImageServices";
+import UploadFileService from "@services/UploadFileService";
 
 const MyOrders = () => {
     const { currentPage, handleChangePage, isLoading, setIsLoading } = useContext(SidebarContext);
@@ -61,13 +63,29 @@ const MyOrders = () => {
 
     useEffect(() => {
         setIsLoading(false);
+        handleGetMainImage();
     }, []);
 
-    const filteredData = data?.filter((item) => {
-        return item.company_name.toLowerCase().includes(search.toLowerCase());
-    });
+    const handleGetMainImage = async () => {
+        const res = await MainImageServices.getMainImageAll()
+        console.log('res', res)
+        setObjectHomeForm({
+            image1: res[0].image_path,
+        })
+    }
 
-    //   console.log('data', data)
+    const handleImageUpload = async (files, name) => {
+        UploadFileService.uploadImage(files, "main_image", (res) => {
+            MainImageServices.addMainImage({
+                image_path: res.data.imagePath,
+                flag: 1
+            })
+            setObjectHomeForm({
+                ...objectHomeForm,
+                [name]: res.data.imagePath,
+            })
+        })
+    }
 
     return (
         <>
@@ -113,18 +131,22 @@ const MyOrders = () => {
                                                 <h1 className="mt-3">รูปภาพหน้าแรกที่ 1</h1>
                                                 <Uploader
                                                     imageUrl={objectHomeForm.image1}
-                                                    setImageFile={(file) => {
-                                                        setObjectHomeForm({ ...objectHomeForm, image1: file })
+                                                    setImageFile={(files) => {
+                                                        if (files.length > 0) {
+                                                            handleImageUpload(files, "image1")
+                                                        }
                                                     }}
-                                                    showImage={false}
+                                                    showImage={true}
                                                 />
                                             </div>
                                             <div className="w-full">
                                                 <h1 className="mt-3">รูปภาพหน้าแรกที่ 2</h1>
                                                 <Uploader
                                                     imageUrl={objectHomeForm.image2}
-                                                    setImageFile={(file) => {
-                                                        setObjectHomeForm({ ...objectHomeForm, image2: file })
+                                                    setImageFile={(files) => {
+                                                        if (files.length > 0) {
+                                                            handleImageUpload(files, "image2")
+                                                        }
                                                     }}
                                                     showImage={false}
                                                 />
@@ -133,8 +155,10 @@ const MyOrders = () => {
                                                 <h1 className="mt-3">รูปภาพหน้าแรกที่ 3</h1>
                                                 <Uploader
                                                     imageUrl={objectHomeForm.image3}
-                                                    setImageFile={(file) => {
-                                                        setObjectHomeForm({ ...objectHomeForm, image3: file })
+                                                    setImageFile={(files) => {
+                                                        if (files.length > 0) {
+                                                            handleImageUpload(files, "image3")
+                                                        }
                                                     }}
                                                     showImage={false}
                                                 />

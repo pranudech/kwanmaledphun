@@ -3,7 +3,7 @@ import axios from "axios";
 import { useDropzone } from "react-dropzone";
 import { FiUploadCloud, FiXCircle } from "react-icons/fi";
 
-const Uploader = ({ setImageFile, imageUrl, showImage = true }) => {
+const Uploader = ({ setImageFile, imageUrl, showImage = true, showInput = false }) => {
   const [files, setFiles] = useState([]);
 
   const { getRootProps, getInputProps } = useDropzone({
