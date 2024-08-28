@@ -115,11 +115,11 @@ const Dashboard = ({ title, description, children }) => {
     };
 
     return (
-        <>
+        <div className="h-full min-h-screen bg-gray-100">
             {isLoading ? (
                 <Loading loading={isLoading} />
             ) : (
-                <div className="bg-gray-100 h-full">
+                <div className="">
                     <div className="mx-auto max-w-screen-2xl px-3 sm:px-10">
                         <div className="py-10 lg:py-12 flex flex-col lg:flex-row w-full">
                             <div className="flex-shrink-0 w-full lg:w-80 mr-7 lg:mr-10  xl:mr-10 ">
@@ -200,7 +200,7 @@ const Dashboard = ({ title, description, children }) => {
                     </div>
                 </div>
             )}
-        </>
+        </div>
     );
 };
 

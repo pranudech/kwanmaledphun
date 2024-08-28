@@ -619,6 +619,17 @@ const MyOrders = () => {
                                             </div>
                                         </div>
                                     </div>
+                                    <div className="flex justify-end gap-3">
+                                        <button
+                                            onClick={() => {
+                                                setModalOpenSub(false)
+                                                setModalOpen(false)
+                                            }}
+                                            className="bg-gray-500 text-white px-4 py-0 my-0 h-[44px] rounded-md flex items-center gap-2"
+                                        >
+                                            <FiXCircle /> ยกเลิก
+                                        </button>
+                                    </div>
                                 </>
                             )}
 

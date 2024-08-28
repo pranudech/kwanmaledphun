@@ -194,7 +194,7 @@ const MyOrders = () => {
                                 </div>
                                 <div className="w-full">
                                     <label htmlFor="">ประเภทสินค้า</label>
-                                    <select className="rounded-md w-full border-gray-300" onChange={(e) => {
+                                    <select className="rounded-md w-full border-gray-300" value={filter.subtype_id} onChange={(e) => {
                                         handleFilter({ ...filter, subtype_id: e.target.value })
                                     }}>
                                         <option value={0}>ทั้งหมด</option>
@@ -207,15 +207,20 @@ const MyOrders = () => {
                                 </div>
                                 <div className="w-full">
                                     <label htmlFor="">สินค้าที่แนะนำ</label>
-                                    <select className="rounded-md w-full border-gray-300" onChange={(e) => {
+                                    <select className="rounded-md w-full border-gray-300" value={filter.recommended_product} onChange={(e) => {
                                         handleFilter({ ...filter, recommended_product: e.target.value })
                                     }}>
                                         <option value={0}>ทั้งหมด</option>
                                         <option value={1}>สินค้าที่แนะนำ</option>
                                     </select>
                                 </div>
-                                <div className="min-w-[10rem]">
-                                    <br />
+                                <div className="min-w-[17rem] flex justify-end gap-3 pt-[23px]">
+                                    <button onClick={() => {
+                                        handleFilter({ ...filter, recommended_product: 0, subtype_id: 0 })
+                                    }} className="bg-blue-500 text-white px-4 py-2 rounded-md flex items-center gap-2 max-h-[42px]">
+                                        <FiXCircle />
+                                        ล้างค้นหา
+                                    </button>
                                     <button onClick={() => {
                                         setModalOpen(true)
                                         setObjectForm({
@@ -231,7 +236,7 @@ const MyOrders = () => {
                                             product_image3: "",
                                             recommended_product: 0,
                                         })
-                                    }} className="bg-emerald-500 text-white px-4 py-2 rounded-md flex items-center gap-2">
+                                    }} className="bg-emerald-500 text-white px-4 py-2 rounded-md flex items-center gap-2 max-h-[42px]">
                                         <FiPlusCircle />
                                         เพิ่มสินค้า
                                     </button>

@@ -10,6 +10,7 @@ import Loading from "@components/preloader/Loading";
 import { SidebarContext } from "@context/SidebarContext";
 import useGetSetting from "@hooks/useGetSetting";
 import useUtilsFunction from "@hooks/useUtilsFunction";
+import Uploader from "@components/image-uploader/UploaderInternal";
 
 const MyOrders = () => {
     const { currentPage, handleChangePage, isLoading, setIsLoading } = useContext(SidebarContext);
@@ -22,6 +23,12 @@ const MyOrders = () => {
     const [loading, setLoading] = useState(true);
     const [search, setSearch] = useState("");
     const [isTabActive, setIsTabActive] = useState(0);
+
+    const [objectHomeForm, setObjectHomeForm] = useState({
+        image1: "",
+        image2: "",
+        image3: "",
+    });
 
     useEffect(() => {
         let isMounted = true; // Track if the component is mounted
@@ -95,12 +102,41 @@ const MyOrders = () => {
                                 </h2>
                                 <div className="flex flex-row gap-5">
                                     <div className="cursor-pointer" onClick={() => setIsTabActive(0)}>ภาพหน้าแรก</div>
-                                    <div className="cursor-not-allowed text-gray-400">Comming Soon</div>
+                                    <div className="cursor-not-allowed text-gray-400">ภาพ landing page</div>
                                     <div className="cursor-not-allowed text-gray-400">Comming Soon</div>
                                 </div>
                                 {isTabActive === 0 &&
-                                    <div className="">
+                                    <div className="flex justify-center items-center gap-5">
+                                        <div className="w-full mb-3">
+                                            <h1 className="mb-2">รูปภาพหน้าแรกที่ 1</h1>
+                                            <Uploader imageUrl={objectHomeForm.image1} setImageFile={(file) => {
+                                                setObjectHomeForm({ ...objectHomeForm, image1: file })
+                                            }} />
+                                        </div>
+                                        <div className="w-full mb-3">
+                                            <h1 className="mb-2">รูปภาพหน้าแรกที่ 2</h1>
+                                            <Uploader imageUrl={objectHomeForm.image2} setImageFile={(file) => {
+                                                setObjectHomeForm({ ...objectHomeForm, image2: file })
+                                            }} />
+                                        </div>
+                                        <div className="w-full mb-3">
+                                            <h1 className="mb-2">รูปภาพหน้าแรกที่ 3</h1>
+                                            <Uploader imageUrl={objectHomeForm.image3} setImageFile={(file) => {
+                                                setObjectHomeForm({ ...objectHomeForm, image3: file })
+                                            }} />
+                                        </div>
+                                    </div>
+                                }
 
+                                {
+                                    isTabActive === 1 &&
+                                    <div className="flex items-center gap-5 justify-center">
+                                        <div className="w-full mb-3">
+                                            <h1 className="mb-2">รูปภาพ</h1>
+                                            <Uploader imageUrl={objectHomeForm.image1} setImageFile={(file) => {
+                                                setObjectHomeForm({ ...objectHomeForm, image1: file })
+                                            }} />
+                                        </div>
                                     </div>
                                 }
                             </div>
