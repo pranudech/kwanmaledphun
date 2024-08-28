@@ -3,7 +3,7 @@ import axios from "axios";
 import { useDropzone } from "react-dropzone";
 import { FiUploadCloud, FiXCircle } from "react-icons/fi";
 
-const Uploader = ({ setImageFile, imageFile, imageUrl }) => {
+const Uploader = ({ setImageFile, imageUrl, showImage = true }) => {
   const [files, setFiles] = useState([]);
 
   const { getRootProps, getInputProps } = useDropzone({
@@ -72,7 +72,7 @@ const Uploader = ({ setImageFile, imageFile, imageUrl }) => {
           thumbs
         )}
       <div className="">
-        {imageUrl && (
+        {imageUrl && showImage && (
           <>
             <div className="text-center mt-5">รูปใช้งานปัจจุบัน</div>
             <img

@@ -11,6 +11,7 @@ import { SidebarContext } from "@context/SidebarContext";
 import useGetSetting from "@hooks/useGetSetting";
 import useUtilsFunction from "@hooks/useUtilsFunction";
 import Uploader from "@components/image-uploader/UploaderInternal";
+import MainCarousel from "@components/carousel/MainCarousel";
 
 const MyOrders = () => {
     const { currentPage, handleChangePage, isLoading, setIsLoading } = useContext(SidebarContext);
@@ -25,9 +26,9 @@ const MyOrders = () => {
     const [isTabActive, setIsTabActive] = useState(0);
 
     const [objectHomeForm, setObjectHomeForm] = useState({
-        image1: "",
-        image2: "",
-        image3: "",
+        image1: null,
+        image2: null,
+        image3: null,
     });
 
     useEffect(() => {
@@ -102,28 +103,48 @@ const MyOrders = () => {
                                 </h2>
                                 <div className="flex flex-row gap-5">
                                     <div className="cursor-pointer" onClick={() => setIsTabActive(0)}>ภาพหน้าแรก</div>
-                                    <div className="cursor-not-allowed text-gray-400">ภาพ landing page</div>
+                                    <div className="cursor-pointer" onClick={() => setIsTabActive(1)}>ภาพ landing page</div>
                                     <div className="cursor-not-allowed text-gray-400">Comming Soon</div>
                                 </div>
                                 {isTabActive === 0 &&
-                                    <div className="flex justify-center items-center gap-5">
-                                        <div className="w-full mb-3">
-                                            <h1 className="mb-2">รูปภาพหน้าแรกที่ 1</h1>
-                                            <Uploader imageUrl={objectHomeForm.image1} setImageFile={(file) => {
-                                                setObjectHomeForm({ ...objectHomeForm, image1: file })
-                                            }} />
+                                    <div>
+                                        <div className="my-5">
+                                            <div className="w-full">
+                                                <h1 className="mt-3">รูปภาพหน้าแรกที่ 1</h1>
+                                                <Uploader
+                                                    imageUrl={objectHomeForm.image1}
+                                                    setImageFile={(file) => {
+                                                        setObjectHomeForm({ ...objectHomeForm, image1: file })
+                                                    }}
+                                                    showImage={false}
+                                                />
+                                            </div>
+                                            <div className="w-full">
+                                                <h1 className="mt-3">รูปภาพหน้าแรกที่ 2</h1>
+                                                <Uploader
+                                                    imageUrl={objectHomeForm.image2}
+                                                    setImageFile={(file) => {
+                                                        setObjectHomeForm({ ...objectHomeForm, image2: file })
+                                                    }}
+                                                    showImage={false}
+                                                />
+                                            </div>
+                                            <div className="w-full">
+                                                <h1 className="mt-3">รูปภาพหน้าแรกที่ 3</h1>
+                                                <Uploader
+                                                    imageUrl={objectHomeForm.image3}
+                                                    setImageFile={(file) => {
+                                                        setObjectHomeForm({ ...objectHomeForm, image3: file })
+                                                    }}
+                                                    showImage={false}
+                                                />
+                                            </div>
                                         </div>
-                                        <div className="w-full mb-3">
-                                            <h1 className="mb-2">รูปภาพหน้าแรกที่ 2</h1>
-                                            <Uploader imageUrl={objectHomeForm.image2} setImageFile={(file) => {
-                                                setObjectHomeForm({ ...objectHomeForm, image2: file })
-                                            }} />
-                                        </div>
-                                        <div className="w-full mb-3">
-                                            <h1 className="mb-2">รูปภาพหน้าแรกที่ 3</h1>
-                                            <Uploader imageUrl={objectHomeForm.image3} setImageFile={(file) => {
-                                                setObjectHomeForm({ ...objectHomeForm, image3: file })
-                                            }} />
+                                        <div>
+                                            ตัวอย่างภาพหน้าแรก
+                                            <div>
+                                                <MainCarousel />
+                                            </div>
                                         </div>
                                     </div>
                                 }
