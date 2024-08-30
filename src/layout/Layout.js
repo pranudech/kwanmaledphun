@@ -10,7 +10,9 @@ import FooterTop from "@layout/footer/FooterTop";
 import MobileFooter from "@layout/footer/MobileFooter";
 import FeatureCard from "@components/feature-card/FeatureCard";
 
-const Layout = ({ title, description, children }) => {
+const Layout = ({ title, description, children, imagePreview }) => {
+  const queryTime = new Date().getTime();
+
   return (
     <>
       <ToastContainer />
@@ -22,8 +24,30 @@ const Layout = ({ title, description, children }) => {
               ? `ขวัญเมล็ดพันธุ์โคราช | ${title}`
               : "ขวัญเมล็ดพันธุ์โคราช"}
           </title>
-          {description && <meta name="description" content={description} />}
+          {/* {description && <meta name="description" content={description} />} */}
           <link ref="icon" href="/favicon.png" />
+          <meta property="og:type" content="website" />
+          <meta property="og:title" content={title}></meta>
+          <meta
+            property="og:image"
+            content={`${imagePreview}?rand=${queryTime}`}
+          ></meta>
+          <meta
+            property="og:image:url"
+            content={`${imagePreview}?rand=${queryTime}`}
+          ></meta>
+          <meta name="description" content={description}></meta>
+          <meta property="og:image:width" content="1200"></meta>
+          <meta property="og:image:height" content="630"></meta>
+          <meta property="og:description" content={description} />
+          <meta
+          property="og:street-address"
+          content="ขวัญเมล็ดพันธุ์ โคราช"
+        />
+        <meta
+          property="og:location"
+          content="ขวัญเมล็ดพันธุ์ โคราช"
+        />
         </Head>
         <NavBarTop />
         <Navbar />
