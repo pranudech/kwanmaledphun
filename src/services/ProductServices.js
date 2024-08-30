@@ -26,6 +26,10 @@ const ProductServices = {
     return requests.get(`${BASE_URL}/products/recommended`);
   },
 
+  getProductById: async (params) => {
+    return requests.get(`${BASE_URL}/products/id?product_id=${params.product_id}`);
+  },
+
   // system
   addProduct: async (data) => {
     return requests.post(`${BASE_URL}/products/add`, data);

@@ -41,7 +41,7 @@ const ProductScreen = ({ product, attributes, relatedProducts }) => {
   const { lang, showingTranslateValue, getNumber, currency } =
     useUtilsFunction();
 
-  console.log('product',product)
+  console.log('product', product)
 
   const { isLoading, setIsLoading } = useContext(SidebarContext);
   const { handleAddItem, item, setItem } = useAddToCart();
@@ -132,7 +132,7 @@ const ProductScreen = ({ product, attributes, relatedProducts }) => {
       setOriginalPrice(originalPrice);
     } else {
       setStock(product?.stock);
-      setImg(product?.image[0]);
+      setImg(product?.product_image1);
       const price = getNumber(product?.prices?.price);
       const originalPrice = getNumber(product?.prices?.originalPrice);
       const discountPercentage = getNumber(
@@ -153,12 +153,12 @@ const ProductScreen = ({ product, attributes, relatedProducts }) => {
     value,
   ]);
 
-  useEffect(() => {
-    const res = Object.keys(Object.assign({}, ...product?.variants));
-    const varTitle = attributes?.filter((att) => res.includes(att?._id));
+  // useEffect(() => {
+  //   const res = Object.keys(Object.assign({}, ...product?.variants));
+  //   const varTitle = attributes?.filter((att) => res.includes(att?._id));
 
-    setVariantTitle(varTitle?.sort());
-  }, [variants, attributes]);
+  //   setVariantTitle(varTitle?.sort());
+  // }, [variants, attributes]);
 
   useEffect(() => {
     setIsLoading(false);
@@ -181,31 +181,29 @@ const ProductScreen = ({ product, attributes, relatedProducts }) => {
       const { variants, categories, description, ...updatedProduct } = product;
       const newItem = {
         ...updatedProduct,
-        id: `${
-          p.variants.length <= 1
-            ? p._id
-            : p._id +
-              variantTitle
-                ?.map(
-                  // (att) => selectVariant[att.title.replace(/[^a-zA-Z0-9]/g, '')]
-                  (att) => selectVariant[att._id]
-                )
-                .join("-")
-        }`,
+        id: `${p.variants.length <= 1
+          ? p._id
+          : p._id +
+          variantTitle
+            ?.map(
+              // (att) => selectVariant[att.title.replace(/[^a-zA-Z0-9]/g, '')]
+              (att) => selectVariant[att._id]
+            )
+            .join("-")
+          }`,
 
-        title: `${
-          p.variants.length <= 1
-            ? showingTranslateValue(product?.title)
-            : showingTranslateValue(product?.title) +
-              "-" +
-              variantTitle
-                ?.map(
-                  // (att) => selectVariant[att.title.replace(/[^a-zA-Z0-9]/g, '')]
-                  (att) =>
-                    att.variants?.find((v) => v._id === selectVariant[att._id])
-                )
-                .map((el) => showingTranslateValue(el?.name))
-        }`,
+        title: `${p.variants.length <= 1
+          ? showingTranslateValue(product?.title)
+          : showingTranslateValue(product?.title) +
+          "-" +
+          variantTitle
+            ?.map(
+              // (att) => selectVariant[att.title.replace(/[^a-zA-Z0-9]/g, '')]
+              (att) =>
+                att.variants?.find((v) => v._id === selectVariant[att._id])
+            )
+            .map((el) => showingTranslateValue(el?.name))
+          }`,
         image: img,
         variant: selectVariant,
         price: price,
@@ -223,12 +221,7 @@ const ProductScreen = ({ product, attributes, relatedProducts }) => {
 
   const { t } = useTranslation();
 
-  // category name slug
-  const category_name = showingTranslateValue(product?.category?.name)
-    .toLowerCase()
-    .replace(/[^A-Z0-9]+/gi, "-");
-
-  // console.log("discount", discount);
+  const category_name = ""; //showingTranslateValue(product?.category?.name).toLowerCase().replace(/[^A-Z0-9]+/gi, "-");
 
   return (
     <>
@@ -236,19 +229,20 @@ const ProductScreen = ({ product, attributes, relatedProducts }) => {
         <Loading loading={isLoading} />
       ) : (
         <Layout
-          title={showingTranslateValue(product?.title)}
-          description={showingTranslateValue(product.description)}
+          title={showingTranslateValue(product?.product_name)}
+          description={showingTranslateValue(product.detail)}
         >
           <div className="px-0 py-10 lg:py-10">
             <div className="mx-auto px-3 lg:px-10 max-w-screen-2xl">
               <div className="flex items-center pb-4">
                 <ol className="flex items-center w-full overflow-hidden font-serif">
                   <li className="text-sm pr-1 transition duration-200 ease-in cursor-pointer hover:text-emerald-500 font-semibold">
-                    <Link href="/">Home</Link>
+                    <Link href="/">หน้าแรก</Link>
                   </li>
                   <li className="text-sm mt-[1px]">
                     {" "}
-                    <FiChevronRight />{" "}
+                    <FiChevronRight />
+                    {" "}
                   </li>
                   <li className="text-sm pl-1 transition duration-200 ease-in cursor-pointer hover:text-emerald-500 font-semibold ">
                     <Link
@@ -258,7 +252,7 @@ const ProductScreen = ({ product, attributes, relatedProducts }) => {
                         type="button"
                         onClick={() => setIsLoading(!isLoading)}
                       >
-                        {category_name}
+                        {product?.subtype_name}
                       </button>
                     </Link>
                   </li>
@@ -267,29 +261,26 @@ const ProductScreen = ({ product, attributes, relatedProducts }) => {
                     <FiChevronRight />{" "}
                   </li>
                   <li className="text-sm px-1 transition duration-200 ease-in ">
-                    {showingTranslateValue(product?.title)}
+                    {product?.product_name}
                   </li>
                 </ol>
               </div>
               <div className="w-full rounded-lg p-3 lg:p-12 bg-white">
                 <div className="flex flex-col xl:flex-row">
                   <div className="flex-shrink-0 xl:pr-10 lg:block w-full mx-auto md:w-6/12 lg:w-5/12 xl:w-4/12">
-                    <Discount slug product={product} discount={discount} />
+                    {/* <Discount slug product={product} discount={discount} /> */}
 
-                    {product.image[0] ? (
-                      <Image
-                        src={img || product.image[0]}
+                    {product.product_image1 ? (
+                      <img
+                        src={product.product_image1}
                         alt="product"
-                        width={650}
-                        height={650}
-                        priority
+                        className="aspect-[1/1] w-full h-full object-cover min-w-[420px] max-w-[420px]"
                       />
                     ) : (
-                      <Image
+                      <img
                         src="https://res.cloudinary.com/ahossain/image/upload/v1655097002/placeholder_kvepfp.png"
-                        width={650}
-                        height={650}
                         alt="product Image"
+                        className="aspect-[1/1] w-full h-full object-cover min-w-[420px] max-w-[420px]"
                       />
                     )}
 
@@ -305,29 +296,32 @@ const ProductScreen = ({ product, attributes, relatedProducts }) => {
 
                   <div className="w-full">
                     <div className="flex flex-col md:flex-row lg:flex-row xl:flex-row">
-                      <div className=" w-3/5 xl:pr-6 md:pr-6  md:w-2/3 mob-w-full">
+                      <div className="">
+                        {/* w-3/5 xl:pr-6 md:pr-6  md:w-2/3 mob-w-full */}
                         <div className="mb-6">
                           <h1 className="leading-7 text-lg md:text-xl lg:text-2xl mb-1 font-semibold font-serif text-gray-800">
                             {showingTranslateValue(product?.title)}
                           </h1>
 
+                          {/* 
                           <p className="uppercase font-serif font-medium text-gray-500 text-sm">
                             SKU :{" "}
                             <span className="font-bold text-gray-600">
                               {product.sku}
                             </span>
-                          </p>
+                          </p> 
+                          */}
 
-                          <div className="relative">
+                          {/* <div className="relative">
                             <Stock stock={stock} />
-                          </div>
+                          </div> */}
                         </div>
-                        <Price
+                        {/* <Price
                           price={price}
                           product={product}
                           currency={currency}
                           originalPrice={originalPrice}
-                        />
+                        /> */}
 
                         <div className="mb-4">
                           {variantTitle?.map((a, i) => (
@@ -353,37 +347,34 @@ const ProductScreen = ({ product, attributes, relatedProducts }) => {
                         </div>
 
                         <div>
-                          <div className="text-sm leading-6 text-gray-500 md:leading-7">
+                          {/* <div className="text-sm leading-6 text-gray-500 md:leading-7">
                             {isReadMore
-                              ? showingTranslateValue(
-                                  product?.description
-                                )?.slice(0, 230)
-                              : showingTranslateValue(product?.description)}
+                              ? showingTranslateValue(product?.detail)?.slice(0, 230) : showingTranslateValue(product?.detail)}
                             <br />
-                            {Object?.keys(product?.description)?.includes(lang)
-                              ? product?.description[lang]?.length > 230 && (
-                                  <span
-                                    onClick={() => setIsReadMore(!isReadMore)}
-                                    className="read-or-hide"
-                                  >
-                                    {isReadMore
-                                      ? t("common:moreInfo")
-                                      : t("common:showLess")}
-                                  </span>
-                                )
+                            {Object?.keys(product?.detail)?.includes(lang)
+                              ? product?.detail[lang]?.length > 230 && (
+                                <span
+                                  onClick={() => setIsReadMore(!isReadMore)}
+                                  className="read-or-hide"
+                                >
+                                  {isReadMore
+                                    ? t("common:moreInfo")
+                                    : t("common:showLess")}
+                                </span>
+                              )
                               : product?.description?.en?.length > 230 && (
-                                  <span
-                                    onClick={() => setIsReadMore(!isReadMore)}
-                                    className="read-or-hide"
-                                  >
-                                    {isReadMore
-                                      ? t("common:moreInfo")
-                                      : t("common:showLess")}
-                                  </span>
-                                )}
-                          </div>
+                                <span
+                                  onClick={() => setIsReadMore(!isReadMore)}
+                                  className="read-or-hide"
+                                >
+                                  {isReadMore
+                                    ? t("common:moreInfo")
+                                    : t("common:showLess")}
+                                </span>
+                              )}
+                          </div> */}
 
-                          <div className="flex items-center mt-4">
+                          {/* <div className="flex items-center mt-4">
                             <div className="flex items-center justify-between space-s-3 sm:space-s-4 w-full">
                               <div className="group flex items-center justify-between rounded-md overflow-hidden flex-shrink-0 border h-11 md:h-12 border-gray-300">
                                 <button
@@ -415,9 +406,9 @@ const ProductScreen = ({ product, attributes, relatedProducts }) => {
                                 {t("common:addToCart")}
                               </button>
                             </div>
-                          </div>
+                          </div> */}
 
-                          <div className="flex flex-col mt-4">
+                          {/* <div className="flex flex-col mt-4">
                             <span className="font-serif font-semibold py-1 text-sm d-block">
                               <span className="text-gray-800">
                                 {t("common:category")}:
@@ -435,15 +426,65 @@ const ProductScreen = ({ product, attributes, relatedProducts }) => {
                               </Link>
                             </span>
                             <Tags product={product} />
-                          </div>
+                          </div> */}
 
-                          <div className="mt-8">
+                          {/* <div className="mt-8">
                             <p className="text-xs sm:text-sm text-gray-700 font-medium">
                               Call Us To Order By Mobile Number :{" "}
                               <span className="text-emerald-700 font-semibold">
                                 +0044235234
                               </span>{" "}
                             </p>
+                          </div> */}
+
+
+                          <div className="">
+                            <div className="text-[18px] font-bold hover:text-blue-500">
+                              <Link
+                                href={`/product/${product.product_name}/${product.product_id}`}
+                                passHref
+                              >
+                                {product.product_name}
+                              </Link>
+                            </div>
+                            <div className="mt-3">
+                              {product.detail}
+                            </div>
+                            <div className="grid grid-cols-3 mt-3">
+                              <div>
+                                <span className="text-emerald-500 mr-3">ขนาด</span>
+                              </div>
+                              <div className="col-span-2">
+                                {product.size_product}
+                              </div>
+                            </div>
+                            <div className="grid grid-cols-3">
+                              <div>
+                                <span className="text-emerald-500 mr-3">ประเภทสินค้า</span>
+                              </div>
+                              <div className="col-span-2">
+                                {product.type_name} / {product.subtype_name}
+                              </div>
+                            </div>
+                            <div className="grid grid-cols-3">
+                              <div>
+                                <span className="text-emerald-500 mr-3">บริษัท</span>
+                              </div>
+                              <div className="col-span-2">
+                                {product.company_name}
+                              </div>
+                            </div>
+                            <div className="flex justify-start mt-4">
+                              <p className="text-sm font-sans leading-6">
+                                ☎️ สั่งมาได้เลย พร้อมจัดส่งครับ🛒 <br />
+                                (ส่งของทุกวัน)❗️ <br />
+                                🚚ปลีก-ส่งราคาถูกเป็นกันเอง <br />
+                                📥FB:Inbox: <a className="text-blue-500 hover:text-blue-600 underline" href="https://m.me/kwanseed/?ref=bookmarks">https://m.me/kwanseed/?ref=bookmarks</a> <br />
+                                📱สายด่วน❗️<a className="text-blue-500 hover:text-blue-600 underline" href="tel:064-450-0005">064-450-0005</a> <br />
+                                ☎️สอบถาม <a className="text-blue-500 hover:text-blue-600 underline" href="tel:044-342371">044-342371</a> <br />
+                                🆔ไลน์แอด : <a className="text-blue-500 hover:text-blue-600 underline" href="https://line.me/ti/p/~@kwanmaledpunkorat">kwanmaledpunkorat</a>
+                              </p>
+                            </div>
                           </div>
 
                           {/* social share */}
@@ -457,44 +498,44 @@ const ProductScreen = ({ product, attributes, relatedProducts }) => {
                             <ul className="flex mt-4">
                               <li className="flex items-center text-center border border-gray-100 rounded-full hover:bg-emerald-500  mr-2 transition ease-in-out duration-500">
                                 <FacebookShareButton
-                                  url={`https://kachabazar-store-nine.vercel.app/product/${router.query.slug}`}
+                                  url={`http://www.facebook.com/sharer.php?u=https://kwanmaledpun.vercel.app/product/${product.product_id}`}
                                   quote=""
                                 >
                                   <FacebookIcon size={32} round />
                                 </FacebookShareButton>
                               </li>
-                              <li className="flex items-center text-center border border-gray-100 rounded-full hover:bg-emerald-500  mr-2 transition ease-in-out duration-500">
+                              {/* <li className="flex items-center text-center border border-gray-100 rounded-full hover:bg-emerald-500  mr-2 transition ease-in-out duration-500">
                                 <TwitterShareButton
                                   url={`https://kachabazar-store-nine.vercel.app/product/${router.query.slug}`}
                                   quote=""
                                 >
                                   <TwitterIcon size={32} round />
                                 </TwitterShareButton>
-                              </li>
-                              <li className="flex items-center text-center border border-gray-100 rounded-full hover:bg-emerald-500  mr-2 transition ease-in-out duration-500">
+                              </li> */}
+                              {/* <li className="flex items-center text-center border border-gray-100 rounded-full hover:bg-emerald-500  mr-2 transition ease-in-out duration-500">
                                 <RedditShareButton
                                   url={`https://kachabazar-store-nine.vercel.app/product/${router.query.slug}`}
                                   quote=""
                                 >
                                   <RedditIcon size={32} round />
                                 </RedditShareButton>
-                              </li>
-                              <li className="flex items-center text-center border border-gray-100 rounded-full hover:bg-emerald-500  mr-2 transition ease-in-out duration-500">
+                              </li> */}
+                              {/* <li className="flex items-center text-center border border-gray-100 rounded-full hover:bg-emerald-500  mr-2 transition ease-in-out duration-500">
                                 <WhatsappShareButton
                                   url={`https://kachabazar-store-nine.vercel.app/product/${router.query.slug}`}
                                   quote=""
                                 >
                                   <WhatsappIcon size={32} round />
                                 </WhatsappShareButton>
-                              </li>
-                              <li className="flex items-center text-center border border-gray-100 rounded-full hover:bg-emerald-500  mr-2 transition ease-in-out duration-500">
+                              </li> */}
+                              {/* <li className="flex items-center text-center border border-gray-100 rounded-full hover:bg-emerald-500  mr-2 transition ease-in-out duration-500">
                                 <LinkedinShareButton
                                   url={`https://kachabazar-store-nine.vercel.app/product/${router.query.slug}`}
                                   quote=""
                                 >
                                   <LinkedinIcon size={32} round />
                                 </LinkedinShareButton>
-                              </li>
+                              </li> */}
                             </ul>
                           </div>
                         </div>
@@ -502,18 +543,19 @@ const ProductScreen = ({ product, attributes, relatedProducts }) => {
 
                       {/* shipping description card */}
 
-                      <div className="w-full xl:w-5/12 lg:w-6/12 md:w-5/12">
+                      {/* <div className="w-full xl:w-5/12 lg:w-6/12 md:w-5/12">
                         <div className="mt-6 md:mt-0 lg:mt-0 bg-gray-50 border border-gray-100 p-4 lg:p-8 rounded-lg">
                           <Card />
                         </div>
-                      </div>
+                      </div> */}
+
                     </div>
                   </div>
                 </div>
               </div>
 
               {/* related products */}
-              {relatedProducts?.length >= 2 && (
+              {/* {relatedProducts?.length >= 2 && (
                 <div className="pt-10 lg:pt-20 lg:pb-10">
                   <h3 className="leading-7 text-lg lg:text-xl mb-3 font-semibold font-serif hover:text-gray-600">
                     {t("common:relatedProducts")}
@@ -532,7 +574,7 @@ const ProductScreen = ({ product, attributes, relatedProducts }) => {
                     </div>
                   </div>
                 </div>
-              )}
+              )} */}
             </div>
           </div>
         </Layout>
@@ -544,26 +586,21 @@ const ProductScreen = ({ product, attributes, relatedProducts }) => {
 // you can use getServerSideProps alternative for getStaticProps and getStaticPaths
 
 export const getServerSideProps = async (context) => {
-  const { slug } = context.params;
-  
+  const { id } = context.params;
   const [data, attributes] = await Promise.all([
-    ProductServices.getShowingStoreProducts({
-      category: "",
-      slug: slug,
+    ProductServices.getProductById({
+      product_id: id,
     }),
-
     AttributeServices.getShowingAttributes({}),
   ]);
-  let product = {};
 
-  if (slug) {
-    product = data?.products?.find((p) => p.slug === slug);
-  }
+  // Filter out undefined values from the product object
+  const sanitizedProduct = JSON.parse(JSON.stringify(data));
 
   return {
     props: {
-      product,
-      relatedProducts: data?.relatedProducts,
+      product: sanitizedProduct,
+      relatedProducts: [],
       attributes,
     },
   };

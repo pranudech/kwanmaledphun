@@ -247,7 +247,7 @@ const ProductModal = ({
 
             <div className="w-full flex flex-col p-5 md:p-8 text-left">
               <div className="mb-2 md:mb-2.5 block -mt-1.5">
-                <Link href={`/product/${product.slug}`} passHref>
+                <Link href={`/product/${encodeURIComponent(product.product_name)}/${product.product_id}`} passHref>
                   <h1
                     onClick={() => setModalOpen(false)}
                     className="text-heading text-lg md:text-xl lg:text-2xl font-semibold font-serif hover:text-black cursor-pointer"
@@ -263,7 +263,7 @@ const ProductModal = ({
                   <Stock stock={stock} />
                 </div> */}
                 <div className="flex">
-                  <div className="text-[16px] text-gray-4000 bg-blue-100 px-2 py-1 rounded-md">{product.subtype_name}</div>
+                  <div className="text-[16px] font-bold text-gray-4000 bg-blue-100 px-2 py-1 rounded-md">{product.subtype_name}</div>
                 </div>
               </div>
               {/* <p className="text-sm leading-6 text-gray-500 md:leading-6">
@@ -337,33 +337,38 @@ const ProductModal = ({
                   </button>
                 </div>
               </div> */}
-              <div className="text-[18px] font-bold">
-                {product.product_name}
+              <div className="text-[18px] font-bold hover:text-blue-500">
+                <Link
+                  href={`/product/${product.product_name}/${product.product_id}`}
+                  passHref
+                >
+                  {product.product_name}
+                </Link>
               </div>
               <div className="mt-3">
                 {product.detail}
               </div>
-              <div className="grid grid-cols-4 mt-3">
+              <div className="grid grid-cols-3 mt-3">
                 <div>
                   <span className="text-emerald-500 mr-3">ขนาด</span>
                 </div>
-                <div>
+                <div className="col-span-2">
                   {product.size_product}
                 </div>
               </div>
-              <div className="grid grid-cols-4">
+              <div className="grid grid-cols-3">
                 <div>
                   <span className="text-emerald-500 mr-3">ประเภทสินค้า</span>
                 </div>
-                <div>
+                <div className="col-span-2">
                   {product.type_name} / {product.subtype_name}
                 </div>
               </div>
-              <div className="grid grid-cols-4">
+              <div className="grid grid-cols-3">
                 <div>
                   <span className="text-emerald-500 mr-3">บริษัท</span>
                 </div>
-                <div>
+                <div className="col-span-2">
                   {product.company_name}
                 </div>
               </div>
