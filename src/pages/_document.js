@@ -18,7 +18,7 @@ class MyDocument extends Document {
       <Html lang="th">
         <Head>
           <link rel="icon" href={setting?.favicon || "/favicon.png"} />
-          <meta
+          {/* <meta
             property="og:title"
             content={
               setting?.meta_title ||
@@ -36,13 +36,13 @@ class MyDocument extends Document {
           <meta
             name="keywords"
             content={setting?.meta_keywords || "ecommenrce online store"}
-          />
-          <meta
+          /> */}
+          {/* <meta
             property="og:url"
             content={
               setting?.meta_url || "https://kachabazar-store.vercel.app/"
             }
-          />
+          /> */}
           {/* <meta
             property="og:image"
             content={
