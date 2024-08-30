@@ -229,8 +229,9 @@ const ProductScreen = ({ product, attributes, relatedProducts }) => {
         <Loading loading={isLoading} />
       ) : (
         <Layout
-          title={showingTranslateValue(product?.product_name)}
-          description={showingTranslateValue(product.detail)}
+          title={product?.product_name}
+          description={product.detail}
+          imagePreview={product.product_image1}
         >
           <div className="px-0 py-10 lg:py-10">
             <div className="mx-auto px-3 lg:px-10 max-w-screen-2xl">

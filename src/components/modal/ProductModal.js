@@ -247,7 +247,7 @@ const ProductModal = ({
 
             <div className="w-full flex flex-col p-5 md:p-8 text-left">
               <div className="mb-2 md:mb-2.5 block -mt-1.5">
-                <Link href={`/product/${encodeURIComponent(product.product_name)}/${product.product_id}`} passHref>
+                <Link href={`/product/${product.product_id}`} passHref>
                   <h1
                     onClick={() => setModalOpen(false)}
                     className="text-heading text-lg md:text-xl lg:text-2xl font-semibold font-serif hover:text-black cursor-pointer"
