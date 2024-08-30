@@ -30,11 +30,11 @@ const Layout = ({ title, description, children, imagePreview }) => {
           <meta property="og:title" content={title}></meta>
           <meta
             property="og:image"
-            content={`https://kwanmaledpun.vercel.app/product/${imagePreview}?rand=${queryTime}`}
+            content={`https://kwanmaledpun.vercel.app/product${imagePreview}?rand=${queryTime}`}
           ></meta>
           <meta
             property="og:image:url"
-            content={`https://kwanmaledpun.vercel.app/product/${imagePreview}?rand=${queryTime}`}
+            content={`https://kwanmaledpun.vercel.app/product${imagePreview}?rand=${queryTime}`}
           ></meta>
           <meta name="description" content={description}></meta>
           <meta property="og:image:width" content="1200"></meta>
