@@ -499,7 +499,7 @@ const ProductScreen = ({ product, attributes, relatedProducts }) => {
                             <ul className="flex mt-4">
                               <li className="flex items-center text-center border border-gray-100 rounded-full hover:bg-emerald-500  mr-2 transition ease-in-out duration-500">
                                 <FacebookShareButton
-                                  url={`http://www.facebook.com/sharer.php?u=https://kwanmaledpun.vercel.app/product/${product.product_id}`}
+                                  url={`https://kwanmaledpun.vercel.app/product/${product.product_id}`}
                                   quote=""
                                 >
                                   <FacebookIcon size={32} round />
