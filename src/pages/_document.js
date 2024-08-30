@@ -18,7 +18,7 @@ class MyDocument extends Document {
       <Html lang="th">
         <Head>
           <link rel="icon" href={setting?.favicon || "/favicon.png"} />
-          {/* <meta
+          <meta
             property="og:title"
             content={
               setting?.meta_title ||
@@ -36,20 +36,9 @@ class MyDocument extends Document {
           <meta
             name="keywords"
             content={setting?.meta_keywords || "ecommenrce online store"}
-          /> */}
-          {/* <meta
-            property="og:url"
-            content={
-              setting?.meta_url || "https://kachabazar-store.vercel.app/"
-            }
-          /> */}
-          {/* <meta
-            property="og:image"
-            content={
-              setting?.meta_img ||
-              "https://res.cloudinary.com/ahossain/image/upload/v1636729752/facebook-page_j7alju.png"
-            }
-          /> */}
+          />
+          <meta property="og:url" content="https://kwanmaledpun.vercel.app/kwanmaledpun/upload/product/1725009456228-454233636_802294938687264_6357348775603017516_n.jpg"/>
+          <meta property="og:image" content="https://kwanmaledpun.vercel.app/kwanmaledpun/upload/product/1725009456228-454233636_802294938687264_6357348775603017516_n.jpg"/>
         </Head>
         <body>
           <Main />
