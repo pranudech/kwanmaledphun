@@ -16,7 +16,7 @@ class MyDocument extends Document {
     
     return (
       <Html lang="th">
-        <Head>
+        {/* <Head>
           <link rel="icon" href={setting?.favicon || "/favicon.png"} />
           <meta
             property="og:title"
@@ -39,7 +39,7 @@ class MyDocument extends Document {
           />
           <meta property="og:url" content="https://kwanmaledpun.vercel.app/kwanmaledpun/upload/product/1725009456228-454233636_802294938687264_6357348775603017516_n.jpg"/>
           <meta property="og:image" content="https://kwanmaledpun.vercel.app/kwanmaledpun/upload/product/1725009456228-454233636_802294938687264_6357348775603017516_n.jpg"/>
-        </Head>
+        </Head> */}
         <body>
           <Main />
           <NextScript />

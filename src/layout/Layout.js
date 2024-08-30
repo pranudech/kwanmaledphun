@@ -28,26 +28,26 @@ const Layout = ({ title, description, children, imagePreview }) => {
           <link ref="icon" href="/favicon.png" />
           <meta property="og:type" content="website" />
           <meta property="og:title" content={title}></meta>
-          {/* <meta
+          <meta
             property="og:url"
             content={`https://kwanmaledpun.vercel.app${imagePreview}`}
-          ></meta>
+          />
           <meta
             property="og:image"
             content={`https://kwanmaledpun.vercel.app${imagePreview}`}
-          ></meta> */}
+          />
           <meta name="description" content={description}></meta>
           <meta property="og:image:width" content="1200"></meta>
           <meta property="og:image:height" content="630"></meta>
           <meta property="og:description" content={description} />
           <meta
-          property="og:street-address"
-          content="ขวัญเมล็ดพันธุ์ โคราช"
-        />
-        <meta
-          property="og:location"
-          content="ขวัญเมล็ดพันธุ์ โคราช"
-        />
+            property="og:street-address"
+            content="ขวัญเมล็ดพันธุ์ โคราช"
+          />
+          <meta
+            property="og:location"
+            content="ขวัญเมล็ดพันธุ์ โคราช"
+          />
         </Head>
         <NavBarTop />
         <Navbar />
