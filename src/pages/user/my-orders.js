@@ -27,22 +27,22 @@ const MyOrders = () => {
     let isMounted = true; // Track if the component is mounted
 
     const handleGetCustomerOrders = async () => {
-      setLoading(true);
-      try {
-        const res = await OrderServices.getOrderCustomer({
-          page: currentPage,
-          limit: 10,
-        });
-        if (isMounted) {
-          setData(res);
-          setLoading(false);
-        }
-      } catch (error) {
-        if (isMounted) {
-          setLoading(false);
-          setError(error.message);
-        }
-      }
+      // setLoading(true);
+      // try {
+      //   const res = await OrderServices.getOrderCustomer({
+      //     page: currentPage,
+      //     limit: 10,
+      //   });
+      //   if (isMounted) {
+      //     setData(res);
+      //     setLoading(false);
+      //   }
+      // } catch (error) {
+      //   if (isMounted) {
+      //     setLoading(false);
+      //     setError(error.message);
+      //   }
+      // }
     };
 
     handleGetCustomerOrders();

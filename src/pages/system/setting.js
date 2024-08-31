@@ -10,10 +10,11 @@ import Loading from "@components/preloader/Loading";
 import { SidebarContext } from "@context/SidebarContext";
 import useGetSetting from "@hooks/useGetSetting";
 import useUtilsFunction from "@hooks/useUtilsFunction";
-import Uploader from "@components/image-uploader/UploaderInternal";
+import Uploader from "@components/image-uploader/UploaderInternalMain";
 import MainCarousel from "@components/carousel/MainCarousel";
 import MainImageServices from "@services/MainImageServices";
 import UploadFileService from "@services/UploadFileService";
+import { dialog } from "@components/sweetalert2";
 
 const MyOrders = () => {
     const { currentPage, handleChangePage, isLoading, setIsLoading } = useContext(SidebarContext);
@@ -31,59 +32,80 @@ const MyOrders = () => {
         image1: null,
         image2: null,
         image3: null,
+        image4: null,
+        image5: null,
     });
 
     useEffect(() => {
         let isMounted = true; // Track if the component is mounted
-
-        const handleGetCustomerOrders = async () => {
-            setLoading(true);
-            try {
-                const res = await CompanyServices.getCompanyAll({});
-                if (isMounted) {
-                    setData(res);
-                    setLoading(false);
-                }
-            } catch (error) {
-                if (isMounted) {
-                    setLoading(false);
-                    setError(error.message);
-                }
-            }
-        };
-
-        handleGetCustomerOrders();
-
+        handleGetMainImage();
         return () => {
             isMounted = false; // Clean up the effect by setting isMounted to false
         };
     }, [currentPage]);
 
-    const pageCount = Math.ceil(data?.totalDoc / 8);
-
-    useEffect(() => {
-        setIsLoading(false);
-        handleGetMainImage();
-    }, []);
-
     const handleGetMainImage = async () => {
-        const res = await MainImageServices.getMainImageAll()
-        console.log('res', res)
-        setObjectHomeForm({
-            image1: res[0].image_path,
+        setLoading(true);
+        try {
+            MainImageServices.getMainImageAll().then((res) => {
+                setObjectHomeForm({
+                    image1: res[0].image_path !== "" ? res[0].image_path : null,
+                    image2: res[1].image_path !== "" ? res[1].image_path : null,
+                    image3: res[2].image_path !== "" ? res[2].image_path : null,
+                    image4: res[3].image_path !== "" ? res[3].image_path : null,
+                    image5: res[4].image_path !== "" ? res[4].image_path : null,
+                });
+                setData(res)
+                setLoading(false);
+            })
+        } catch (error) {
+            console.log('error', error)
+            if (isMounted) {
+                setLoading(false);
+                setError(error.message);
+            }
+        }
+    };
+
+    const handleImageUpload = async (files, name, id, flag = 1) => {
+        UploadFileService.uploadImage(files, "main_image", (img) => {
+            MainImageServices.updateMainImage({
+                image_path: img.data.imagePath,
+                flag: flag,
+                id: id
+            }).then((res) => {
+                setObjectHomeForm({
+                    ...objectHomeForm,
+                    [name]: img.data.imagePath,
+                })
+            })
         })
     }
 
-    const handleImageUpload = async (files, name) => {
-        UploadFileService.uploadImage(files, "main_image", (res) => {
-            MainImageServices.addMainImage({
-                image_path: res.data.imagePath,
-                flag: 1
-            })
-            setObjectHomeForm({
-                ...objectHomeForm,
-                [name]: res.data.imagePath,
-            })
+    const handleDeleteImage = async (name, id, flag = 1) => {
+        dialog.showModalWarning({
+            title: "ต้องการลบรูปภาพหน้าแรกหรือไม่",
+            message: "รูปภาพหน้าแรกจะถูกลบออกจากระบบ?",
+            icon: "warning",
+            textSubmit: "ลบ",
+            textCancel: "ยกเลิก",
+            classNameBTN: "flex justify-center gap-3 mt-2",
+            onSubmit: () => {
+                UploadFileService.deleteImage(objectHomeForm[name]).then((resDelete) => {
+                    console.log('resDelete', resDelete)
+                    MainImageServices.updateMainImage({
+                        image_path: "",
+                        flag: flag,
+                        id: id
+                    }).then((res) => {
+                        setObjectHomeForm({
+                            ...objectHomeForm,
+                            [name]: null,
+                        })
+
+                    })
+                })
+            }
         })
     }
 
@@ -120,9 +142,9 @@ const MyOrders = () => {
                                     ตั้งค่าระบบ
                                 </h2>
                                 <div className="flex flex-row gap-5">
-                                    <div className="cursor-pointer" onClick={() => setIsTabActive(0)}>ภาพหน้าแรก</div>
-                                    <div className="cursor-pointer" onClick={() => setIsTabActive(1)}>ภาพ landing page</div>
-                                    <div className="cursor-not-allowed text-gray-400">Comming Soon</div>
+                                    <div className={`cursor-pointer min-w-[170px] flex items-center justify-center ${isTabActive === 0 ? 'border-2 border-emerald-500 rounded-md p-2 text-emerald-500 font-semibold' : ''}`} onClick={() => setIsTabActive(0)}>ภาพหน้าแรก</div>
+                                    <div className={`cursor-pointer min-w-[170px] flex items-center justify-center ${isTabActive === 1 ? 'border-2 border-emerald-500 rounded-md p-2 text-emerald-500 font-semibold' : ''}`} onClick={() => setIsTabActive(1)}>ภาพ landing page</div>
+                                    <div className="cursor-not-allowed text-gray-400 min-w-[170px] flex items-center justify-center">Coming Soon</div>
                                 </div>
                                 {isTabActive === 0 &&
                                     <div>
@@ -133,10 +155,10 @@ const MyOrders = () => {
                                                     imageUrl={objectHomeForm.image1}
                                                     setImageFile={(files) => {
                                                         if (files.length > 0) {
-                                                            handleImageUpload(files, "image1")
+                                                            handleImageUpload(files, "image1", 1)
                                                         }
                                                     }}
-                                                    showImage={true}
+                                                    onDelete={() => handleDeleteImage("image1", 1)}
                                                 />
                                             </div>
                                             <div className="w-full">
@@ -145,10 +167,10 @@ const MyOrders = () => {
                                                     imageUrl={objectHomeForm.image2}
                                                     setImageFile={(files) => {
                                                         if (files.length > 0) {
-                                                            handleImageUpload(files, "image2")
+                                                            handleImageUpload(files, "image2", 2)
                                                         }
                                                     }}
-                                                    showImage={false}
+                                                    onDelete={() => handleDeleteImage("image2", 2)}
                                                 />
                                             </div>
                                             <div className="w-full">
@@ -157,10 +179,22 @@ const MyOrders = () => {
                                                     imageUrl={objectHomeForm.image3}
                                                     setImageFile={(files) => {
                                                         if (files.length > 0) {
-                                                            handleImageUpload(files, "image3")
+                                                            handleImageUpload(files, "image3", 3)
                                                         }
                                                     }}
-                                                    showImage={false}
+                                                    onDelete={() => handleDeleteImage("image3", 3)}
+                                                />
+                                            </div>
+                                            <div className="w-full">
+                                                <h1 className="mt-3">รูปภาพหน้าแรกที่ 4</h1>
+                                                <Uploader
+                                                    imageUrl={objectHomeForm.image4}
+                                                    setImageFile={(files) => {
+                                                        if (files.length > 0) {
+                                                            handleImageUpload(files, "image4", 4)
+                                                        }
+                                                    }}
+                                                    onDelete={() => handleDeleteImage("image4", 4)}
                                                 />
                                             </div>
                                         </div>
@@ -178,9 +212,15 @@ const MyOrders = () => {
                                     <div className="flex items-center gap-5 justify-center">
                                         <div className="w-full mb-3">
                                             <h1 className="mb-2">รูปภาพ</h1>
-                                            <Uploader imageUrl={objectHomeForm.image1} setImageFile={(file) => {
-                                                setObjectHomeForm({ ...objectHomeForm, image1: file })
-                                            }} />
+                                            <Uploader
+                                                imageUrl={objectHomeForm.image5}
+                                                setImageFile={(files) => {
+                                                    if (files.length > 0) {
+                                                        handleImageUpload(files, "image5", 5, 100)
+                                                    }
+                                                }}
+                                                onDelete={() => handleDeleteImage("image5", 5, 1)}
+                                            />
                                         </div>
                                     </div>
                                 }

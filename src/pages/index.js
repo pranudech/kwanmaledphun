@@ -18,19 +18,27 @@ import FeatureCategory from "@components/category/FeatureCategory";
 import AttributeServices from "@services/AttributeServices";
 import CMSkeleton from "@components/preloader/CMSkeleton";
 
-const Home = ({ popularProducts = [], discountProducts = [], attributes = [] }) => {
+import MainImageServices from "@services/MainImageServices";
+import Cookies from "js-cookie";
+
+const Home = ({ popularProducts = [], discountProducts = [], attributes = [], mainImage = [] }) => {
+
   const router = useRouter();
   const { isLoading, setIsLoading } = useContext(SidebarContext);
   const { loading, error, storeCustomizationSetting: tempString } = useGetSetting();
   const storeCustomizationSetting = storeCustomization.setting;
-  console.log('popularProducts', popularProducts)
+  
   useEffect(() => {
     if (router.asPath === "/") {
       setIsLoading(false);
+      if (mainImage.length > 0 && !Cookies.get('mainImage')) {
+        router.push('/landing');
+      }
     } else {
       setIsLoading(false);
     }
   }, [router]);
+
 
   return (
     <>
@@ -238,17 +246,23 @@ export const getServerSideProps = async (context) => {
   const { cookies } = context.req;
   const { query, _id } = context.query;
 
-  const [data, attributes] = await Promise.all([
+  const [data, mainImage] = await Promise.all([
     ProductServices.getProductsRecommended({}),
-    AttributeServices.getShowingAttributes(),
+    MainImageServices.getMainImageAll(),
   ]);
+
+  const mainImageFilter = mainImage.filter((item) => item.flag === 100);
+  // if (mainImageFilter.length > 0) {
+  //   context.res.writeHead(302, { Location: '/landing' });
+  //   context.res.end();
+  // }
 
   return {
     props: {
       popularProducts: data.filter((item) => item.recommended_product === 1),
       // discountProducts: data.discountedProducts,
       cookies: cookies,
-      // attributes,
+      mainImage: mainImage,
     },
   };
 };
