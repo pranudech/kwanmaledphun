@@ -65,11 +65,11 @@ const ProductCard = ({ product, attributes }) => {
       )}
 
       <div className="group box-border overflow-hidden flex rounded-md shadow-sm pe-0 flex-col items-center bg-white relative">
-        <div className="w-full flex justify-between">
-          {/* <Stock product={product} stock={product.stock} card /> */}
-          {/* <Discount product={product} /> */}
+
+        <div className="w-full flex justify-between absolute top-0 z-10">
           <div className="text-xs text-gray-4000 m-3 bg-blue-100 p-1 rounded-md">{product.subtype_name}</div>
         </div>
+
         <div
           onClick={() => {
             handleModalOpen(!modalOpen, product.product_id);
@@ -78,11 +78,11 @@ const ProductCard = ({ product, attributes }) => {
               `opened ${showingTranslateValue(product?.title)} product modal`
             );
           }}
-          className="relative flex justify-center cursor-pointer pt-2 w-full h-44"
+          className="relative flex justify-center cursor-pointer pt-2 w-full"
         >
           <div className="relative w-full h-full p-2">
             {product?.product_image1 ? (
-              <ImageWithFallback src={product?.product_image1} alt="product" />
+              <ImageWithFallback src={product?.product_image1} alt="product" className="" />
             ) : (
               <img
                 src="https://res.cloudinary.com/ahossain/image/upload/v1655097002/placeholder_kvepfp.png"
@@ -90,88 +90,41 @@ const ProductCard = ({ product, attributes }) => {
                 style={{
                   objectFit: "contain",
                 }}
-                sizes="100%"
                 alt="product"
                 className="object-contain transition duration-150 ease-linear transform group-hover:scale-105"
               />
             )}
           </div>
         </div>
+
         <div className="w-full px-3 lg:px-4 pb-4 overflow-hidden">
           <div className="relative mb-1">
             <h2 className="text-heading truncate mb-0 block text-sm font-medium text-gray-600">
               <span className="line-clamp-2">
-                {showingTranslateValue(product?.title)}
+                {product?.title}
               </span>
             </h2>
           </div>
 
           <div className="flex justify-between items-center text-heading text-sm sm:text-base space-s-2 md:text-base lg:text-xl">
             <div>
-              <div>{product.product_name}</div>
-              <div className="text-gray-400 font-medium text-xs d-block my-1 line-clamp-2">
+              <div
+                className="hover:text-green-800 cursor-pointer"
+                onClick={() => {
+                  handleModalOpen(!modalOpen, product.product_id);
+                  handleLogEvent(
+                    "product",
+                    `opened ${showingTranslateValue(product?.title)} product modal`
+                  );
+                }}
+              >{product.product_name}</div>
+              <div className="text-gray-400 font-medium text-xs d-block my-1 line-clamp-2" >
                 {product.company_name}
               </div>
               <div className="text-gray-400 font-medium text-xs d-block my-1 line-clamp-2">
                 {product.detail}
               </div>
             </div>
-            {/* <Price
-              card
-              product={product}
-              currency={currency}
-              price={10}
-              originalPrice={12}
-            /> */}
-
-            {/* {inCart(product._id) ? (
-              <div>
-                {items.map(
-                  (item) =>
-                    item.id === product._id && (
-                      <div
-                        key={item.id}
-                        className="h-9 w-auto flex flex-wrap items-center justify-evenly py-1 px-2 bg-emerald-500 text-white rounded"
-                      >
-                        <button
-                          onClick={() =>
-                            updateItemQuantity(item.id, item.quantity - 1)
-                          }
-                        >
-                          <span className="text-dark text-base">
-                            <IoRemove />
-                          </span>
-                        </button>
-                        <p className="text-sm text-dark px-1 font-serif font-semibold">
-                          {item.quantity}
-                        </p>
-                        <button
-                          onClick={() =>
-                            item?.variants?.length > 0
-                              ? handleAddItem(item)
-                              : handleIncreaseQuantity(item)
-                          }
-                        >
-                          <span className="text-dark text-base">
-                            <IoAdd />
-                          </span>
-                        </button>
-                      </div>
-                    )
-                )}{" "}
-              </div>
-            ) : (
-              <button
-                onClick={() => handleAddItem(product)}
-                aria-label="cart"
-                className="h-9 w-9 flex items-center justify-center border border-gray-200 rounded text-emerald-500 hover:border-emerald-500 hover:bg-emerald-500 hover:text-white transition-all"
-              >
-                {" "}
-                <span className="text-xl">
-                  <IoBagAddSharp />
-                </span>{" "}
-              </button>
-            )} */}
           </div>
         </div>
       </div>

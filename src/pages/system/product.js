@@ -119,14 +119,18 @@ const MyOrders = () => {
     }
 
     const handleGetProductAll = async () => {
+        // setIsLoading(true)
         const res = await ProductServices.getProductsAll({})
         setData(res)
+        // setIsLoading(false)
     }
 
     const handleFilter = async (filter) => {
+        setIsLoading(true)
         const res = await ProductServices.getProductsAll(filter)
         setFilter(filter)
         setData(res)
+        setIsLoading(false)
     }
 
     const handleAddProduct = async () => {
@@ -161,12 +165,16 @@ const MyOrders = () => {
     }
 
     const handleUpdateProduct = async () => {
+        setIsLoading(true)
         ProductServices.updateProduct({
             ...objectForm,
             id: objectForm.product_id
+        }).then((res) => {
+            handleGetProductAll()
+            setModalOpen(false)
+        }).finally(() => {
+            setIsLoading(false)
         })
-        handleGetProductAll()
-        setModalOpen(false)
     }
 
 
@@ -497,6 +505,17 @@ const MyOrders = () => {
                                     </select>
                                 </div>
                             </div>
+
+                            <div className="w-full flex items-center gap-2 my-5">
+                                <h1 className="">สินค้าที่แนะนำ</h1>
+                                <input 
+                                    type="checkbox" 
+                                    className="rounded-md border-gray-300" 
+                                    checked={objectForm.recommended_product === 1 ? true : false} 
+                                    onChange={(e) => setObjectForm({ ...objectForm, recommended_product: e.target.checked === true ? 1 : 0 })} 
+                                />
+                            </div>
+
                             <div className="mb-3">
                                 <h1 className="mb-2">รูปภาพ 1</h1>
                                 <Uploader imageUrl={objectForm.product_image1} setImageFile={(files) => {

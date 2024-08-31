@@ -247,7 +247,7 @@ const ProductScreen = ({ product, attributes, relatedProducts }) => {
                   </li>
                   <li className="text-sm pl-1 transition duration-200 ease-in cursor-pointer hover:text-emerald-500 font-semibold ">
                     <Link
-                      href={`/search?category=${category_name}&_id=${product?.category?._id}`}
+                      href={`/search?category=${product?.subtype_name}&id=${product?.subtype_id}&type_id=${product?.type_id}`}
                     >
                       <button
                         type="button"
@@ -273,9 +273,10 @@ const ProductScreen = ({ product, attributes, relatedProducts }) => {
 
                     {product.product_image1 ? (
                       <img
-                        src={product.product_image1}
+                        src={img}
                         alt="product"
-                        className="aspect-[1/1] w-full h-full object-cover min-w-[420px] max-w-[420px]"
+                        className="rounded-lg"
+                      // className="aspect-[1/1] w-full h-full object-cover min-w-[420px] max-w-[420px]"
                       />
                     ) : (
                       <img
@@ -285,10 +286,10 @@ const ProductScreen = ({ product, attributes, relatedProducts }) => {
                       />
                     )}
 
-                    {product?.image?.length > 1 && (
-                      <div className="flex flex-row flex-wrap mt-4 border-t">
+                    {product?.images?.length > 1 && (
+                      <div className="flex flex-row flex-wrap mt-5 ">
                         <ImageCarousel
-                          images={product.image}
+                          images={product.images}
                           handleChangeImage={handleChangeImage}
                         />
                       </div>
@@ -598,9 +599,20 @@ export const getServerSideProps = async (context) => {
   // Filter out undefined values from the product object
   const sanitizedProduct = JSON.parse(JSON.stringify(data));
 
+  let images = [];
+  if (data.product_image1) {
+    images.push(data.product_image1);
+  }
+  if (data.product_image2) {
+    images.push(data.product_image2);
+  }
+  if (data.product_image3) {
+    images.push(data.product_image3);
+  }
+
   return {
     props: {
-      product: sanitizedProduct,
+      product: { ...sanitizedProduct, images: images },
       relatedProducts: [],
       attributes,
     },

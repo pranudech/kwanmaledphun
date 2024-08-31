@@ -35,11 +35,11 @@ const ImageCarousel = ({ images, handleChangeImage }) => {
         //   swiper.navigation.init();
         //   swiper.navigation.update();
         // }}
-        spaceBetween={1}
-        navigation={true}
-        allowTouchMove={false}
+        spaceBetween={50}
+        // navigation={true}
+        // allowTouchMove={false}
         loop={true}
-        slidesPerView={4}
+        slidesPerView={3}
         // breakpoints={{
         //   // when window width is >= 640px
         //   375: {
@@ -90,7 +90,7 @@ const ImageCarousel = ({ images, handleChangeImage }) => {
           <SwiperSlide key={i + 1} className="group">
             <button onClick={() => handleChangeImage(img)}>
               <Image
-                className="border inline-flex items-center justify-center px-3 py-1 mt-2"
+                className=""
                 src={img}
                 alt="product"
                 width={100}
@@ -99,12 +99,12 @@ const ImageCarousel = ({ images, handleChangeImage }) => {
             </button>
           </SwiperSlide>
         ))}
-        <button ref={prevRef} className="prev">
+        {/* <button ref={prevRef} className="prev">
           <IoChevronBackOutline />
         </button>
         <button ref={nextRef} className="next">
           <IoChevronForward />
-        </button>
+        </button> */}
       </Swiper>
     </>
   );

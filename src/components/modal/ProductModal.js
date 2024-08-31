@@ -219,7 +219,7 @@ const ProductModal = ({
   return (
     <>
       <MainModal modalOpen={modalOpen} setModalOpen={setModalOpen}>
-        <div className="inline-block overflow-y-auto h-full align-middle transition-all transform bg-white shadow-xl rounded-2xl">
+        <div className="inline-block overflow-y-auto h-full align-middle transition-all transform bg-white shadow-xl rounded-2xl !focus:outline-none">
           <div className="flex flex-col lg:flex-row md:flex-row w-full max-w-4xl overflow-hidden">
             <Link href={`/product/${product.product_id}`} passHref>
               <div
@@ -230,8 +230,8 @@ const ProductModal = ({
                 {product.product_image1 ? (
                   <img
                     src={product.product_image1}
-                    // width={420}
-                    // height={420}
+                    width={420}
+                    height={420}
                     alt="product"
                     className="aspect-[1/1] w-full h-full object-cover min-w-[420px] max-w-[420px]"
                   />
