@@ -20,7 +20,7 @@ const useLoginSubmit = () => {
   } = useForm();
 
   const submitHandler = async ({ username, password }) => {
-    if (username === "1234" && password === "1234") {
+    if (username === "kwanmaledpun" && password === "12345678") {
       router.push("/system/dashboard");
     }
     // setLoading(true);
