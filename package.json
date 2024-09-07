@@ -1,14 +1,14 @@
 {
-  "name": "kwanmaledpun-store",
+  "name": "kwanmaledphun-store",
   "version": "0.1.0",
-  "description": "this is kwanmaledpun-store built with next.js and tailwindcss",
+  "description": "this is kwanmaledphun-store built with next.js and tailwindcss",
   "homepage": "",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "diff": "next dev -p 3010",
     "build": "next build",
-    "start": "next start",
+    "start": "node server.js",
     "lint": "next lint"
   },
   "dependencies": {
