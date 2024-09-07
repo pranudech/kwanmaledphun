@@ -13,6 +13,7 @@ const withPWA = require("next-pwa")({
 });
 
 module.exports = withPWA({
+  useFileSystemPublicRoutes: false,
   reactStrictMode: true,
   eslint: {
     // Warning: This allows production builds to successfully complete even if
