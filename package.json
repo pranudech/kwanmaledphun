@@ -1,9 +1,10 @@
 {
-  "name": "kwanmaledpun-store",
+  "name": "kwanmaledphun-store",
   "version": "0.1.0",
-  "description": "this is kwanmaledpun-store built with next.js and tailwindcss",
-  "homepage": "",
+  "description": "this is kwanmaledphun-store built with next.js and tailwindcss",
+  "homepage": "https://kwanmaledphun.com",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "diff": "next dev -p 3010",
@@ -34,6 +35,7 @@
     "formidable": "^3.5.1",
     "html-react-parser": "^3.0.4",
     "http": "^0.0.1-security",
+    "http-server": "^14.1.1",
     "iconv-lite": "^0.6.3",
     "js-cookie": "^3.0.1",
     "jwt-decode": "^4.0.0",
