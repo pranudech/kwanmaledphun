@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "diff": "next dev -p 3010",
+    "diff": "next dev -p 3011",
     "build": "next build",
     "start": "node server.js",
     "lint": "next lint"
