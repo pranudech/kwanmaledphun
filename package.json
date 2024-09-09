@@ -3,10 +3,9 @@
   "version": "0.1.0",
   "description": "this is kwanmaledphun-store built with next.js and tailwindcss",
   "homepage": "",
-  "private": true,
   "scripts": {
     "dev": "next dev",
-    "diff": "next dev -p 3011",
+    "diff": "next dev -p 3010",
     "build": "next build",
     "start": "node server.js",
     "lint": "next lint"
@@ -14,7 +13,6 @@
   "dependencies": {
     "@headlessui/react": "^1.4.1",
     "@heroicons/react": "^1.0.5",
-    "@next/eslint-plugin-next": "^12.0.0",
     "@pathofdev/react-tag-input": "^1.0.7",
     "@paypal/react-paypal-js": "^7.8.1",
     "@react-oauth/google": "^0.11.1",
@@ -85,9 +83,6 @@
     "@tailwindcss/forms": "^0.4.0",
     "@tailwindcss/typography": "^0.5.1",
     "autoprefixer": "10.4.5",
-    "eslint": "7.30.0",
-    "eslint-config-next": "11.0.1",
-    "eslint-config-prettier": "^8.3.0",
     "postcss": "^8.4.6",
     "tailwindcss": "^3.4.3"
   }
