@@ -7,7 +7,7 @@
     "dev": "next dev",
     "diff": "next dev -p 3010",
     "build": "next build",
-    "start": "node server.js",
+    "start": "NODE_ENV=production node server.js",
     "lint": "next lint"
   },
   "dependencies": {
