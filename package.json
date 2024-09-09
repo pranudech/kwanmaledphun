@@ -8,8 +8,7 @@
     "diff": "next dev -p 3010",
     "build": "next build",
     "start": "node server.js",
-    "lint": "next lint",
-    "install": "npm install --force"
+    "lint": "next lint"
   },
   "dependencies": {
     "@headlessui/react": "^1.4.1",
