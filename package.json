@@ -7,7 +7,11 @@
     "dev": "next dev",
     "diff": "next dev -p 3010",
     "build": "next build",
-    "start": "NODE_ENV=production node server.js",
+    "start": "next start",
+    "start:app": "NODE_ENV=production node app.js",
+    "start:server": "NODE_ENV=production node server.js",
+    "start:node": "node server.js",
+    "export": "next export",
     "lint": "next lint"
   },
   "dependencies": {
@@ -32,6 +36,7 @@
     "formidable": "^3.5.1",
     "fs": "^0.0.1-security",
     "html-react-parser": "^3.0.4",
+    "http": "^0.0.1-security",
     "iconv-lite": "^0.6.3",
     "js-cookie": "^3.0.1",
     "jwt-decode": "^4.0.0",
@@ -77,8 +82,6 @@
     "tls": "^0.0.1",
     "use-local-storage-state": "^13.0.0"
   },
-  "author": "HtmlLover",
-  "license": "Regular",
   "devDependencies": {
     "@tailwindcss/forms": "^0.4.0",
     "@tailwindcss/typography": "^0.5.1",
