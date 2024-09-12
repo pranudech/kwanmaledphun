@@ -10,7 +10,7 @@
     "start": "next start",
     "start:app": "NODE_ENV=production node app.js",
     "start:server": "NODE_ENV=production node server.js",
-    "start:node": "node server.js",
+    "start:node": "node server",
     "export": "next export",
     "lint": "next lint"
   },
