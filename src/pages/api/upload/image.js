@@ -59,7 +59,13 @@ export default async function handler(req, res) {
             res.status(200).json({ message: "File uploaded successfully", filePath, imagePath: `/kwanmaledpun/upload/${pathTypeUpload}/${newFilename}` });
         } catch (error) {
             console.error('Error saving the file:', error);
-            res.status(500).json({ message: "Error saving the file" });
+            res.status(500).json({
+                message: "Error saving the file", error: error, errorInfo: {
+                    uploadDir,
+                    newFilename,
+                    filePath
+                }
+            });
         }
     });
 }
