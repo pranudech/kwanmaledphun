@@ -55,7 +55,7 @@ export default async function handler(req, res) {
         const filePath = req.file.path;
         const imagePath = `/kwanmaledpun/upload/${req.headers['pathtypeupload']}/${req.file.filename}`;
 
-        // Copy the file to the destination
+        // Move the file to the destination
         const destinationPath = path.join(process.cwd(), `public/kwanmaledpun/upload/${req.headers['pathtypeupload']}/${req.file.filename}`);
         try {
             await fs.rename(filePath, destinationPath);
@@ -71,10 +71,10 @@ export default async function handler(req, res) {
                     res.status(200).json({ message: "File uploaded successfully", filePath: destinationPath, imagePath });
                 } catch (copyError) {
                     console.error('Error copying the file:', copyError);
-                    res.status(500).json({ message: "Error saving the file" });
+                    res.status(500).json({ message: "Error copying the file", error: copyError.message });
                 }
             } else {
-                res.status(500).json({ message: "Error saving the file" });
+                res.status(500).json({ message: "Error renaming the file", error: renameError.message });
             }
         }
     });
