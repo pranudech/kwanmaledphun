@@ -48,12 +48,13 @@ const MyOrders = () => {
         setLoading(true);
         try {
             MainImageServices.getMainImageAll().then((res) => {
+                console.log('res', res)
                 setObjectHomeForm({
-                    image1: res[0].image_path !== "" ? res[0].image_path : null,
-                    image2: res[1].image_path !== "" ? res[1].image_path : null,
-                    image3: res[2].image_path !== "" ? res[2].image_path : null,
-                    image4: res[3].image_path !== "" ? res[3].image_path : null,
-                    image5: res[4].image_path !== "" ? res[4].image_path : null,
+                    image1: res[0]?.image_path !== "" ? res[0]?.image_path : null,
+                    image2: res[1]?.image_path !== "" ? res[1]?.image_path : null,
+                    image3: res[2]?.image_path !== "" ? res[2]?.image_path : null,
+                    image4: res[3]?.image_path !== "" ? res[3]?.image_path : null,
+                    image5: res[4]?.image_path !== "" ? res[4]?.image_path : null,
                 });
                 setData(res)
                 setLoading(false);
@@ -68,7 +69,7 @@ const MyOrders = () => {
     };
 
     const handleImageUpload = async (files, name, id, flag = 1) => {
-        UploadFileService.uploadImage(files, "main_image", (img) => {
+        UploadFileService.uploadImage2(files, "main_image", (img) => {
             MainImageServices.updateMainImage({
                 image_path: img.data.imagePath,
                 flag: flag,
@@ -152,7 +153,7 @@ const MyOrders = () => {
                                             <div className="w-full">
                                                 <h1 className="mt-3">รูปภาพหน้าแรกที่ 1</h1>
                                                 <Uploader
-                                                    imageUrl={objectHomeForm.image1}
+                                                    imageUrl={objectHomeForm.image1 !== "" ? objectHomeForm.image1 : null}
                                                     setImageFile={(files) => {
                                                         if (files.length > 0) {
                                                             handleImageUpload(files, "image1", 1)
@@ -164,7 +165,7 @@ const MyOrders = () => {
                                             <div className="w-full">
                                                 <h1 className="mt-3">รูปภาพหน้าแรกที่ 2</h1>
                                                 <Uploader
-                                                    imageUrl={objectHomeForm.image2}
+                                                    imageUrl={objectHomeForm.image2 !== "" ? objectHomeForm.image2 : null}
                                                     setImageFile={(files) => {
                                                         if (files.length > 0) {
                                                             handleImageUpload(files, "image2", 2)
@@ -176,7 +177,7 @@ const MyOrders = () => {
                                             <div className="w-full">
                                                 <h1 className="mt-3">รูปภาพหน้าแรกที่ 3</h1>
                                                 <Uploader
-                                                    imageUrl={objectHomeForm.image3}
+                                                    imageUrl={objectHomeForm.image3 !== "" ? objectHomeForm.image3 : null}
                                                     setImageFile={(files) => {
                                                         if (files.length > 0) {
                                                             handleImageUpload(files, "image3", 3)
@@ -188,7 +189,7 @@ const MyOrders = () => {
                                             <div className="w-full">
                                                 <h1 className="mt-3">รูปภาพหน้าแรกที่ 4</h1>
                                                 <Uploader
-                                                    imageUrl={objectHomeForm.image4}
+                                                    imageUrl={objectHomeForm.image4 !== "" ? objectHomeForm.image4 : null}
                                                     setImageFile={(files) => {
                                                         if (files.length > 0) {
                                                             handleImageUpload(files, "image4", 4)

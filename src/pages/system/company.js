@@ -49,7 +49,7 @@ const MyOrders = () => {
             try {
                 const res = await CompanyServices.getCompanyAll({});
                 if (isMounted) {
-                    setData([]);
+                    setData(res);
                     setLoading(false);
                 }
             } catch (error) {
@@ -84,32 +84,48 @@ const MyOrders = () => {
     }
 
     const handleAddCompany = () => {
-        UploadFileService.uploadImage(imageFile, "company", (resImage) => {
-            AttributeServices.getMaxId({
-                table: "company",
-                column: "company_id"
-            }).then((res) => {
-                CompanyServices.addCompany({
-                    company_id: res.maxId,
-                    company_name: objectForm.company_name,
-                    company_image: resImage.data.imagePath
+        if (imageFile.length > 0) {
+            UploadFileService.uploadImage2(imageFile, "company", (resImage) => {
+                AttributeServices.getMaxId({
+                    table: "company",
+                    column: "company_id"
                 }).then((res) => {
-                    console.log('addCompany => ', res.data)
-                    setObjectForm({
-                        company_name: "",
-                        company_image: ""
+                    CompanyServices.addCompany({
+                        company_id: res.maxId,
+                        company_name: objectForm.company_name,
+                        company_image: resImage.data.imagePath
+                    }).then((res) => {
+                        console.log('addCompany => ', res.data)
+                        setObjectForm({
+                            company_name: "",
+                            company_image: ""
+                        })
+                        setImageFile(null)
+                        setModalOpen(false)
+                        handleGetCompanyAll()
                     })
-                    setImageFile(null)
-                    setModalOpen(false)
-                    handleGetCompanyAll()
                 })
             })
-        })
+        } else {
+            CompanyServices.addCompany({
+                company_name: objectForm.company_name,
+                company_image: ""
+            }).then((res) => {
+                console.log('addCompany => ', res.data)
+                setObjectForm({
+                    company_name: "",
+                    company_image: ""
+                })
+                setImageFile(null)
+                setModalOpen(false)
+                handleGetCompanyAll()
+            })
+        }
     }
 
     const handleUpdateCompany = () => {
         if (imageFile.length > 0) {
-            UploadFileService.uploadImage(imageFile, "company", (resImage) => {
+            UploadFileService.uploadImage2(imageFile, "company", (resImage) => {
                 UploadFileService.deleteImage(objectForm.company_image).then((res) => {
                     CompanyServices.updateCompany({
                         id: objectForm.company_id,

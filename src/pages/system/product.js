@@ -91,7 +91,7 @@ const MyOrders = () => {
     });
 
     const handleImageUpload = async (files, name) => {
-        UploadFileService.uploadImage(files, "product", (res) => {
+        UploadFileService.uploadImage2(files, "product", (res) => {
             ProductServices.updateProduct({
                 ...objectForm,
                 [name]: res.data.imagePath,

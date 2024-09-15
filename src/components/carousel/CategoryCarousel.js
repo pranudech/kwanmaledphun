@@ -102,12 +102,10 @@ const CategoryCarousel = ({ subtypeList, type_id }) => {
                 >
                   <div className="bg-white p-2 mx-auto w-[50px] h-[50px] rounded-full shadow-md flex justify-center items-center">
                     <div className="relative">
-                      <Image
+                      <image
                         src={category?.icon || "https://res.cloudinary.com/ahossain/image/upload/v1655097002/placeholder_kvepfp.png"}
                         alt="category"
-                        width={40}
-                        height={40}
-                        className="object-fill"
+                        className="object-fill w-[35px] h-[35px]"
                       />
                     </div>
                   </div>

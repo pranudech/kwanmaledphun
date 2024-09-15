@@ -45,11 +45,12 @@ const FeatureCategory = () => {
                 >
                   <div className="flex items-center">
                     <div>
-                      <Image
+                      <img
                         src={category?.icon || placeholderImage}
                         alt="category"
-                        width={35}
-                        height={35}
+                        // width={35}
+                        // height={35}
+                        className="w-[35px] h-[35px]"
                       />
                     </div>
 

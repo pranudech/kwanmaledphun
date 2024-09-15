@@ -520,7 +520,8 @@ const Footer = () => {
           >
             kwanmaledpun
           </Link>
-          , All rights reserved.
+          , All rights reserved.{" "}
+          {process.env.NEXT_PUBLIC_VERSION}
         </p>
       </div>
     </div>
