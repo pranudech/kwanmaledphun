@@ -49,7 +49,7 @@ const MyOrders = () => {
             try {
                 const res = await CompanyServices.getCompanyAll({});
                 if (isMounted) {
-                    setData(res);
+                    setData([]);
                     setLoading(false);
                 }
             } catch (error) {
@@ -172,6 +172,28 @@ const MyOrders = () => {
                     )}
                     description="This is user order history page"
                 >
+
+                    <h2 className="text-xl font-serif font-semibold mb-5">
+                        {`รายการบริษัททั้งหมด ${data?.length} รายการ`}
+                    </h2>
+                    <div className="my-2 flex justify-between">
+                        <div>
+                            <input type="text" placeholder="ค้นหาชื่อบริษัท" className="rounded-md w-[25rem] border-gray-300" onChange={(e) => setSearch(e.target.value)} />
+                        </div>
+                        <div className="">
+                            <button
+                                onClick={() => {
+                                    setModalOpen(true)
+                                    setObjectForm({
+                                        company_name: "",
+                                        company_image: "",
+                                    })
+                                }}
+                                className="bg-emerald-500 text-white px-4 py-0 my-0 h-[44px] rounded-md flex items-center gap-2"
+                            ><FiPlusCircle />เพิ่มบริษัท</button>
+                        </div>
+                    </div>
+
                     <div className="overflow-hidden rounded-md font-serif">
                         {loading ? (
                             <Loading loading={loading} />
@@ -185,31 +207,11 @@ const MyOrders = () => {
                                     <IoBagHandle />
                                 </span>
                                 <h2 className="font-medium text-md my-4 text-gray-600">
-                                    You Have no order Yet!
+                                    ไม่พบข้อมูล
                                 </h2>
                             </div>
                         ) : (
                             <div className="flex flex-col">
-                                <h2 className="text-xl font-serif font-semibold mb-5">
-                                    {`รายการบริษัททั้งหมด ${data?.length} รายการ`}
-                                </h2>
-                                <div className="my-2 flex justify-between">
-                                    <div>
-                                        <input type="text" placeholder="ค้นหาชื่อบริษัท" className="rounded-md w-[25rem] border-gray-300" onChange={(e) => setSearch(e.target.value)} />
-                                    </div>
-                                    <div className="">
-                                        <button
-                                            onClick={() => {
-                                                setModalOpen(true)
-                                                setObjectForm({
-                                                    company_name: "",
-                                                    company_image: "",
-                                                })
-                                            }}
-                                            className="bg-emerald-500 text-white px-4 py-0 my-0 h-[44px] rounded-md flex items-center gap-2"
-                                        ><FiPlusCircle />เพิ่มบริษัท</button>
-                                    </div>
-                                </div>
                                 <div className="my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                                     <div className="align-middle inline-block border border-gray-100 rounded-md min-w-full pb-2 sm:px-6 lg:px-8">
                                         <div className="overflow-hidden border-b last:border-b-0 border-gray-100 rounded-md">

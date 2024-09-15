@@ -89,7 +89,7 @@ const MyOrders = () => {
     }
 
     const handleAddCategory = () => {
-        UploadFileService.uploadImage(imageFile, "productType", (resImage) => {
+        UploadFileService.uploadImage2(imageFile, "productType", (resImage) => {
             AttributeServices.getMaxId({
                 table: "product_type",
                 column: "type_id"
@@ -113,7 +113,7 @@ const MyOrders = () => {
 
     const handleUpdateCategory = () => {
         if (imageFile.length > 0) {
-            UploadFileService.uploadImage(imageFile, "productType", (resImage) => {
+            UploadFileService.uploadImage2(imageFile, "productType", (resImage) => {
                 UploadFileService.deleteImage(objectForm.icon).then((res) => {
                     CategoryServices.updateCategory({
                         id: objectForm.type_id,
@@ -175,7 +175,7 @@ const MyOrders = () => {
 
     const handleAddSubCategory = () => {
         if (imageFile.length > 0) {
-            UploadFileService.uploadImage(imageFile, "productSubType", (resImage) => {
+            UploadFileService.uploadImage2(imageFile, "productSubType", (resImage) => {
                 AttributeServices.getMaxId({
                     table: "product_subtype",
                     column: "subtype_id"
@@ -225,7 +225,7 @@ const MyOrders = () => {
 
     const handleUpdateSubCategory = () => {
         if (imageFile.length > 0) {
-            UploadFileService.uploadImage(imageFile, "productSubType", (resImage) => {
+            UploadFileService.uploadImage2(imageFile, "productSubType", (resImage) => {
                 UploadFileService.deleteImage(objectForm.icon).then((res) => {
                     CategoryServices.updateSubCategory({
                         id: objectFormSub.subtype_id,

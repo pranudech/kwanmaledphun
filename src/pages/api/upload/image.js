@@ -48,6 +48,7 @@ export default async function handler(req, res) {
         const newFilename = `${Date.now()}-${uploadedFile.originalFilename}`;
         const filePath = path.join(uploadDir, newFilename);
 
+
         try {
             // Ensure the upload directory exists
             await fs.mkdir(uploadDir, { recursive: true });
