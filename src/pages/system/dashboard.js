@@ -159,7 +159,8 @@ const Dashboard = ({ title, description, children }) => {
                             </div>
                             <div className="w-full bg-white mt-4 lg:mt-0 p-4 sm:p-5 lg:p-8 rounded-md overflow-hidden">
                                 {!children && (
-                                    <div className="overflow-hidden">
+                                    <div className="overflow-hidden relative">
+                                        <div className=" absolute top-0 right-0">{process.env.NEXT_PUBLIC_VERSION}</div>
                                         <h2 className="text-xl font-serif font-semibold mb-5">
                                             {showingTranslateValue(
                                                 storeCustomizationSetting?.dashboard?.dashboard_title

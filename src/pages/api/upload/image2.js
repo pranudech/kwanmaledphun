@@ -11,10 +11,18 @@ export const config = {
 
 // Set up multer for file uploads
 const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
+    destination: async (req, file, cb) => {
         const pathTypeUpload = req.headers['pathtypeupload'];
         const uploadDir = path.join(process.cwd(), `public/kwanmaledpun/upload/${pathTypeUpload}`);
-        cb(null, uploadDir);
+        
+        // Ensure the directory exists
+        try {
+            await fs.mkdir(uploadDir, { recursive: true });
+            cb(null, uploadDir);
+        } catch (err) {
+            console.error('Error creating directory:', err);
+            cb(err, uploadDir);
+        }
     },
     filename: (req, file, cb) => {
         const newFilename = `${Date.now()}-${file.originalname}`;
@@ -31,6 +39,7 @@ export default async function handler(req, res) {
 
     upload.single('file')(req, res, async (err) => {
         if (err) {
+            console.error('Error during file upload:', err);
             return res.status(500).json({ message: "Error uploading the file" });
         }
 
@@ -49,12 +58,24 @@ export default async function handler(req, res) {
         // Copy the file to the destination
         const destinationPath = path.join(process.cwd(), `public/kwanmaledpun/upload/${req.headers['pathtypeupload']}/${req.file.filename}`);
         try {
-            await fs.copyFile(filePath, destinationPath);
-            console.log('File saved to:', destinationPath);
+            await fs.rename(filePath, destinationPath);
+            console.log('File moved to:', destinationPath);
             res.status(200).json({ message: "File uploaded successfully", filePath: destinationPath, imagePath });
-        } catch (copyError) {
-            console.error('Error copying the file:', copyError);
-            res.status(500).json({ message: "Error saving the file" });
+        } catch (renameError) {
+            console.error('Error moving the file:', renameError);
+            if (renameError.code === 'EXDEV') {
+                try {
+                    await fs.copyFile(filePath, destinationPath);
+                    await fs.unlink(filePath);
+                    console.log('File copied to:', destinationPath);
+                    res.status(200).json({ message: "File uploaded successfully", filePath: destinationPath, imagePath });
+                } catch (copyError) {
+                    console.error('Error copying the file:', copyError);
+                    res.status(500).json({ message: "Error saving the file" });
+                }
+            } else {
+                res.status(500).json({ message: "Error saving the file" });
+            }
         }
     });
 }
