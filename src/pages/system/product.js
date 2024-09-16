@@ -263,7 +263,7 @@ const MyOrders = () => {
                                     <IoBagHandle />
                                 </span>
                                 <h2 className="font-medium text-md my-4 text-gray-600">
-                                    You Have no order Yet!
+                                    ไม่พบข้อมูล
                                 </h2>
                             </div>
                         ) : (

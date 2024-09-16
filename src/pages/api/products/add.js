@@ -19,7 +19,7 @@ export default async function handler(req, res) {
     
     const promisePool = mysqlPool.promise();
     const [rows, fields] = await promisePool.query(
-      `INSERT INTO kwanmaledpun.product (product_id, product_name, price, size_product, detail, company_id, subtype_id, product_image1, product_image2, product_image3, recommended_product) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      `INSERT INTO product (product_id, product_name, price, size_product, detail, company_id, subtype_id, product_image1, product_image2, product_image3, recommended_product) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         product_id,
         product_name,

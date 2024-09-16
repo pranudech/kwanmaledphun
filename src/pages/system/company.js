@@ -107,18 +107,24 @@ const MyOrders = () => {
                 })
             })
         } else {
-            CompanyServices.addCompany({
-                company_name: objectForm.company_name,
-                company_image: ""
+            AttributeServices.getMaxId({
+                table: "company",
+                column: "company_id"
             }).then((res) => {
-                console.log('addCompany => ', res.data)
-                setObjectForm({
-                    company_name: "",
+                CompanyServices.addCompany({
+                    company_id: res.maxId,
+                    company_name: objectForm.company_name,
                     company_image: ""
+                }).then((res) => {
+                    console.log('addCompany => ', res.data)
+                    setObjectForm({
+                        company_name: "",
+                        company_image: ""
+                    })
+                    setImageFile(null)
+                    setModalOpen(false)
+                    handleGetCompanyAll()
                 })
-                setImageFile(null)
-                setModalOpen(false)
-                handleGetCompanyAll()
             })
         }
     }
