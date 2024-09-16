@@ -479,19 +479,13 @@ const MyOrders = () => {
                     <div className="flex flex-col lg:flex-row md:flex-row w-full max-w-4xl overflow-hidden">
                         <div className="w-full p-5 md:p-8 text-left min-w-[50rem]">
                             <div className="flex flex-row gap-5 mb-5">
-                                <div className={`font-bold text-2xl cursor-pointer hover:text-emerald-500 ${isTabActive === 0 ? 'text-emerald-500' : 'text-gray-500'}`} onClick={() => setIsTabActive(0)}>
-                                    ประเภทสินค้า
-                                </div>
-                                <div className={`font-bold text-2xl ${objectForm.type_id ? 'cursor-pointer hover:text-emerald-500' : 'cursor-not-allowed'} ${isTabActive === 1 && objectForm.type_id ? 'text-emerald-500' : 'text-gray-500'}`}
-                                    onClick={() => {
-                                        if (objectForm.type_id) {
-                                            setIsTabActive(1)
-                                            handleGetSubCategoryAll(objectForm.type_id)
-                                        }
-                                    }}
-                                >
-                                    ประเภทย่อยสินค้า
-                                </div>
+                                <div className={`cursor-pointer min-w-[170px] flex items-center justify-center ${isTabActive === 0 ? 'border-2 border-emerald-500 rounded-md p-2 text-emerald-500 font-semibold' : ''}`} onClick={() => setIsTabActive(0)}>ประเภทสินค้า</div>
+                                <div className={`cursor-pointer min-w-[170px] flex items-center justify-center ${isTabActive === 1 ? 'border-2 border-emerald-500 rounded-md p-2 text-emerald-500 font-semibold' : ''}`} onClick={() => {
+                                    if (objectForm.type_id) {
+                                        setIsTabActive(1)
+                                        handleGetSubCategoryAll(objectForm.type_id)
+                                    }
+                                }}>ประเภทย่อยสินค้า</div>
                             </div>
 
                             {isTabActive === 0 && (
@@ -594,6 +588,7 @@ const MyOrders = () => {
                                                                         onClick={() => {
                                                                             setObjectFormSub({ ...objectFormSub, ...item })
                                                                             setModalOpenSub(true)
+                                                                            console.log('item', item)
                                                                         }}
                                                                     >
                                                                         {item.subtype_name}
@@ -642,8 +637,8 @@ const MyOrders = () => {
                 <div className="inline-block overflow-y-auto h-full align-middle transition-all transform bg-white shadow-xl rounded-2xl">
                     <div className="flex flex-col lg:flex-row md:flex-row w-full max-w-4xl overflow-hidden">
                         <div className="w-full p-5 md:p-8 text-left min-w-[50rem]">
-                            <div className="text-2xl font-semibold mb-5">
-                                เพิ่มประเภทย่อยสินค้า
+                            <div className="text-2xl mb-5">
+                                เพิ่มประเภทย่อยสินค้าของ <span className="text-emerald-500 font-semibold">{objectForm.type_name}</span>
                             </div>
                             <div className="mb-3">
                                 <h1 className="mb-2">ชื่อประเภทย่อยสินค้า</h1>

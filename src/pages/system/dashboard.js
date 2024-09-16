@@ -25,6 +25,7 @@ import { SidebarContext } from "@context/SidebarContext";
 import Loading from "@components/preloader/Loading";
 import useGetSetting from "@hooks/useGetSetting";
 import useUtilsFunction from "@hooks/useUtilsFunction";
+import ProductServices from "@services/ProductServices";
 
 const Dashboard = ({ title, description, children }) => {
     const router = useRouter();
@@ -37,29 +38,28 @@ const Dashboard = ({ title, description, children }) => {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(true);
 
+    const [product, setProduct] = useState({});
+
     useEffect(() => {
         let isMounted = true; // Track if the component is mounted
 
-        const handleGetCustomerOrders = async () => {
-            // setLoading(true);
-            // try {
-            //     const res = await OrderServices.getOrderCustomer({
-            //         page: currentPage,
-            //         limit: 10,
-            //     });
-            //     if (isMounted) {
-            //         setData(res);
-            //         setLoading(false);
-            //     }
-            // } catch (error) {
-            //     if (isMounted) {
-            //         setLoading(false);
-            //         setError(error.message);
-            //     }
-            // }
+        const handleGet = async () => {
+            setLoading(true);
+            try {
+                const res = await ProductServices.getProductsAll({});
+                if (isMounted) {
+                    setProduct(res);
+                    setLoading(false);
+                }
+            } catch (error) {
+                if (isMounted) {
+                    setLoading(false);
+                    setError(error.message);
+                }
+            }
         };
 
-        handleGetCustomerOrders();
+        handleGet();
 
         return () => {
             isMounted = false; // Clean up the effect by setting isMounted to false
@@ -159,37 +159,37 @@ const Dashboard = ({ title, description, children }) => {
                             </div>
                             <div className="w-full bg-white mt-4 lg:mt-0 p-4 sm:p-5 lg:p-8 rounded-md overflow-hidden">
                                 {!children && (
-                                    <div className="overflow-hidden relative">
-                                        <div className=" absolute top-0 right-0">{process.env.NEXT_PUBLIC_VERSION}</div>
-                                        <h2 className="text-xl font-serif font-semibold mb-5">
+                                    <div className="overflow-hidden">
+                                        <div className="my-2">{process.env.NEXT_PUBLIC_VERSION}</div>
+                                        {/* <h2 className="text-xl font-serif font-semibold mb-5">
                                             {showingTranslateValue(
                                                 storeCustomizationSetting?.dashboard?.dashboard_title
                                             )}
-                                        </h2>
+                                        </h2> */}
                                         <div className="grid gap-4 mb-8 md:grid-cols-2 xl:grid-cols-4">
                                             <Card
                                                 title="จำนวนสิ้นค้าทั้งหมด"
                                                 Icon={FiShoppingBag}
-                                                quantity={493}
+                                                quantity={product.length}
                                                 className="text-emerald-600  bg-emerald-200"
                                             />
-                                            <Card
+                                            {/* <Card
                                                 title="จำนวนผู้เข้าดูวันนี้"
                                                 Icon={FiEye}
                                                 quantity={324}
                                                 className="text-orange-600 bg-orange-200"
-                                            />
-                                            <Card
+                                            /> */}
+                                            {/* <Card
                                                 title="จำนวนผู้เข้าดูทั้งหมด"
                                                 Icon={FiUsers}
                                                 quantity={'23,423'}
                                                 className="text-indigo-600 bg-indigo-200"
-                                            />
+                                            /> */}
                                             <Card
-                                                title="ค่าใช้จ่าย Server"
+                                                title="ค่าใช้จ่าย Server ครั้งถัดไป"
                                                 Icon={FiHardDrive}
-                                                quantity={"none"}
-                                                className="text-emerald-600 bg-emerald-200"
+                                                quantity={"01/08/2568"}
+                                                className="text-white bg-red-200"
                                             />
                                         </div>
                                         {/* <RecentOrder data={data} loading={loading} error={error} /> */}
