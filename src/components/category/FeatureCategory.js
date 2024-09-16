@@ -37,9 +37,10 @@ const FeatureCategory = () => {
       ) : (
         <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 gap-4">
           {data?.map((category, i) => {
+            console.log('category', category)
             return (
               <li className="group" key={i + 1}>
-                <div 
+                <div
                   className="flex justify-center w-full h-full border border-gray-100 shadow-sm bg-white rounded-lg p-4 cursor-pointer transition duration-200 ease-linear transform group-hover:shadow-lg"
                   onClick={() => handleCategoryClick(category.type_id, category?.type_name)}
                 >
@@ -48,9 +49,11 @@ const FeatureCategory = () => {
                       <img
                         src={category?.icon || placeholderImage}
                         alt="category"
-                        // width={35}
-                        // height={35}
                         className="w-[35px] h-[35px]"
+                        onError={(e) => {
+                          e.target.onerror = null;
+                          e.target.src = placeholderImage;
+                        }}
                       />
                     </div>
 
