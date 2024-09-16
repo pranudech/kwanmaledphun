@@ -32,7 +32,7 @@ const Search = ({ products, attributes, type_name, type_id, subtypeList, query, 
       <div className="mx-auto max-w-screen-2xl px-3 sm:px-10">
         <div className="flex">
           <div className="flex w-full">
-            <div className="w-full">
+            <div className="w-full mb-[30px]">
               {/* <div className="w-full grid grid-col gap-4 grid-cols-1 2xl:gap-3 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-3">
                 <Card />
               </div> */}
@@ -128,7 +128,7 @@ export const getServerSideProps = async (context) => {
   return {
     props: {
       ...context.query,
-      category: category,
+      category: category || "",
       products: data,
       attributes,
       subtypeList

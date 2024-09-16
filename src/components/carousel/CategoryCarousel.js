@@ -100,7 +100,7 @@ const CategoryCarousel = ({ subtypeList, type_id }) => {
                   }
                   className="text-center cursor-pointer p-3 bg-white rounded-lg"
                 >
-                  <div className="bg-white p-2 mx-auto w-[50px] h-[50px] rounded-full shadow-md flex justify-center items-center">
+                  <div className="bg-white p-2 mx-auto w-[60px] h-[60px] rounded-full shadow-md flex justify-center items-center">
                     <div className="relative">
                       <img
                         src={category?.icon || "https://res.cloudinary.com/ahossain/image/upload/v1655097002/placeholder_kvepfp.png"}
@@ -110,7 +110,7 @@ const CategoryCarousel = ({ subtypeList, type_id }) => {
                     </div>
                   </div>
 
-                  <h3 className="text-[16px] text-gray-600 mt-2 group-hover:text-emerald-500">
+                  <h3 className="text-[16px] font-semibold text-gray-600 mt-2 group-hover:text-emerald-500 line-clamp-1">
                     {category.subtype_name}
                   </h3>
                 </div>
