@@ -18,7 +18,7 @@ const Login = () => {
           <div className="border mx-auto text-left justify-center rounded-md w-full max-w-lg px-4 py-8 sm:p-10 overflow-hidden align-middle transition-all transform bg-white shadow-xl rounded-2x">
             <div className="overflow-hidden mx-auto">
               <div className="text-center mb-6">
-                <img src="/kwanmaledpun/logo.jpg" alt="logo" className="w-[100px] h-[100px] mx-auto" />
+                <img src="/kwanmaledphun/logo.jpg" alt="logo" className="w-[100px] h-[100px] mx-auto" />
               </div>
               <form
                 onSubmit={handleSubmit(submitHandler)}

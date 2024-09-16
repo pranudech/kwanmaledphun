@@ -28,17 +28,11 @@ const Layout = ({ title, description, children, imagePreview }) => {
           <link ref="icon" href="/favicon.ico" />
           <meta property="og:type" content="website" />
           <meta property="og:title" content={title}></meta>
-          <meta
-            property="og:url"
-            content={`https://dev.kwanmaledpun.com/logo.jpg`}
-          />
-          <meta
-            property="og:image"
-            content={`https://dev.kwanmaledpun.com/logo.jpg`}
-          />
           <meta name="description" content={description}></meta>
           <meta property="og:image:width" content="1200"></meta>
           <meta property="og:image:height" content="630"></meta>
+          <meta property="og:url" content={`${process.env.NEXT_PUBLIC_URL}/logo.jpg`} />
+          <meta property="og:image" content={`${imagePreview}`}/>
           <meta property="og:description" content={description} />
           <meta
             property="og:street-address"

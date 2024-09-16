@@ -388,7 +388,7 @@ const Footer = () => {
                           target="_blank"
                           className="block text-center mx-auto text-gray-500 hover:text-white"
                         >
-                          <img className="min-w-[34px]" src="/kwanmaledpun/icon/shopee.png" alt="shopee" width={34} height={34} />
+                          <img className="min-w-[34px]" src="/kwanmaledphun/icon/shopee.png" alt="shopee" width={34} height={34} />
                         </Link>
                       </li>
                     )}
@@ -401,7 +401,7 @@ const Footer = () => {
                           target="_blank"
                           className="block text-center mx-auto text-gray-500 hover:text-white"
                         >
-                          <img className="min-w-[34px]" src="/kwanmaledpun/icon/line-shop.png" alt="line-shop" width={34} height={34} />
+                          <img className="min-w-[34px]" src="/kwanmaledphun/icon/line-shop.png" alt="line-shop" width={34} height={34} />
                         </Link>
                       </li>
                     )}
@@ -414,7 +414,7 @@ const Footer = () => {
                           target="_blank"
                           className="block text-center mx-auto text-gray-500 hover:text-white"
                         >
-                          <img className="min-w-[34px]" src="/kwanmaledpun/icon/lazada.png" alt="lazada" width={34} height={34} />
+                          <img className="min-w-[34px]" src="/kwanmaledphun/icon/lazada.png" alt="lazada" width={34} height={34} />
                         </Link>
                       </li>
                     )}
@@ -518,7 +518,7 @@ const Footer = () => {
             rel="noopener noreferrer"
             className="text-emerald-500"
           >
-            kwanmaledpun
+            kwanmaledphun
           </Link>
           , All rights reserved.{" "}
           {process.env.NEXT_PUBLIC_VERSION}

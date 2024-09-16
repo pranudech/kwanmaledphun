@@ -44,7 +44,7 @@ export default async function handler(req, res) {
         }
 
         // Define the upload directory and file path
-        const uploadDir = path.join(process.cwd(), `public/kwanmaledpun/upload/${pathTypeUpload}`);
+        const uploadDir = path.join(process.cwd(), `public/kwanmaledphun/upload/${pathTypeUpload}`);
         const newFilename = `${Date.now()}-${uploadedFile.originalFilename}`;
         const filePath = path.join(uploadDir, newFilename);
 
@@ -57,7 +57,7 @@ export default async function handler(req, res) {
             await fs.rename(uploadedFile.filepath, filePath);
 
             console.log('File saved to:', filePath);
-            res.status(200).json({ message: "File uploaded successfully", filePath, imagePath: `/kwanmaledpun/upload/${pathTypeUpload}/${newFilename}` });
+            res.status(200).json({ message: "File uploaded successfully", filePath, imagePath: `/kwanmaledphun/upload/${pathTypeUpload}/${newFilename}` });
         } catch (error) {
             console.error('Error saving the file:', error);
             res.status(500).json({

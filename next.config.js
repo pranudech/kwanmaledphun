@@ -42,6 +42,12 @@ module.exports = withPWA({
         // other locales that should be handled on this domain
         locales: ["th"],
       },
+      {
+        domain: "dev.kwanmaledphun.com",
+        defaultLocale: "th",
+        // other locales that should be handled on this domain
+        locales: ["th"],
+      },
     ],
   },
 

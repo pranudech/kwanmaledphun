@@ -62,7 +62,7 @@ const storeCustomization = {
       },
       phone: "+965 505 631288",
       logo: "https://res.cloudinary.com/ahossain/image/upload/v1697687802/settings/logo-light_hls14v.svg",
-      // logo: "/kwanmaledpun/logo.jpg"
+      // logo: "/kwanmaledphun/logo.jpg"
     },
     home: {
       coupon_status: true,
@@ -200,7 +200,7 @@ const storeCustomization = {
         th: "เกี่ยวกับเรา",
       },
       top_title: {
-        en: "Welcome to kwanmaledpun shop",
+        en: "Welcome to kwanmaledphun shop",
         th: "ยินดีต้อนรับสู่ร้านค้าของเรา",
       },
       top_description: {

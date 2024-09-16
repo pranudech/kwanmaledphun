@@ -147,25 +147,25 @@ const AboutUs = () => {
 
           <div className="gallery mt-10 lg:mt-12">
             <figure className="gallery__item gallery__item--1">
-              <img src="/kwanmaledpun/about-us/0.jpeg" className="gallery__img" alt="Image 1" />
+              <img src="/kwanmaledphun/about-us/0.jpeg" className="gallery__img" alt="Image 1" />
             </figure>
             <figure className="gallery__item gallery__item--2">
-              <img src="/kwanmaledpun/about-us/1.jpeg" className="gallery__img" alt="Image 2" />
+              <img src="/kwanmaledphun/about-us/1.jpeg" className="gallery__img" alt="Image 2" />
             </figure>
             <figure className="gallery__item gallery__item--3">
-              <img src="/kwanmaledpun/about-us/2.jpeg" className="gallery__img" alt="Image 3" />
+              <img src="/kwanmaledphun/about-us/2.jpeg" className="gallery__img" alt="Image 3" />
             </figure>
             <figure className="gallery__item gallery__item--4">
-              <img src="/kwanmaledpun/about-us/3.jpeg" className="gallery__img" alt="Image 4" />
+              <img src="/kwanmaledphun/about-us/3.jpeg" className="gallery__img" alt="Image 4" />
             </figure>
             <figure className="gallery__item gallery__item--5">
-              <img src="/kwanmaledpun/about-us/4.jpeg" className="gallery__img" alt="Image 5" />
+              <img src="/kwanmaledphun/about-us/4.jpeg" className="gallery__img" alt="Image 5" />
             </figure>
             <figure className="gallery__item gallery__item--6">
-              <img src="/kwanmaledpun/about-us/6.jpeg" className="gallery__img" alt="Image 6" />
+              <img src="/kwanmaledphun/about-us/6.jpeg" className="gallery__img" alt="Image 6" />
             </figure>
             <figure className="gallery__item gallery__item--7">
-              <img src="/kwanmaledpun/about-us/5.jpeg" className="gallery__img" alt="Image 6" />
+              <img src="/kwanmaledphun/about-us/5.jpeg" className="gallery__img" alt="Image 6" />
             </figure>
           </div>
 

@@ -13,7 +13,7 @@ export const config = {
 const storage = multer.diskStorage({
     destination: async (req, file, cb) => {
         const pathTypeUpload = req.headers['pathtypeupload'];
-        const uploadDir = path.join(process.cwd(), `public/kwanmaledpun/upload/${pathTypeUpload}`);
+        const uploadDir = path.join(process.cwd(), `public/kwanmaledphun/upload/${pathTypeUpload}`);
         
         // Ensure the directory exists
         try {
@@ -53,10 +53,10 @@ export default async function handler(req, res) {
 
         // Define the file path
         const filePath = req.file.path;
-        const imagePath = `/kwanmaledpun/upload/${req.headers['pathtypeupload']}/${req.file.filename}`;
+        const imagePath = `/kwanmaledphun/upload/${req.headers['pathtypeupload']}/${req.file.filename}`;
 
         // Move the file to the destination
-        const destinationPath = path.join(process.cwd(), `public/kwanmaledpun/upload/${req.headers['pathtypeupload']}/${req.file.filename}`);
+        const destinationPath = path.join(process.cwd(), `public/kwanmaledphun/upload/${req.headers['pathtypeupload']}/${req.file.filename}`);
         try {
             await fs.rename(filePath, destinationPath);
             console.log('File moved to:', destinationPath);
