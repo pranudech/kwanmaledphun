@@ -106,6 +106,10 @@ const CategoryCarousel = ({ subtypeList, type_id }) => {
                         src={category?.icon || "https://res.cloudinary.com/ahossain/image/upload/v1655097002/placeholder_kvepfp.png"}
                         alt="category"
                         className="object-fill w-[35px] h-[35px]"
+                        onError={(e) => {
+                          e.target.onerror = null;
+                          e.target.src = "https://res.cloudinary.com/ahossain/image/upload/v1655097002/placeholder_kvepfp.png";
+                        }}
                       />
                     </div>
                   </div>

@@ -359,9 +359,8 @@ const NavbarPromo = () => {
 
             {storeCustomizationSetting?.navbar?.privacy_policy_status && (
               <Link
-                // onClick={() => setIsLoading(!isLoading)}
-                // href="/privacy-policy"
-                href="/#"
+                onClick={() => setIsLoading(!isLoading)}
+                href="/privacy-policy"
                 className="font-serif mx-4 py-2 text-sm font-medium hover:text-emerald-600"
               >
                 {showingTranslateValue(
@@ -369,18 +368,17 @@ const NavbarPromo = () => {
                 )}
               </Link>
             )}
-            {storeCustomizationSetting?.navbar?.term_and_condition_status && (
+            {/* {storeCustomizationSetting?.navbar?.term_and_condition_status && (
               <Link
-                // onClick={() => setIsLoading(!isLoading)}
-                // href="/terms-and-conditions"
-                href="/#"
+                onClick={() => setIsLoading(!isLoading)}
+                href="/terms-and-conditions"
                 className="font-serif mx-4 py-2 text-sm font-medium hover:text-emerald-600"
               >
                 {showingTranslateValue(
                   storeCustomizationSetting?.navbar?.term_and_condition
                 )}
               </Link>
-            )}
+            )} */}
           </div>
         </div>
       </div>

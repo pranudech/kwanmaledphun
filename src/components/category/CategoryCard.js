@@ -59,9 +59,12 @@ const CategoryCard = ({ title, icon, nested, id }) => {
         role="button"
       >
         {icon ? (
-          <Image src={icon} width={18} height={18} alt="Category" />
+          <img src={icon} width={18} height={18} alt="Category" onError={(e) => {
+            e.target.onerror = null;
+            e.target.src = "https://res.cloudinary.com/ahossain/image/upload/v1655097002/placeholder_kvepfp.png";
+          }} />
         ) : (
-          <Image
+          <img
             src="https://res.cloudinary.com/ahossain/image/upload/v1655097002/placeholder_kvepfp.png"
             width={18}
             height={18}

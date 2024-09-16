@@ -24,14 +24,14 @@ const TermAndConditions = () => {
       />
       <div className="bg-white">
         <div className="max-w-screen-2xl mx-auto lg:py-20 py-10 px-3 sm:px-10">
-          <CMSkeleton
+          {/* <CMSkeleton
             html
             count={15}
             height={15}
             error={error}
             loading={loading}
             data={storeCustomizationSetting?.term_and_condition?.description}
-          />
+          /> */}
           <br />
           <CMSkeleton count={15} height={15} loading={loading} />
           <br />
