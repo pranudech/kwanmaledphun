@@ -56,19 +56,14 @@ const Navbar = () => {
           <div className="top-bar h-16 lg:h-auto flex items-center justify-between py-4 mx-auto">
             <Link
               href="/"
-              className="mr-3 lg:mr-12 xl:mr-12 hidden md:hidden lg:block"
+              className="mr-3 lg:mr-12 xl:mr-12"
             >
-              <div className="relative text-white text-xl font-bold">
-                ขวัญเมล็ดพันธุ์โคราช
-                {/* <Image
-                  width="0"
-                  height="0"
-                  sizes="100vw"
-                  className="w-full h-auto"
-                  priority
-                  src={storeCustomizationSetting?.navbar?.logo || "/logo/logo-light.svg"}
-                  alt="logo"
-                /> */}
+              <div className="relative text-white text-xl font-bold flex items-center">
+                <img
+                  className="h-[40px]"
+                  src="/logo.png"
+                />
+                <span className="text-white text-xl font-bold ml-2">ขวัญเมล็ดพันธุ์โคราช</span>
               </div>
             </Link>
             <div className="w-full transition-all duration-200 ease-in-out lg:flex lg:max-w-[520px] xl:max-w-[750px] 2xl:max-w-[900px] md:mx-12 lg:mx-4 xl:mx-0">

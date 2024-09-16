@@ -122,111 +122,94 @@ const MyOrders = () => {
                     description="This is user order history page"
                 >
                     <div className="overflow-hidden rounded-md font-serif">
-                        {loading ? (
-                            <Loading loading={loading} />
-                        ) : error ? (
-                            <h2 className="text-xl text-center my-10 mx-auto w-11/12 text-red-400">
-                                {error}
+                        <div className="flex flex-col">
+                            <h2 className="text-xl font-serif font-semibold mb-5">
+                                ตั้งค่าระบบ
                             </h2>
-                        ) : data?.length === 0 ? (
-                            <div className="text-center">
-                                <span className="flex justify-center my-30 pt-16 text-emerald-500 font-semibold text-6xl">
-                                    <IoBagHandle />
-                                </span>
-                                <h2 className="font-medium text-md my-4 text-gray-600">
-                                    You Have no order Yet!
-                                </h2>
+                            <div className="flex flex-row gap-5">
+                                <div className={`cursor-pointer min-w-[170px] flex items-center justify-center ${isTabActive === 0 ? 'border-2 border-emerald-500 rounded-md p-2 text-emerald-500 font-semibold' : ''}`} onClick={() => setIsTabActive(0)}>ภาพหน้าแรก</div>
+                                <div className={`cursor-pointer min-w-[170px] flex items-center justify-center ${isTabActive === 1 ? 'border-2 border-emerald-500 rounded-md p-2 text-emerald-500 font-semibold' : ''}`} onClick={() => setIsTabActive(1)}>ภาพ landing page</div>
+                                <div className="cursor-not-allowed text-gray-400 min-w-[170px] flex items-center justify-center">Coming Soon</div>
                             </div>
-                        ) : (
-                            <div className="flex flex-col">
-                                <h2 className="text-xl font-serif font-semibold mb-5">
-                                    ตั้งค่าระบบ
-                                </h2>
-                                <div className="flex flex-row gap-5">
-                                    <div className={`cursor-pointer min-w-[170px] flex items-center justify-center ${isTabActive === 0 ? 'border-2 border-emerald-500 rounded-md p-2 text-emerald-500 font-semibold' : ''}`} onClick={() => setIsTabActive(0)}>ภาพหน้าแรก</div>
-                                    <div className={`cursor-pointer min-w-[170px] flex items-center justify-center ${isTabActive === 1 ? 'border-2 border-emerald-500 rounded-md p-2 text-emerald-500 font-semibold' : ''}`} onClick={() => setIsTabActive(1)}>ภาพ landing page</div>
-                                    <div className="cursor-not-allowed text-gray-400 min-w-[170px] flex items-center justify-center">Coming Soon</div>
-                                </div>
-                                {isTabActive === 0 &&
-                                    <div>
-                                        <div className="my-5">
-                                            <div className="w-full">
-                                                <h1 className="mt-3">รูปภาพหน้าแรกที่ 1</h1>
-                                                <Uploader
-                                                    imageUrl={objectHomeForm.image1 !== "" ? objectHomeForm.image1 : null}
-                                                    setImageFile={(files) => {
-                                                        if (files.length > 0) {
-                                                            handleImageUpload(files, "image1", 1)
-                                                        }
-                                                    }}
-                                                    onDelete={() => handleDeleteImage("image1", 1)}
-                                                />
-                                            </div>
-                                            <div className="w-full">
-                                                <h1 className="mt-3">รูปภาพหน้าแรกที่ 2</h1>
-                                                <Uploader
-                                                    imageUrl={objectHomeForm.image2 !== "" ? objectHomeForm.image2 : null}
-                                                    setImageFile={(files) => {
-                                                        if (files.length > 0) {
-                                                            handleImageUpload(files, "image2", 2)
-                                                        }
-                                                    }}
-                                                    onDelete={() => handleDeleteImage("image2", 2)}
-                                                />
-                                            </div>
-                                            <div className="w-full">
-                                                <h1 className="mt-3">รูปภาพหน้าแรกที่ 3</h1>
-                                                <Uploader
-                                                    imageUrl={objectHomeForm.image3 !== "" ? objectHomeForm.image3 : null}
-                                                    setImageFile={(files) => {
-                                                        if (files.length > 0) {
-                                                            handleImageUpload(files, "image3", 3)
-                                                        }
-                                                    }}
-                                                    onDelete={() => handleDeleteImage("image3", 3)}
-                                                />
-                                            </div>
-                                            <div className="w-full">
-                                                <h1 className="mt-3">รูปภาพหน้าแรกที่ 4</h1>
-                                                <Uploader
-                                                    imageUrl={objectHomeForm.image4 !== "" ? objectHomeForm.image4 : null}
-                                                    setImageFile={(files) => {
-                                                        if (files.length > 0) {
-                                                            handleImageUpload(files, "image4", 4)
-                                                        }
-                                                    }}
-                                                    onDelete={() => handleDeleteImage("image4", 4)}
-                                                />
-                                            </div>
-                                        </div>
-                                        <div>
-                                            ตัวอย่างภาพหน้าแรก
-                                            <div>
-                                                <MainCarousel />
-                                            </div>
-                                        </div>
-                                    </div>
-                                }
-
-                                {
-                                    isTabActive === 1 &&
-                                    <div className="flex items-center gap-5 justify-center">
-                                        <div className="w-full mb-3">
-                                            <h1 className="mb-2">รูปภาพ</h1>
+                            {isTabActive === 0 &&
+                                <div>
+                                    <div className="my-5">
+                                        <div className="w-full">
+                                            <h1 className="mt-3">รูปภาพหน้าแรกที่ 1</h1>
                                             <Uploader
-                                                imageUrl={objectHomeForm.image5}
+                                                imageUrl={objectHomeForm.image1 !== "" ? objectHomeForm.image1 : null}
                                                 setImageFile={(files) => {
                                                     if (files.length > 0) {
-                                                        handleImageUpload(files, "image5", 5, 100)
+                                                        handleImageUpload(files, "image1", 1)
                                                     }
                                                 }}
-                                                onDelete={() => handleDeleteImage("image5", 5, 1)}
+                                                onDelete={() => handleDeleteImage("image1", 1)}
+                                            />
+                                        </div>
+                                        <div className="w-full">
+                                            <h1 className="mt-3">รูปภาพหน้าแรกที่ 2</h1>
+                                            <Uploader
+                                                imageUrl={objectHomeForm.image2 !== "" ? objectHomeForm.image2 : null}
+                                                setImageFile={(files) => {
+                                                    if (files.length > 0) {
+                                                        handleImageUpload(files, "image2", 2)
+                                                    }
+                                                }}
+                                                onDelete={() => handleDeleteImage("image2", 2)}
+                                            />
+                                        </div>
+                                        <div className="w-full">
+                                            <h1 className="mt-3">รูปภาพหน้าแรกที่ 3</h1>
+                                            <Uploader
+                                                imageUrl={objectHomeForm.image3 !== "" ? objectHomeForm.image3 : null}
+                                                setImageFile={(files) => {
+                                                    if (files.length > 0) {
+                                                        handleImageUpload(files, "image3", 3)
+                                                    }
+                                                }}
+                                                onDelete={() => handleDeleteImage("image3", 3)}
+                                            />
+                                        </div>
+                                        <div className="w-full">
+                                            <h1 className="mt-3">รูปภาพหน้าแรกที่ 4</h1>
+                                            <Uploader
+                                                imageUrl={objectHomeForm.image4 !== "" ? objectHomeForm.image4 : null}
+                                                setImageFile={(files) => {
+                                                    if (files.length > 0) {
+                                                        handleImageUpload(files, "image4", 4)
+                                                    }
+                                                }}
+                                                onDelete={() => handleDeleteImage("image4", 4)}
                                             />
                                         </div>
                                     </div>
-                                }
-                            </div>
-                        )}
+                                    <div>
+                                        ตัวอย่างภาพหน้าแรก
+                                        <div>
+                                            <MainCarousel />
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                            {
+                                isTabActive === 1 &&
+                                <div className="flex items-center gap-5 justify-center">
+                                    <div className="w-full mb-3">
+                                        <h1 className="mb-2">รูปภาพ</h1>
+                                        <Uploader
+                                            imageUrl={objectHomeForm.image5}
+                                            setImageFile={(files) => {
+                                                if (files.length > 0) {
+                                                    handleImageUpload(files, "image5", 5, 100)
+                                                }
+                                            }}
+                                            onDelete={() => handleDeleteImage("image5", 5, 1)}
+                                        />
+                                    </div>
+                                </div>
+                            }
+                        </div>
                     </div>
                 </Dashboard>
             )}

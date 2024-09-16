@@ -14,7 +14,7 @@ import { SidebarContext } from "@context/SidebarContext";
 import Loading from "@components/preloader/Loading";
 import AttributeServices from "@services/AttributeServices";
 
-const Search = ({ products, attributes, type_name, type_id, subtypeList, query }) => {
+const Search = ({ products, attributes, type_name, type_id, subtypeList, query, category }) => {
   const { t } = useTranslation();
   const { isLoading, setIsLoading } = useContext(SidebarContext);
   const [visibleProduct, setVisibleProduct] = useState(18);
@@ -25,13 +25,12 @@ const Search = ({ products, attributes, type_name, type_id, subtypeList, query }
 
   const { setSortedField, productData } = useFilter(products);
 
-  // console.log('productData', productData)
-  // console.log('subtype', subtype)
+  // console.log('category', category)
 
   return (
-    <Layout title="Search" description="This is search page">
+    <Layout title={`ค้นหา ${category}`} description={`ค้นหา ${category}`}>
       <div className="mx-auto max-w-screen-2xl px-3 sm:px-10">
-        <div className="flex py-10 lg:py-12">
+        <div className="flex">
           <div className="flex w-full">
             <div className="w-full">
               {/* <div className="w-full grid grid-col gap-4 grid-cols-1 2xl:gap-3 xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-3">
@@ -129,6 +128,7 @@ export const getServerSideProps = async (context) => {
   return {
     props: {
       ...context.query,
+      category: category,
       products: data,
       attributes,
       subtypeList

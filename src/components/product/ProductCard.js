@@ -67,7 +67,7 @@ const ProductCard = ({ product, attributes }) => {
       <div className="group box-border overflow-hidden flex rounded-md shadow-sm pe-0 flex-col items-center bg-white relative">
 
         <div className="w-full flex justify-between absolute top-0 z-10">
-          <div className="text-xs text-gray-4000 m-3 bg-blue-100 p-1 rounded-md">{product.subtype_name}</div>
+          <div className="text-[14px] text-gray-4000 m-3 bg-blue-100 p-1 rounded-md">{product.subtype_name}</div>
         </div>
 
         <div
@@ -98,18 +98,10 @@ const ProductCard = ({ product, attributes }) => {
         </div>
 
         <div className="w-full px-3 lg:px-4 pb-4 overflow-hidden">
-          <div className="relative mb-1">
-            <h2 className="text-heading truncate mb-0 block text-sm font-medium text-gray-600">
-              <span className="line-clamp-2">
-                {product?.title}
-              </span>
-            </h2>
-          </div>
-
           <div className="flex justify-between items-center text-heading text-sm sm:text-base space-s-2 md:text-base lg:text-xl">
             <div>
               <div
-                className="hover:text-green-800 cursor-pointer"
+                className="hover:text-green-800 cursor-pointer text-[16px] font-bold"
                 onClick={() => {
                   handleModalOpen(!modalOpen, product.product_id);
                   handleLogEvent(
@@ -118,10 +110,10 @@ const ProductCard = ({ product, attributes }) => {
                   );
                 }}
               >{product.product_name}</div>
-              <div className="text-gray-400 font-medium text-xs d-block my-1 line-clamp-2" >
-                {product.company_name}
+              <div className="text-gray-400 font-medium text-[14px] d-block my-1 line-clamp-1" >
+                <span className="font-bold">บริษัท : </span>{product.company_name}
               </div>
-              <div className="text-gray-400 font-medium text-xs d-block my-1 line-clamp-2">
+              <div className="text-gray-400 font-medium text-[14px] d-block my-1 line-clamp-3">
                 {product.detail}
               </div>
             </div>

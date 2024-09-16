@@ -230,16 +230,14 @@ const ProductModal = ({
                 {product.product_image1 ? (
                   <img
                     src={product.product_image1}
-                    width={420}
-                    height={420}
                     alt="product"
-                    className="aspect-[1/1] w-full h-full object-cover min-w-[420px] max-w-[420px]"
+                    className="aspect-[1/1] w-full h-full object-cover"
                   />
                 ) : (
                   <img
                     src="https://res.cloudinary.com/ahossain/image/upload/v1655097002/placeholder_kvepfp.png"
                     alt="product Image"
-                    className="aspect-[1/1] w-full h-full object-cover min-w-[420px] max-w-[420px]"
+                    className=""
                   />
                 )}
               </div>

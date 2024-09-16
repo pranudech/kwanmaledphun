@@ -30,11 +30,11 @@ const Layout = ({ title, description, children, imagePreview }) => {
           <meta property="og:title" content={title}></meta>
           <meta
             property="og:url"
-            content={`https://dev.kwanmaledpun.com/logo.png`}
+            content={`https://dev.kwanmaledpun.com/logo.jpg`}
           />
           <meta
             property="og:image"
-            content={`https://dev.kwanmaledpun.com/logo.png`}
+            content={`https://dev.kwanmaledpun.com/logo.jpg`}
           />
           <meta name="description" content={description}></meta>
           <meta property="og:image:width" content="1200"></meta>
