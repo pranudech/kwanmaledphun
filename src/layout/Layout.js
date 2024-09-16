@@ -25,7 +25,7 @@ const Layout = ({ title, description, children, imagePreview }) => {
               : "ขวัญเมล็ดพันธุ์โคราช"}
           </title>
           {/* {description && <meta name="description" content={description} />} */}
-          <link ref="icon" href="/favicon.png" />
+          <link ref="icon" href="/favicon.ico" />
           <meta property="og:type" content="website" />
           <meta property="og:title" content={title}></meta>
           <meta
