@@ -73,7 +73,7 @@ const MyOrders = () => {
             MainImageServices.updateMainImage({
                 image_path: img.data.imagePath,
                 flag: flag,
-                id: id
+                id: id,
             }).then((res) => {
                 setObjectHomeForm({
                     ...objectHomeForm,
@@ -82,6 +82,20 @@ const MyOrders = () => {
             })
         })
     }
+
+    const handleLink = async (name, id, link) => {
+        MainImageServices.updateMainImage({
+            link: link,
+            flag: flag,
+            id: id,
+        }).then((res) => {
+            setObjectHomeForm({
+                ...objectHomeForm,
+                [name]: link,
+            })
+        })
+    }
+
 
     const handleDeleteImage = async (name, id, flag = 1) => {
         dialog.showModalWarning({
@@ -134,7 +148,7 @@ const MyOrders = () => {
                             {isTabActive === 0 &&
                                 <div>
                                     <div className="my-5">
-                                        <div className="w-full">
+                                        <div className="w-full border py-3 px-2 rounded-md mb-3">
                                             <h1 className="mt-3">รูปภาพหน้าแรกที่ 1</h1>
                                             <Uploader
                                                 imageUrl={objectHomeForm.image1 !== "" ? objectHomeForm.image1 : null}
@@ -145,8 +159,23 @@ const MyOrders = () => {
                                                 }}
                                                 onDelete={() => handleDeleteImage("image1", 1)}
                                             />
+                                            <div className="w-[50%]">
+                                                <h1 className="mt-3">Link</h1>
+                                                <div className="flex items-center gap-2">
+                                                    <input
+                                                        type="text"
+                                                        className="w-full rounded-md border-gray-300"
+                                                        value={objectHomeForm.link1}
+                                                        onChange={(e) => setObjectHomeForm({ ...objectHomeForm, link1: e.target.value })}
+                                                    />
+                                                    <button 
+                                                        className="bg-emerald-500 text-white px-3 py-2 rounded-md"
+                                                        onClick={() => handleLink("link1", 1, objectHomeForm.link1)}
+                                                    >บันทึก</button>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div className="w-full">
+                                        <div className="w-full border py-3 px-2 rounded-md mb-3">
                                             <h1 className="mt-3">รูปภาพหน้าแรกที่ 2</h1>
                                             <Uploader
                                                 imageUrl={objectHomeForm.image2 !== "" ? objectHomeForm.image2 : null}
@@ -157,8 +186,23 @@ const MyOrders = () => {
                                                 }}
                                                 onDelete={() => handleDeleteImage("image2", 2)}
                                             />
+                                            <div className="w-[50%]">
+                                                <h1 className="mt-3">Link</h1>
+                                                <div className="flex items-center gap-2">
+                                                    <input
+                                                        type="text"
+                                                        className="w-full rounded-md border-gray-300"
+                                                        value={objectHomeForm.link2}
+                                                        onChange={(e) => setObjectHomeForm({ ...objectHomeForm, link2: e.target.value })}
+                                                    />
+                                                    <button 
+                                                        className="bg-emerald-500 text-white px-3 py-2 rounded-md"
+                                                        onClick={() => handleLink("link2", 2, objectHomeForm.link2)}
+                                                    >บันทึก</button>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div className="w-full">
+                                        <div className="w-full border py-3 px-2 rounded-md mb-3">
                                             <h1 className="mt-3">รูปภาพหน้าแรกที่ 3</h1>
                                             <Uploader
                                                 imageUrl={objectHomeForm.image3 !== "" ? objectHomeForm.image3 : null}
@@ -169,8 +213,23 @@ const MyOrders = () => {
                                                 }}
                                                 onDelete={() => handleDeleteImage("image3", 3)}
                                             />
+                                            <div className="w-[50%]">
+                                                <h1 className="mt-3">Link</h1>
+                                                <div className="flex items-center gap-2">
+                                                    <input
+                                                        type="text"
+                                                        className="w-full rounded-md border-gray-300"
+                                                        value={objectHomeForm.link3}
+                                                        onChange={(e) => setObjectHomeForm({ ...objectHomeForm, link3: e.target.value })}
+                                                    />
+                                                    <button 
+                                                        className="bg-emerald-500 text-white px-3 py-2 rounded-md"
+                                                        onClick={() => handleLink("link3", 3, objectHomeForm.link3)}
+                                                    >บันทึก</button>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div className="w-full">
+                                        <div className="w-full border py-3 px-2 rounded-md mb-3">
                                             <h1 className="mt-3">รูปภาพหน้าแรกที่ 4</h1>
                                             <Uploader
                                                 imageUrl={objectHomeForm.image4 !== "" ? objectHomeForm.image4 : null}
@@ -181,6 +240,22 @@ const MyOrders = () => {
                                                 }}
                                                 onDelete={() => handleDeleteImage("image4", 4)}
                                             />
+                                            
+                                            <div className="w-[50%]">
+                                                <h1 className="mt-3">Link</h1>
+                                                <div className="flex items-center gap-2">
+                                                    <input
+                                                        type="text"
+                                                        className="w-full rounded-md border-gray-300"
+                                                        value={objectHomeForm.link4}
+                                                        onChange={(e) => setObjectHomeForm({ ...objectHomeForm, link4: e.target.value })}
+                                                    />
+                                                    <button 
+                                                        className="bg-emerald-500 text-white px-3 py-2 rounded-md"
+                                                        onClick={() => handleLink("link4", 4, objectHomeForm.link4)}
+                                                    >บันทึก</button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div>

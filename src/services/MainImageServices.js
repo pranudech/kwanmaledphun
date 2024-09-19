@@ -15,6 +15,9 @@ const MainImageServices = {
   },
   updateMainImage: async (data) => {
     return requests.post(`${BASE_URL}/main_image/update`, data);
+  },
+  updateMainImageLink: async (data) => {
+    return requests.post(`${BASE_URL}/main_image/update_link`, data);
   }
 };
 
