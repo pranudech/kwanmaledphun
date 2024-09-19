@@ -55,6 +55,11 @@ const MyOrders = () => {
                     image3: res[2]?.image_path !== "" ? res[2]?.image_path : null,
                     image4: res[3]?.image_path !== "" ? res[3]?.image_path : null,
                     image5: res[4]?.image_path !== "" ? res[4]?.image_path : null,
+                    link1: res[0]?.link !== "" ? res[0]?.link : null,
+                    link2: res[1]?.link !== "" ? res[1]?.link : null,
+                    link3: res[2]?.link !== "" ? res[2]?.link : null,
+                    link4: res[3]?.link !== "" ? res[3]?.link : null,
+                    link5: res[4]?.link !== "" ? res[4]?.link : null,
                 });
                 setData(res)
                 setLoading(false);
@@ -84,9 +89,8 @@ const MyOrders = () => {
     }
 
     const handleLink = async (name, id, link) => {
-        MainImageServices.updateMainImage({
+        MainImageServices.updateMainImageLink({
             link: link,
-            flag: flag,
             id: id,
         }).then((res) => {
             setObjectHomeForm({

@@ -1,7 +1,7 @@
 import { mysqlPool } from "@lib/tidb";
 
 export default async function handler(req, res) {
-    const { image_path, flag, id } = req.body
+    const { link, id } = req.body
     const promisePool = mysqlPool.promise()
     const [rows, fields] = await promisePool.query(
         `
