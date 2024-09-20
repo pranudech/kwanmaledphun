@@ -141,14 +141,14 @@ const MainCarousel = () => {
               key={i + 1}
             >
               <div
-                className={`text-sm text-gray-600 hover:text-emerald-dark ${item.link !== "" && item.link !== null ? "cursor-pointer" : ""}`}
+                className={`text-sm text-gray-600 hover:text-emerald-dark ${item?.link !== "" && item?.link !== null ? "cursor-pointer" : ""}`}
                 onClick={() => {
-                  if (item.link !== "" && item.link !== null) {
-                    window.open(item.link, "_blank")
+                  if (item?.link !== "" && item?.link !== null) {
+                    window.open(item?.link, "_blank")
                   }
                 }}
               >
-                <img className="w-full h-full object-cover" src={item.image_path} alt={`image-${i}`} />
+                <img className="w-full h-full object-cover" src={item?.image_path} alt={`image-${i}`} />
               </div>
               {/* <div className="absolute top-0 left-0 z-10 p-r-16 flex-col flex w-full h-full place-items-start justify-center">
                 <div className="pl-4 pr-12 sm:pl-10 sm:pr-16 w-10/12 lg:w-8/12 xl:w-7/12">
