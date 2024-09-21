@@ -5,11 +5,15 @@ const Landing = ({ mainImage }) => {
     console.log(mainImage)
     return (
         <div className="flex flex-col items-center justify-center relative pb-[100px]">
-            <img
-                src={mainImage.image_path}
-                alt="Landing Page Image"
-                className="mb-6 rounded-lg shadow-lg max-h-[10%]"
-            />
+            {mainImage ? (
+                <img
+                    src={mainImage?.image_path}
+                    alt="Landing Page Image"
+                    className="mb-6 rounded-lg shadow-lg max-h-[10%]"
+                />
+            ) : (
+                <div>No image found</div>
+            )}
             <div className='fixed bottom-[30px] w-full flex justify-center items-center'>
                 <button
                     className="px-6 py-2 text-emerald-500 border bg-white border-emerald-500 rounded hover:bg-emerald-500 hover:text-white transition duration-300"

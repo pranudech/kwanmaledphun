@@ -273,10 +273,13 @@ const ProductScreen = ({ product, attributes, relatedProducts }) => {
 
                     {product.product_image1 ? (
                       <img
-                        src={img}
+                        src={product.product_image1}
                         alt="product"
                         className="rounded-lg"
-                      // className="aspect-[1/1] w-full h-full object-cover min-w-[420px] max-w-[420px]"
+                        onError={(e) => {
+                          e.target.onerror = null;
+                          e.target.src = "https://res.cloudinary.com/ahossain/image/upload/v1655097002/placeholder_kvepfp.png";
+                        }}
                       />
                     ) : (
                       <img
@@ -500,7 +503,7 @@ const ProductScreen = ({ product, attributes, relatedProducts }) => {
                             <ul className="flex mt-4">
                               <li className="flex items-center text-center border border-gray-100 rounded-full hover:bg-emerald-500  mr-2 transition ease-in-out duration-500">
                                 <FacebookShareButton
-                                  url={`https://dev.kwanmaledphun.com/product/${product.product_id}`}
+                                  url={`https://kwanmaledphun.com/product/${product.product_name}/${product.product_id}`}
                                   quote=""
                                 >
                                   <FacebookIcon size={32} round />

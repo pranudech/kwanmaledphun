@@ -21,7 +21,7 @@ const DefaultSeo = () => {
       openGraph={{
         type: "website",
         locale: "en_IE",
-        url: globalSetting?.meta_url || "https://kachabazar-store.vercel.app/",
+        url: globalSetting?.meta_url || "https://kwanmaledphun.com/",
         site_name:
           globalSetting?.meta_title ||
           "ขวัญเมล็ดพันธุ์โคราช",

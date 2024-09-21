@@ -39,13 +39,17 @@ const MyOrders = () => {
         detail: "",
         company_id: 0,
         subtype_id: 0,
+        type_id: 0,
         product_image1: "",
         product_image2: "",
         product_image3: "",
         recommended_product: 0,
     });
     const [companyData, setCompanyData] = useState([]);
+
+    const [categoryList, setCategoryList] = useState([]);
     const [subCategory, setSubCategory] = useState([]);
+    const [subCategoryList, setSubCategoryList] = useState([]);
 
     const [filter, setFilter] = useState({
         subtype_id: -1,
@@ -83,6 +87,7 @@ const MyOrders = () => {
     useEffect(() => {
         setIsLoading(false);
         handleGetCompanyAll();
+        handleGetCategoryAll();
         handleGetSubCategoryAll()
     }, []);
 
@@ -110,19 +115,33 @@ const MyOrders = () => {
         setCompanyData(res);
     }
 
+    const handleGetCategoryAll = async () => {
+        CategoryServices.getCategoryAll().then((res) => {
+            setCategoryList(res);
+        }).finally(() => {
+            setIsLoading(false)
+        })
+    }
+
     const handleGetSubCategoryAll = async () => {
-        // console.log('item', item)
-        const res = await CategoryServices.getSubCategoryAll()
-        // console.log('res', res)
-        setSubCategory(res);
-        // setModalOpen(true);
+        CategoryServices.getSubCategoryAll().then((res) => {
+            setSubCategory(res);
+        }).finally(() => {
+            setIsLoading(false)
+        })
+    }
+
+    const handleGetSubType = async (type_id) => {
+        const res = subCategory.filter((item) => parseInt(item.type_id) === parseInt(type_id));
+        setSubCategoryList(res)
     }
 
     const handleGetProductAll = async () => {
-        // setIsLoading(true)
-        const res = await ProductServices.getProductsAll({})
-        setData(res)
-        // setIsLoading(false)
+        ProductServices.getProductsAll({}).then((res) => {
+            setData(res)
+        }).finally(() => {
+            setIsLoading(false)
+        })
     }
 
     const handleFilter = async (filter) => {
@@ -189,9 +208,8 @@ const MyOrders = () => {
                     )}
                     description="This is user order history page"
                 >
-                    <div className="overflow-hidden rounded-md font-serif">
-                        <div>
-
+                    <div className="overflow-hidden rounded-md font-serif relative">
+                        <div className="">
                             <h2 className="text-xl font-serif font-semibold mb-5">
                                 {`รายการสินค้าทั้งหมด ${data?.length} รายการ`}
                             </h2>
@@ -290,25 +308,15 @@ const MyOrders = () => {
                                                             scope="col"
                                                             className="text-center font-serif font-semibold px-6 py-2 text-gray-700 uppercase tracking-wider"
                                                         >
-                                                            ประเภทสินค้า
+                                                            ประเภทสินค้าหลัก
                                                         </th>
                                                         <th
                                                             scope="col"
                                                             className="text-center font-serif font-semibold px-6 py-2 text-gray-700 uppercase tracking-wider"
                                                         >
-                                                            ขนาด
+                                                            ประเภทสินค้าย่อย
                                                         </th>
-                                                        <th
-                                                            scope="col"
-                                                            className="text-center font-serif font-semibold px-6 py-2 text-gray-700 uppercase tracking-wider"
-                                                        >
-                                                            ราคา
-                                                        </th>
-                                                        <th
-                                                            scope="col"
-                                                            className="text-center font-serif font-semibold px-6 py-2 text-gray-700 uppercase tracking-wider"
-                                                        >
-                                                        </th>
+                                                        <th className="px-6 py-2"></th>
                                                     </tr>
                                                 </thead>
                                                 {filteredData.length > 0 ?
@@ -325,7 +333,7 @@ const MyOrders = () => {
                                                                             console.log('item', item)
                                                                             setObjectForm(item)
                                                                             setModalOpen(true)
-                                                                            // handleGetSubCategoryAll(item)
+                                                                            handleGetSubType(item.type_id)
                                                                         }}
                                                                     >
                                                                         <div className="flex items-center gap-2 p-2">
@@ -343,14 +351,11 @@ const MyOrders = () => {
                                                                     <td className="">
                                                                         {item.company_name}
                                                                     </td>
-                                                                    <td className="text-center">
-                                                                        {`${item.type_name} / ${item.subtype_name}`}
+                                                                    <td className="text-start">
+                                                                        {`${item.type_name}`}
                                                                     </td>
-                                                                    <td className="text-center">
-                                                                        {item.size_product}
-                                                                    </td>
-                                                                    <td className="text-end pr-2">
-                                                                        {item.price}
+                                                                    <td className="text-start">
+                                                                        {`${item.subtype_name}`}
                                                                     </td>
                                                                     <td>
                                                                         <div
@@ -389,9 +394,6 @@ const MyOrders = () => {
                                                                     </td>
                                                                     <td className="text-center">
                                                                         {item.size_product}
-                                                                    </td>
-                                                                    <td className="text-end pr-2">
-                                                                        {item.price}
                                                                     </td>
                                                                 </tr>
                                                             )
@@ -474,7 +476,7 @@ const MyOrders = () => {
                                 <div className="w-full">
                                     <h1 className="mb-2">ขนาด</h1>
                                     <select className="rounded-md w-full border-gray-300" value={objectForm.size_product} onChange={(e) => setObjectForm({ ...objectForm, size_product: e.target.value })}>
-                                        <option value={0}>ไม่ระบุ</option>
+                                        <option value="ไม่ระบุ">ไม่ระบุ</option>
                                         <option value="ขนาดเล็ก">ขนาดเล็ก</option>
                                         <option value="ขนาดกลาง">ขนาดกลาง</option>
                                         <option value="ขนาดใหญ่">ขนาดใหญ่</option>
@@ -483,21 +485,26 @@ const MyOrders = () => {
                             </div>
                             <div className="flex gap-3 w-full mb-3">
                                 <div className="w-full">
-                                    <h1 className="mb-2">บริษัท</h1>
-                                    <select className="rounded-md w-full border-gray-300" value={objectForm.company_id} onChange={(e) => setObjectForm({ ...objectForm, company_id: e.target.value })}>
-                                        <option value="0">ไม่ระบุ</option>
-                                        {companyData?.map((item, index) => {
+                                    <h1 className="mb-2">ประเภทสินค้า<span className="text-red-500">หลัก</span></h1>
+                                    <select className="rounded-md w-full border-gray-300" value={objectForm.type_id}
+                                        onChange={(e) => {
+                                            setObjectForm({ ...objectForm, type_id: e.target.value })
+                                            handleGetSubType(e.target.value)
+                                        }}
+                                    >
+                                        <option value={0}>กรุณาเลือก</option>
+                                        {categoryList?.map((item, index) => {
                                             return (
-                                                <option value={item.company_id}>{item.company_name}</option>
+                                                <option value={item.type_id}>{item.type_name}</option>
                                             )
                                         })}
                                     </select>
                                 </div>
                                 <div className="w-full">
-                                    <h1 className="mb-2">ประเภทสินค้า</h1>
+                                    <h1 className="mb-2">ประเภทสินค้า<span className="text-blue-500">ย่อย</span></h1>
                                     <select className="rounded-md w-full border-gray-300" value={objectForm.subtype_id} onChange={(e) => setObjectForm({ ...objectForm, subtype_id: e.target.value })}>
-                                        <option value={0}>ไม่ระบุ</option>
-                                        {subCategory?.map((item, index) => {
+                                        <option value={0}>กรุณาเลือก</option>
+                                        {subCategoryList?.map((item, index) => {
                                             return (
                                                 <option value={item.subtype_id}>{item.subtype_name}</option>
                                             )
@@ -505,17 +512,29 @@ const MyOrders = () => {
                                     </select>
                                 </div>
                             </div>
+                            <div className="w-full">
+                                <h1 className="mb-2">บริษัท</h1>
+                                <select className="rounded-md w-full border-gray-300" value={objectForm.company_id} onChange={(e) => setObjectForm({ ...objectForm, company_id: e.target.value })}>
+                                    <option value="ไม่ระบุ">ไม่ระบุ</option>
+                                    {companyData?.map((item, index) => {
+                                        return (
+                                            <option value={item.company_id}>{item.company_name}</option>
+                                        )
+                                    })}
+                                </select>
+                            </div>
 
                             <div className="w-full flex items-center gap-2 my-5">
                                 <h1 className="">สินค้าที่แนะนำ</h1>
-                                <input 
-                                    type="checkbox" 
-                                    className="rounded-md border-gray-300" 
-                                    checked={objectForm.recommended_product === 1 ? true : false} 
-                                    onChange={(e) => setObjectForm({ ...objectForm, recommended_product: e.target.checked === true ? 1 : 0 })} 
+                                <input
+                                    type="checkbox"
+                                    className="rounded-md border-gray-300"
+                                    checked={objectForm.recommended_product === 1 ? true : false}
+                                    onChange={(e) => setObjectForm({ ...objectForm, recommended_product: e.target.checked === true ? 1 : 0 })}
                                 />
+                                <span className="text-red-500">(สินค้าจะแสดงในหน้าหลัก)</span>
                             </div>
-
+                            <hr className="my-5 border-gray-300" />
                             <div className="mb-3">
                                 <h1 className="mb-2">รูปภาพ 1</h1>
                                 <Uploader imageUrl={objectForm.product_image1} setImageFile={(files) => {
@@ -523,12 +542,12 @@ const MyOrders = () => {
                                         handleImageUpload(files, "product_image1")
                                     }
                                 }} />
-                                {objectForm.product_image1 && (
+                                {/* {objectForm.product_image1 && (
                                     <div className="border mt-[40px] p-2 rounded-md">
                                         <div className="text-[14px] text-gray-500 flex items-center gap-2">**โฟลเดอร์ที่เก็บรูปภาพ <span className="h-[5px] w-[5px] bg-green-500 rounded-full inline-block"></span>Server</div>
                                         <div className="text-[14px] text-gray-500">{objectForm.product_image1}</div>
                                     </div>
-                                )}
+                                )} */}
                             </div>
                             <div className="mb-3">
                                 <h1 className="mb-2">รูปภาพ 2</h1>
@@ -537,12 +556,12 @@ const MyOrders = () => {
                                         handleImageUpload(files, "product_image2")
                                     }
                                 }} />
-                                {objectForm.product_image2 && (
+                                {/* {objectForm.product_image2 && (
                                     <div className="border mt-[40px] p-2 rounded-md">
                                         <div className="text-[14px] text-gray-500 flex items-center gap-2">**โฟลเดอร์ที่เก็บรูปภาพ <span className="h-[5px] w-[5px] bg-green-500 rounded-full inline-block"></span>Server</div>
                                         <div className="text-[14px] text-gray-500">{objectForm.product_image2}</div>
                                     </div>
-                                )}
+                                )} */}
                             </div>
                             <div className="mb-3">
                                 <h1 className="mb-2">รูปภาพ 3</h1>
@@ -551,12 +570,12 @@ const MyOrders = () => {
                                         handleImageUpload(files, "product_image3")
                                     }
                                 }} />
-                                {objectForm.product_image3 && (
+                                {/* {objectForm.product_image3 && (
                                     <div className="border mt-[40px] p-2 rounded-md">
                                         <div className="text-[14px] text-gray-500 flex items-center gap-2">**โฟลเดอร์ที่เก็บรูปภาพ <span className="h-[5px] w-[5px] bg-green-500 rounded-full inline-block"></span>Server</div>
                                         <div className="text-[14px] text-gray-500">{objectForm.product_image3}</div>
                                     </div>
-                                )}
+                                )} */}
                             </div>
                             <div className="flex justify-end gap-3">
                                 <button

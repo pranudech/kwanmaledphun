@@ -21,17 +21,18 @@ import CMSkeleton from "@components/preloader/CMSkeleton";
 import MainImageServices from "@services/MainImageServices";
 import Cookies from "js-cookie";
 
-const Home = ({ popularProducts = [], discountProducts = [], attributes = [], mainImage = [] }) => {
+const Home = ({ popularProducts = [], discountProducts = [], attributes = [], mainImage = [], mainImageFilter = [] }) => {
 
   const router = useRouter();
   const { isLoading, setIsLoading } = useContext(SidebarContext);
   const { loading, error, storeCustomizationSetting: tempString } = useGetSetting();
   const storeCustomizationSetting = storeCustomization.setting;
-  
+
   useEffect(() => {
     if (router.asPath === "/") {
       setIsLoading(false);
-      if (mainImage.length > 0 && !Cookies.get('mainImage')) {
+      console.log(mainImageFilter)
+      if (mainImageFilter.length > 0 && !Cookies.get('mainImage')) {
         router.push('/landing');
       }
     } else {
@@ -263,6 +264,7 @@ export const getServerSideProps = async (context) => {
       // discountProducts: data.discountedProducts,
       cookies: cookies,
       mainImage: mainImage,
+      mainImageFilter: mainImageFilter,
     },
   };
 };
