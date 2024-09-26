@@ -12,7 +12,7 @@ import MobileFooter from "@layout/footer/MobileFooter";
 import FeatureCard from "@components/feature-card/FeatureCard";
 import Cookies from 'js-cookie';
 
-const Layout = ({ title, description, children, imagePreview }) => {
+const Layout = ({ title, description, children, imagePreview, isLayout = true }) => {
   const queryTime = new Date().getTime();
 
   const [cookieConsent, setCookieConsent] = useState(Cookies.get('consent') === 'true');
@@ -40,7 +40,10 @@ const Layout = ({ title, description, children, imagePreview }) => {
           <meta property="og:image:height" content="630"></meta>
           <meta property="og:url" content={`${process.env.NEXT_PUBLIC_URL}/logo.jpg`} />
           <meta property="og:image" content={`${imagePreview}`} />
-          <meta property="og:description" content={description} />
+          {/* <meta property="og:description" content={description} /> */}
+          <meta property="og:description" content={"ขวัญเมล็ดพันธุ์ โคราชเปิดให้บริการมาตั้งแต่ พ.ศ. 2543 จำหน่ายเมล็ดพันธุ์ผัก อาหารเสริมพืช สารป้องกันแมลง และปุ๋ยค้าปลีก-ส่ง สินค้าของเราคัดสรรมาอย่างดีเพื่อให้ได้คุณภาพและผลผลิตที่ดีที่สุดสำหรับพืชของคุณ ไม่ว่าคุณจะเป็นชาวสวนที่บ้านหรือเกษตรกรมืออาชีพ เรามีทุกสิ่งที่คุณต้องการเพื่อปลูกพืชที่แข็งแรงและให้ผลผลิตดี ช้อปกับเราและสัมผัสประสบการณ์ที่ดีที่สุดในผลิตภัณฑ์การเกษตรและการบริการลูกค้า"} />
+          <meta name="keywords" content={"ขวัญ, ขวัญเมล็ดพันธุ์โคราช, ขวัญเมล็ดพันธุ์, เมล็ดพันธุ์, การเกษตร, เกษตร, พริก, ข้าวโพด, ถั่ว, มัน, ปุ๋ย"} />
+
           <meta
             property="og:street-address"
             content="ขวัญเมล็ดพันธุ์ โคราช"
@@ -50,30 +53,50 @@ const Layout = ({ title, description, children, imagePreview }) => {
             content="ขวัญเมล็ดพันธุ์ โคราช"
           />
         </Head>
-        <NavBarTop />
-        <Navbar />
-        <div className="bg-gray-50">{children}</div>
-        <MobileFooter />
-        <div className="w-full">
-          <FooterTop />
-          <div className="hidden relative lg:block mx-auto max-w-screen-2xl py-6 px-3 sm:px-10">
-            <FeatureCard />
-          </div>
-          <hr className="hr-line"></hr>
-          <div className="border-t border-gray-100 w-full">
-            <Footer />
-          </div>
-        </div>
 
-        {!cookieConsent && (
-          <div className="z-20 fixed bottom-5 left-0 w-full h-10 bg-transparent flex justify-center items-center">
-            <p className="text-center text-[16px] text-white min-w-max  bg-emerald-500 rounded-lg p-2">
-              เราใช้คุกกี้เพื่อปรับปรุงประสบการณ์ของคุณบนเว็บไซต์นี้ คุณยินยอมให้เราใช้คุกกี้หรือไม่?
-              <button className="bg-white text-emerald-500 px-4 py-2 rounded-lg ml-4"
-                onClick={() => handleCookieConsent()}>ยินยอม</button>
-            </p>
+        {isLayout ? (
+          <>
+            <NavBarTop />
+            <Navbar />
+            <div className="bg-gray-50">{children}</div>
+
+            <MobileFooter />
+            <div className="w-full">
+              <FooterTop />
+              <div className="hidden relative lg:block mx-auto max-w-screen-2xl py-6 px-3 sm:px-10">
+                <FeatureCard />
+              </div>
+              <hr className="hr-line"></hr>
+              <div className="border-t border-gray-100 w-full">
+                <Footer />
+              </div>
+            </div>
+
+            {!cookieConsent && (
+              <div className="z-20 fixed bottom-5 left-0 w-full h-10 bg-transparent flex justify-center items-center">
+                <p className="text-center text-[16px] text-white min-w-max  bg-emerald-500 rounded-lg p-2">
+                  เราใช้คุกกี้เพื่อปรับปรุงประสบการณ์ของคุณบนเว็บไซต์นี้ คุณยินยอมให้เราใช้คุกกี้หรือไม่?
+                  <button className="bg-white text-emerald-500 px-4 py-2 rounded-lg ml-4"
+                    onClick={() => handleCookieConsent()}>ยินยอม</button>
+                </p>
+              </div>
+            )}
+          </>
+        ) : <>
+          <div className="bg-gray-50 h-[100vh]">{children}</div>
+          <MobileFooter />
+          <div className="w-full">
+            <FooterTop />
+            <div className="hidden relative lg:block mx-auto max-w-screen-2xl py-6 px-3 sm:px-10">
+              <FeatureCard />
+            </div>
+            <hr className="hr-line"></hr>
+            <div className="border-t border-gray-100 w-full">
+              <Footer />
+            </div>
           </div>
-        )}
+        </>}
+
       </div>
     </>
   );
