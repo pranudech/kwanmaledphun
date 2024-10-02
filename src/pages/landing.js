@@ -11,7 +11,7 @@ const Landing = ({ mainImage }) => {
                     <img
                         src={mainImage?.image_path}
                         alt="Landing Page Image"
-                        className="mb-6 rounded-lg w-[90%] h-[90%] object-cover md:object-contain"
+                        className="mb-6 rounded-lg w-[90%] h-[90%] object-contain"
                     />
                 ) : (
                     <div>No image found</div>
@@ -28,7 +28,9 @@ const Landing = ({ mainImage }) => {
                     </button>
                 </div>
             </div>
-            <div className='flex justify-center items-center mt-5'>ขวัญ, ขวัญเมล็ดพันธุ์โคราช, ขวัญเมล็ดพันธุ์, เมล็ดพันธุ์, การเกษตร, เกษตร, พริก, ข้าวโพด, ถั่ว, มัน, ปุ๋ย</div>
+            <div>
+                <div className='flex justify-center items-center mt-5'>ขวัญ, ขวัญเมล็ดพันธุ์โคราช, ขวัญเมล็ดพันธุ์, เมล็ดพันธุ์, การเกษตร, เกษตร, พริก, ข้าวโพด, ถั่ว, มัน, ปุ๋ย</div>
+            </div>
         </Layout>
     );
 };

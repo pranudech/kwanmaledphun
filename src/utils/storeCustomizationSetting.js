@@ -831,7 +831,7 @@ const storeCustomization = {
       social_pinterest: "",
       social_linkedin: "",
       social_whatsapp: "",
-      social_line: "https://line.me/ti/p/~@kwanmaledpunkorat",
+      social_line: "https://line.me/ti/p/maHkmTL_wW#~",
       social_shopee: "https://shp.ee/vrxzwgm",
       social_lazada: "https://s.lazada.co.th/s.cNV3L",
       social_line_shop: "https://shop.line.me/@226frbjs",
