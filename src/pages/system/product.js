@@ -196,6 +196,15 @@ const MyOrders = () => {
         })
     }
 
+    const handleDeleteProduct = async (product) => {
+        setIsLoading(true)
+        ProductServices.deleteProduct(product.product_id).then((res) => {
+            handleGetProductAll()
+        }).finally(() => {
+            setIsLoading(false)
+        })
+    }
+
 
     return (
         <>
