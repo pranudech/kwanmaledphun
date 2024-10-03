@@ -213,7 +213,7 @@ const storeCustomization = {
       },
       card_one_sub: {
         en: "Listed Products",
-        th: "สินค้าที่รายชื่อ",
+        th: "สินค้าที่สนใจสินค้าของเรา",
       },
       card_one_description: {
         en: "Dynamically morph team driven partnerships after vertical",

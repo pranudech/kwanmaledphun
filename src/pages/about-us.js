@@ -114,7 +114,7 @@ const AboutUs = () => {
             </div>
 
             <div className="mt-10 lg:mt-0">
-              <Image
+              {/* <Image
                 width={920}
                 height={750}
                 src={
@@ -122,7 +122,8 @@ const AboutUs = () => {
                   "/about-us.jpg"
                 }
                 alt="logo"
-              />
+              /> */}
+              <img src="/kwanmaledphun/about-us/top_img.png" className="" alt="Image 1" />
             </div>
           </div>
           <div className="mt-10 lg:mt-16 text-base opacity-90 leading-7">
@@ -145,7 +146,12 @@ const AboutUs = () => {
             </div>
           </div>
 
-          <div className="gallery mt-10 lg:mt-12">
+          <div className="mt-10 lg:mt-12">
+              <img src="/kwanmaledphun/about-us/bot_img.png" className="" alt="Image 1" />
+              {/* <img src="/kwanmaledphun/about-us/bot_img.png" className="" alt="Image 1" /> */}
+          </div>
+
+          {/* <div className="gallery mt-10 lg:mt-12">
             <figure className="gallery__item gallery__item--1">
               <img src="/kwanmaledphun/about-us/0.jpeg" className="gallery__img" alt="Image 1" />
             </figure>
@@ -167,9 +173,9 @@ const AboutUs = () => {
             <figure className="gallery__item gallery__item--7">
               <img src="/kwanmaledphun/about-us/5.jpeg" className="gallery__img" alt="Image 6" />
             </figure>
-          </div>
+          </div> */}
 
-          <div className="mt-10 lg:mt-12 flex flex-col sm:grid gap-4">
+          {/* <div className="mt-10 lg:mt-12 flex flex-col sm:grid gap-4">
             <Image
               width={1920}
               height={570}
@@ -180,7 +186,7 @@ const AboutUs = () => {
               alt="logo"
               className="block rounded-lg"
             />
-          </div>
+          </div> */}
 
         </div>
 
