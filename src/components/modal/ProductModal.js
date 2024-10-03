@@ -221,7 +221,7 @@ const ProductModal = ({
       <MainModal modalOpen={modalOpen} setModalOpen={setModalOpen}>
         <div className="inline-block overflow-y-auto h-full align-middle transition-all transform bg-white shadow-xl rounded-2xl !focus:outline-none">
           <div className="flex flex-col lg:flex-row md:flex-row w-full max-w-4xl overflow-hidden">
-            <Link href={`/product/${product.product_id}`} passHref>
+            <Link href={`/product/${product.product_name}/${product.product_id}`} passHref>
               <div
                 onClick={() => setModalOpen(false)}
                 className="flex-shrink-0 flex items-center justify-center h-auto cursor-pointer p-3"
@@ -245,7 +245,7 @@ const ProductModal = ({
 
             <div className="w-full flex flex-col p-5 md:p-8 text-left">
               <div className="mb-2 md:mb-2.5 block -mt-1.5">
-                <Link href={`/product/${product.product_id}`} passHref>
+                <Link href={`/product/${product.product_name}/${product.product_id}`} passHref>
                   <h1
                     onClick={() => setModalOpen(false)}
                     className="text-heading text-lg md:text-xl lg:text-2xl font-semibold font-serif hover:text-black cursor-pointer"

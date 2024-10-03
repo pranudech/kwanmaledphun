@@ -6,9 +6,7 @@ export default async function handler(req, res) {
     try {
         const promisePool = mysqlPool.promise()
         const [rows, fields] = await promisePool.query(
-            `
-            DELETE FROM product WHERE product_id = ?
-            `,
+            `DELETE FROM product WHERE product_id = ?`,
             [parseInt(product_id)]
         )
         return res.status(200).json(rows);

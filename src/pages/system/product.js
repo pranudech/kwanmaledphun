@@ -17,6 +17,7 @@ import UploadFileService from "@services/UploadFileService";
 import AttributeServices from "@services/AttributeServices";
 import CompanyServices from "@services/CompanyServices";
 import CategoryServices from "@services/CategoryServices";
+import { dialog } from "@components/sweetalert2";
 
 const MyOrders = () => {
     const { currentPage, handleChangePage, isLoading, setIsLoading } = useContext(SidebarContext);
@@ -197,11 +198,19 @@ const MyOrders = () => {
     }
 
     const handleDeleteProduct = async (product) => {
-        setIsLoading(true)
-        ProductServices.deleteProduct(product.product_id).then((res) => {
-            handleGetProductAll()
-        }).finally(() => {
-            setIsLoading(false)
+        console.log('product', product)
+        dialog.showModalWarning({
+            title: "ลบสินค้า",
+            message: "คุณต้องการลบสินค้านี้ใช่หรือไม่?",
+            icon: "warning",
+            textSubmit: "ลบ",
+            textCancel: "ยกเลิก",
+            classNameBTN: "flex justify-center gap-3 mt-2",
+            onSubmit: () => {
+                ProductServices.deleteProduct({ product_id: product.product_id }).then((res) => {
+                    handleGetProductAll()
+                })
+            },
         })
     }
 

@@ -8,6 +8,7 @@ export default async function handler(req, res) {
         const [rows, fields] = await promisePool.query(
             `
         SELECT 
+        p.product_id,
         pt.type_id,
         pt.type_name,
         ps.subtype_id,
