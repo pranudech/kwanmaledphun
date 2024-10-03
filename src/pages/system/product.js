@@ -493,12 +493,19 @@ const MyOrders = () => {
                                 </div>
                                 <div className="w-full">
                                     <h1 className="mb-2">ขนาด</h1>
-                                    <select className="rounded-md w-full border-gray-300" value={objectForm.size_product} onChange={(e) => setObjectForm({ ...objectForm, size_product: e.target.value })}>
+                                    {/* <select className="rounded-md w-full border-gray-300" value={objectForm.size_product} onChange={(e) => setObjectForm({ ...objectForm, size_product: e.target.value })}>
                                         <option value="ไม่ระบุ">ไม่ระบุ</option>
                                         <option value="ขนาดเล็ก">ขนาดเล็ก</option>
                                         <option value="ขนาดกลาง">ขนาดกลาง</option>
                                         <option value="ขนาดใหญ่">ขนาดใหญ่</option>
-                                    </select>
+                                    </select> */}
+                                    <input
+                                        type="text"
+                                        placeholder="ขนาดสินค้า"
+                                        className="rounded-md w-full border-gray-300"
+                                        value={objectForm.size_product}
+                                        onChange={(e) => setObjectForm({ ...objectForm, size_product: e.target.value })}
+                                    />
                                 </div>
                             </div>
                             <div className="flex gap-3 w-full mb-3">
