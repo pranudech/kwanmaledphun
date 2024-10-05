@@ -231,7 +231,7 @@ const ProductModal = ({
                   <img
                     src={product.product_image1}
                     alt="product"
-                    className="aspect-[1/1] w-full h-full object-cover"
+                    className="hover:scale-105 transition-all duration-300"
                   />
                 ) : (
                   <img

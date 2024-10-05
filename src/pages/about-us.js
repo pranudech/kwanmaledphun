@@ -138,9 +138,7 @@ const AboutUs = () => {
             </p>
             <div>
               <div>shopee: <a className="text-emerald-500 hover:underline" href="https://shp.ee/vrxzwgm">https://shp.ee/vrxzwgm</a></div>
-              <div>Lazada: <a className="text-emerald-500 hover:underline" href="https://s.lazada.co.th/s.cNV3L">https://s.lazada.co.th/s.cNV3L</a></div>
               <div>ไลน์แอด: <a className="text-emerald-500 hover:underline" href="https://lin.ee/4fdekh7M1">https://lin.ee/4fdekh7M1</a></div>
-              <div>my shop : <a className="text-emerald-500 hover:underline" href="https://shop.line.me/@226frbjs">https://shop.line.me/@226frbjs</a></div>
               <div>หน้าเพจ facebook : <a className="text-emerald-500 hover:underline" href="https://www.facebook.com/kwanseed">https://www.facebook.com/kwanseed</a></div>
               <div>และหน้าเว็บไซต์ ลูกค้าสามารถเลือกหาซื้อสินค้าได้ตามความสะดวกของลูกค้า และสารมารถติดต่อโดยตรงได้ที่เบอร์ 044-372371</div>
             </div>

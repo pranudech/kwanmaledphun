@@ -39,7 +39,7 @@ const ImageCarousel = ({ images, handleChangeImage }) => {
         // navigation={true}
         // allowTouchMove={false}
         loop={true}
-        slidesPerView={3}
+        slidesPerView={images.length}
         // breakpoints={{
         //   // when window width is >= 640px
         //   375: {
@@ -89,7 +89,7 @@ const ImageCarousel = ({ images, handleChangeImage }) => {
         {images?.map((img, i) => (
           <SwiperSlide key={i + 1} className="group">
             <button onClick={() => handleChangeImage(img)}>
-              <Image
+              <img
                 className=""
                 src={img}
                 alt="product"

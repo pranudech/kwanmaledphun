@@ -216,6 +216,7 @@ const ProductScreen = ({ product, attributes, relatedProducts }) => {
   };
 
   const handleChangeImage = (img) => {
+    console.log('img', img)
     setImg(img);
   };
 
@@ -230,7 +231,7 @@ const ProductScreen = ({ product, attributes, relatedProducts }) => {
       ) : (
         <Layout
           title={product?.product_name}
-          description={product.detail}
+          description={`${product?.product_name} - ${product.detail}`}
           imagePreview={product.product_image1}
         >
           <div className="px-0 py-10 lg:py-10">
@@ -271,32 +272,50 @@ const ProductScreen = ({ product, attributes, relatedProducts }) => {
                   <div className="flex-shrink-0 xl:pr-10 lg:block w-full mx-auto md:w-6/12 lg:w-5/12 xl:w-4/12">
                     {/* <Discount slug product={product} discount={discount} /> */}
 
-                    {product.product_image1 ? (
-                      <img
-                        src={product.product_image1}
-                        alt="product"
-                        className="rounded-lg"
-                        onError={(e) => {
-                          e.target.onerror = null;
-                          e.target.src = "https://res.cloudinary.com/ahossain/image/upload/v1655097002/placeholder_kvepfp.png";
-                        }}
-                      />
-                    ) : (
-                      <img
-                        src="https://res.cloudinary.com/ahossain/image/upload/v1655097002/placeholder_kvepfp.png"
-                        alt="product Image"
-                        className="aspect-[1/1] w-full h-full object-cover min-w-[420px] max-w-[420px]"
-                      />
-                    )}
+                    {product.product_image1 !== "" ?
+                      <>
+                        {img !== "" ?
+                          <img
+                            src={img}
+                            alt="product"
+                            className="rounded-lg"
+                          />
+                          :
+                          <img
+                            src={product.product_image1}
+                            alt="product"
+                            className="rounded-lg"
+                          />
+                        }
+                      </>
+                      : (
+                        <img
+                          src="https://res.cloudinary.com/ahossain/image/upload/v1655097002/placeholder_kvepfp.png"
+                          alt="product Image"
+                          className="aspect-[1/1] w-full h-full object-cover min-w-[420px] max-w-[420px]"
+                        />
+                      )}
 
-                    {product?.images?.length > 1 && (
+                    {/* {product?.images?.length > 1 && (
                       <div className="flex flex-row flex-wrap mt-5 ">
                         <ImageCarousel
                           images={product.images}
                           handleChangeImage={handleChangeImage}
                         />
                       </div>
-                    )}
+                    )} */}
+
+                    <div className="flex flex-row flex-wrap mt-5 justify-center ">
+                      {product?.images?.map((image, index) => (
+                        <img
+                          key={index}
+                          src={image}
+                          alt="product"
+                          className="rounded-lg w-1/3 cursor-pointer hover:opacity-80 hover:shadow-lg hover:scale-105 transition-all duration-300"
+                          onClick={() => handleChangeImage(image)}
+                        />
+                      ))}
+                    </div>
                   </div>
 
                   <div className="w-full">
