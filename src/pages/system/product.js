@@ -312,25 +312,25 @@ const MyOrders = () => {
                                                     <tr className="bg-gray-100">
                                                         <th
                                                             scope="col"
-                                                            className="text-center font-serif font-semibold px-6 py-2 text-gray-700 uppercase tracking-wider"
+                                                            className="text-start font-serif font-semibold px-6 py-2 text-gray-700 uppercase tracking-wider"
                                                         >
                                                             ชื่อสินค้า
                                                         </th>
                                                         <th
                                                             scope="col"
-                                                            className="text-center font-serif font-semibold px-6 py-2 text-gray-700 uppercase tracking-wider"
+                                                            className="text-start font-serif font-semibold px-6 py-2 text-gray-700 uppercase tracking-wider"
                                                         >
                                                             บริษัท
                                                         </th>
                                                         <th
                                                             scope="col"
-                                                            className="text-center font-serif font-semibold px-6 py-2 text-gray-700 uppercase tracking-wider"
+                                                            className="text-start font-serif font-semibold px-6 py-2 text-gray-700 uppercase tracking-wider"
                                                         >
                                                             ประเภทสินค้าหลัก
                                                         </th>
                                                         <th
                                                             scope="col"
-                                                            className="text-center font-serif font-semibold px-6 py-2 text-gray-700 uppercase tracking-wider"
+                                                            className="text-start font-serif font-semibold px-6 py-2 text-gray-700 uppercase tracking-wider"
                                                         >
                                                             ประเภทสินค้าย่อย
                                                         </th>
@@ -354,7 +354,7 @@ const MyOrders = () => {
                                                                             handleGetSubType(item.type_id)
                                                                         }}
                                                                     >
-                                                                        <div className="flex items-center gap-2 p-2">
+                                                                        <div className="flex items-start gap-2 p-2">
                                                                             <img
                                                                                 src={item.product_image1}
                                                                                 alt=""
