@@ -18,7 +18,7 @@ const SettingServices = {
       "stripe_key": "pk_test_51LQ2dqDf1en3BVypHlwhsxEYZcS10IwF1opyxTlWGagpm31vVj828k11tngDtWVDNyVjm58PVndfst9jMWfxuo0K00oZr2ynGW",
       "stripe_secret": "sk_test_51LQ2dqDf1en3BVypcgtm02Z6gIkQMnOW0wCubWnzmHzjlMLfhVOpC9xQHR1gMuBJh3NkDUUW81rlHepwNIbq6QoT00KnUhG1Zq",
       "stripe_status": true,
-      "meta_url": "https://kachabazar-store-nine.vercel.app/",
+      "meta_url": "https://kwanmaledphun.com/",
       "tawk_chat_property_id": "6561938eda19b36217909d53",
       "tawk_chat_status": false,
       "tawk_chat_widget_id": "1hg2igpsn",

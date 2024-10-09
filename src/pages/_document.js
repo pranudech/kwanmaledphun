@@ -17,12 +17,17 @@ class MyDocument extends Document {
     return (
       <Html lang="th">
         <Head>
-          <meta property="og:title" content={"ขวัญเมล็ดพันธุ์โคราช"} />
-          <meta property="og:type" content="eCommerce Website" />
-          <meta property="og:description" content={setting?.meta_description || "ขวัญเมล็ดพันธุ์ โคราชเปิดให้บริการมาตั้งแต่ พ.ศ. 2543 จำหน่ายเมล็ดพันธุ์ผัก อาหารเสริมพืช สารป้องกันแมลง และปุ๋ยค้าปลีก-ส่ง สินค้าของเราคัดสรรมาอย่างดีเพื่อให้ได้คุณภาพและผลผลิตที่ดีที่สุดสำหรับพืชของคุณ ไม่ว่าคุณจะเป็นชาวสวนที่บ้านหรือเกษตรกรมืออาชีพ เรามีทุกสิ่งที่คุณต้องการเพื่อปลูกพืชที่แข็งแรงและให้ผลผลิตดี ช้อปกับเราและสัมผัสประสบการณ์ที่ดีที่สุดในผลิตภัณฑ์การเกษตรและการบริการลูกค้า"} />
+          <meta charSet="utf-8" />
+          <meta httpEquiv="X-UA-Compatible" content="IE=edge,chrome=1" />
           <meta name="keywords" content={setting?.meta_keywords || "ขวัญ, ขวัญเมล็ดพันธุ์โคราช, ขวัญเมล็ดพันธุ์, เมล็ดพันธุ์, การเกษตร, เกษตร, พริก, ข้าวโพด, ถั่ว, มัน, ปุ๋ย"} />
-          <meta property="og:url" content={process.env.NEXT_PUBLIC_URL} />
-          <meta property="og:image" content={`${process.env.NEXT_PUBLIC_URL}/logo.png`} />
+          {/* <meta property="og:title" content={"ขวัญเมล็ดพันธุ์โคราช"} /> */}
+          {/* <meta property="og:type" content="website" /> */}
+          {/* <meta property="og:description" content={`${setting?.meta_description || `ยินดีต้อนรับสู่ ขวัญเมล็ดพันธุ์
+            ขวัญเมล็ดพันธุ์ เปิดให้บริการ มาไม่ต่ำกว่า 30ปี โดยการเริ่มต้น ธุรกิจมาจากเมล็ดพันธุ์ โดย คุณไพบูลย์ สินอนันต์จินดาและได้เข้ามาเริ่มต้นธุรกิจ ในจังหวัด นครราชสีมา โดยเริ่ม 
+            ที่ตลาดกลางสุรนารี   
+            จำหน่าย สินค้า เมล็ดพันธุ์ผัก อาหารเสริมพืช สารป้องเชื้อราพืชและแมลง ปุ๋ย อุปกรณ์เพาะปลูก ค้าปลีก-ค้าส่ง สินค้าเราคัดสรรคมาอย่างดีมีคุณภาพ ครองใจเกษตกรมาอย่างยาวนาน และเป็นที่รู้จักโดยทั่วไป โดย คำมั่นของทางขวัญเมล็ดพันธุ์ นั้นคือ “เมื่อคุณมั่นใจ เราพร้อมบริการ”`}`} /> */}
+          {/* <meta property="og:url" content={process.env.NEXT_PUBLIC_URL} /> */}
+          {/* <meta property="og:image" content={`${process.env.NEXT_PUBLIC_URL}/logo.png`} /> */}
         </Head>
         <body>
           <Main />

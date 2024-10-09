@@ -74,7 +74,7 @@ function MyApp({ Component, pageProps }) {
               <SidebarProvider>
                 {/* <Elements stripe={stripePromise}> */}
                 {/* <CartProvider> */}
-                <DefaultSeo />
+                {/* <DefaultSeo /> */}
                 <Component {...pageProps} />
                 {/* </CartProvider> */}
                 {/* </Elements> */}

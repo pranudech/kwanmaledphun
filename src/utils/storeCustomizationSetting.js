@@ -204,8 +204,13 @@ const storeCustomization = {
         th: "ยินดีต้อนรับสู่ร้านค้าของเรา",
       },
       top_description: {
-        en: "Kwan Seed Korat has been serving since 2000, offering a wide range of vegetable seeds, plant supplements, insect repellents, and fertilizers for both retail and wholesale. Our products are carefully selected to ensure the highest quality and yield for your crops. Whether you are a home gardener or a professional farmer, we have everything you need to grow healthy and productive plants. Shop with us and experience the best in agricultural products and customer service. ",
-        th: "ขวัญเมล็ดพันธุ์ โคราชเปิดให้บริการมาตั้งแต่ พ.ศ. 2543 จำหน่ายเมล็ดพันธุ์ผัก อาหารเสริมพืช สารป้องกันแมลง และปุ๋ยค้าปลีก-ส่ง สินค้าของเราคัดสรรมาอย่างดีเพื่อให้ได้คุณภาพและผลผลิตที่ดีที่สุดสำหรับพืชของคุณ ไม่ว่าคุณจะเป็นชาวสวนที่บ้านหรือเกษตรกรมืออาชีพ เรามีทุกสิ่งที่คุณต้องการเพื่อปลูกพืชที่แข็งแรงและให้ผลผลิตดี ช้อปกับเราและสัมผัสประสบการณ์ที่ดีที่สุดในผลิตภัณฑ์การเกษตรและการบริการลูกค้า",
+        en: `Welcome to Kwanmaledphun
+            Kwanmaledphun has been in operation for no less than 30 years, starting the business with seeds by Mr. Paiboon Sinanunthinjinda, who began the business in Nakhon Ratchasima province, starting at the Suranaree Central Market. 
+            We sell vegetable seeds, plant supplements, fungicides, insecticides, fertilizers, and planting equipment, both retail and wholesale. Our products are carefully selected for quality, winning the hearts of farmers for a long time and being widely recognized. The promise of Kwanmaledphun is, "When you are confident, we are ready to serve."`,
+        th: `ยินดีต้อนรับสู่ ขวัญเมล็ดพันธุ์
+            ขวัญเมล็ดพันธุ์ เปิดให้บริการ มาไม่ต่ำกว่า 30ปี โดยการเริ่มต้น ธุรกิจมาจากเมล็ดพันธุ์ โดย คุณไพบูลย์ สินอนันต์จินดาและได้เข้ามาเริ่มต้นธุรกิจ ในจังหวัด นครราชสีมา โดยเริ่ม 
+            ที่ตลาดกลางสุรนารี   
+            จำหน่าย สินค้า เมล็ดพันธุ์ผัก อาหารเสริมพืช สารป้องเชื้อราพืชและแมลง ปุ๋ย อุปกรณ์เพาะปลูก ค้าปลีก-ค้าส่ง สินค้าเราคัดสรรคมาอย่างดีมีคุณภาพ ครองใจเกษตกรมาอย่างยาวนาน และเป็นที่รู้จักโดยทั่วไป โดย คำมั่นของทางขวัญเมล็ดพันธุ์ นั้นคือ “เมื่อคุณมั่นใจ เราพร้อมบริการ”`,
       },
       card_one_title: {
         en: "17K+ Followers",

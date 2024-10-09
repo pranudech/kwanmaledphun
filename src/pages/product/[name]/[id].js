@@ -521,12 +521,28 @@ const ProductScreen = ({ product, attributes, relatedProducts }) => {
                             </p>
                             <ul className="flex mt-4">
                               <li className="flex items-center text-center border border-gray-100 rounded-full hover:bg-emerald-500  mr-2 transition ease-in-out duration-500">
-                                <FacebookShareButton
+                                {/* <FacebookShareButton
                                   url={`https://kwanmaledphun.com/product/${product.product_name}/${product.product_id}`}
                                   quote=""
                                 >
                                   <FacebookIcon size={32} round />
-                                </FacebookShareButton>
+                                </FacebookShareButton> */}
+                                <a
+                                  href={`http://www.facebook.com/sharer.php?u=https://kwanmaledphun.com/product/${product.product_name}/${product.product_id}`}
+                                  target="_blank"
+                                  className=""
+                                >
+                                  <FacebookIcon size={32} round />
+                                </a>
+                              </li>
+                              <li className="flex items-center text-center border border-gray-100 rounded-full hover:bg-emerald-500  mr-2 transition ease-in-out duration-500">
+                                <a
+                                  href={`https://lineit.line.me/share/ui?url=https://kwanmaledphun.com/product/${product.product_name}/${product.product_id}`}
+                                  target="_blank"
+                                  className=""
+                                >
+                                  <LineIcon size={34} round />
+                                </a>
                               </li>
                               {/* <li className="flex items-center text-center border border-gray-100 rounded-full hover:bg-emerald-500  mr-2 transition ease-in-out duration-500">
                                 <TwitterShareButton
