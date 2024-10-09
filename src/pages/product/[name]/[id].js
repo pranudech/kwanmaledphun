@@ -6,6 +6,7 @@ import { useContext, useEffect, useState } from "react";
 import { FiChevronRight, FiMinus, FiPlus } from "react-icons/fi";
 import {
   FacebookIcon,
+  LineIcon,
   FacebookShareButton,
   LinkedinIcon,
   LinkedinShareButton,
