@@ -139,9 +139,9 @@ const AboutUs = () => {
               />
             </p>
             <div>
-              <div><img className="min-w-[34px] mx-2" src="/kwanmaledphun/icon/shopee.png" alt="shopee" width={34} height={34} /><a className="text-emerald-500 hover:underline" href="https://shp.ee/vrxzwgm">https://shp.ee/vrxzwgm</a></div>
-              <div><LineIcon className="mx-2" size={34} round /> <a className="text-emerald-500 hover:underline" href="https://lin.ee/4fdekh7M1">https://lin.ee/4fdekh7M1</a></div>
-              <div><FacebookIcon className="mx-2" size={34} round /> <a className="text-emerald-500 hover:underline" href="https://www.facebook.com/kwanseed">https://www.facebook.com/kwanseed</a></div>
+              <div className="flex items-center"><img className="min-w-[34px] mx-2" src="/kwanmaledphun/icon/shopee.png" alt="shopee" width={34} height={34} /><a className="text-emerald-500 hover:underline" href="https://shp.ee/vrxzwgm">https://shp.ee/vrxzwgm</a></div>
+              <div className="flex items-center"><LineIcon className="mx-2" size={34} round /> <a className="text-emerald-500 hover:underline" href="https://lin.ee/4fdekh7M1">https://lin.ee/4fdekh7M1</a></div>
+              <div className="flex items-center"><FacebookIcon className="mx-2" size={34} round /> <a className="text-emerald-500 hover:underline" href="https://www.facebook.com/kwanseed">https://www.facebook.com/kwanseed</a></div>
               <div>และหน้าเว็บไซต์ ลูกค้าสามารถเลือกหาซื้อสินค้าได้ตามความสะดวกของลูกค้า และสารมารถติดต่อโดยตรงได้ที่เบอร์ 044-372371</div>
             </div>
           </div>
