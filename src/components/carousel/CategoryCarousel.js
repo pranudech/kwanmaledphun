@@ -14,7 +14,7 @@ import { SidebarContext } from "@context/SidebarContext";
 import CategoryServices from "@services/CategoryServices";
 import useUtilsFunction from "@hooks/useUtilsFunction";
 
-const CategoryCarousel = ({ subtypeList, type_id }) => {
+const CategoryCarousel = ({ subtypeList, type_id, category }) => {
   const router = useRouter();
 
   const prevRef = useRef(null);
@@ -41,7 +41,7 @@ const CategoryCarousel = ({ subtypeList, type_id }) => {
         }}
         spaceBetween={8}
         navigation={true}
-        allowTouchMove={false}
+        allowTouchMove={true}
         // loop={data?.length > 6}
         breakpoints={{
           // when window width is >= 640px
@@ -89,22 +89,21 @@ const CategoryCarousel = ({ subtypeList, type_id }) => {
         modules={[Navigation]}
         className="mySwiper category-slider my-10"
       >
-        <div>
-          {data?.map((category, i) => {
-            // console.log(category);
+        <div className="">
+          {data?.map((list, i) => {
             return (
-              <SwiperSlide key={i + category?.subtype_id} className="group">
+              <SwiperSlide key={i + list?.subtype_id} className="group">
                 <div
                   onClick={() =>
-                    handleCategoryClick(category?.subtype_id, category.subtype_name)
+                    handleCategoryClick(list?.subtype_id, list.subtype_name)
                   }
-                  className="text-center cursor-pointer p-3 bg-white rounded-lg"
+                  className={`text-center cursor-pointer p-3 bg-white rounded-lg ${category === list.subtype_name ? 'border-emerald-500 border-2' : ''}`}
                 >
                   <div className="bg-white p-2 mx-auto w-[60px] h-[60px] rounded-full shadow-md flex justify-center items-center">
                     <div className="relative">
                       <img
-                        src={category?.icon || "https://res.cloudinary.com/ahossain/image/upload/v1655097002/placeholder_kvepfp.png"}
-                        alt="category"
+                        src={list?.icon || "https://res.cloudinary.com/ahossain/image/upload/v1655097002/placeholder_kvepfp.png"}
+                        alt="list"
                         className="object-fill w-[35px] h-[35px]"
                         onError={(e) => {
                           e.target.onerror = null;
@@ -115,7 +114,7 @@ const CategoryCarousel = ({ subtypeList, type_id }) => {
                   </div>
 
                   <h3 className="text-[16px] font-semibold text-gray-600 mt-2 group-hover:text-emerald-500 line-clamp-1">
-                    {category.subtype_name}
+                    {list.subtype_name}
                   </h3>
                 </div>
               </SwiperSlide>
@@ -123,12 +122,13 @@ const CategoryCarousel = ({ subtypeList, type_id }) => {
           })}
         </div>
 
-        <button ref={prevRef} className="prev">
+        <button ref={prevRef} className="prev mt-10">
           <IoChevronBackOutline />
         </button>
-        <button ref={nextRef} className="next">
+        <button ref={nextRef} className="next mt-10">
           <IoChevronForward />
         </button>
+
       </Swiper>
     </>
   );

@@ -40,6 +40,7 @@ const Search = ({ products, attributes, type_name, type_id, subtypeList, query, 
               <CategoryCarousel
                 subtypeList={subtypeList}
                 type_id={type_id}
+                category={category}
               />
               {/* </div> */}
               {productData?.length === 0 ? (
@@ -98,7 +99,7 @@ const Search = ({ products, attributes, type_name, type_id, subtypeList, query, 
 
                   {productData?.length > visibleProduct && (
                     <button
-                      onClick={() => setVisibleProduct((pre) => pre + 10)}
+                      onClick={() => setVisibleProduct((pre) => pre + 12)}
                       className="w-auto mx-auto md:text-sm leading-5 flex items-center transition ease-in-out duration-300 font-medium text-center justify-center border-0 border-transparent rounded-md focus-visible:outline-none focus:outline-none bg-indigo-100 text-gray-700 px-5 md:px-6 lg:px-8 py-2 md:py-3 lg:py-3 hover:text-white hover:bg-emerald-600 h-12 mt-6 text-sm lg:text-sm"
                     >
                       {t("common:loadMoreBtn")}

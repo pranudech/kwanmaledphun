@@ -362,6 +362,7 @@ const MyOrders = () => {
                                                                                 onError={(e) => {
                                                                                     e.target.src = "https://res.cloudinary.com/ahossain/image/upload/v1655097002/placeholder_kvepfp.png"
                                                                                 }}
+                                                                                loading="lazy"
                                                                             />
                                                                             <div>{item.product_name}</div>
                                                                         </div>
