@@ -208,7 +208,7 @@ const storeCustomization = {
             Kwanmaledphun has been in operation for no less than 30 years, starting the business with seeds by Mr. Paiboon Sinanunthinjinda, who began the business in Nakhon Ratchasima province, starting at the Suranaree Central Market. 
             We sell vegetable seeds, plant supplements, fungicides, insecticides, fertilizers, and planting equipment, both retail and wholesale. Our products are carefully selected for quality, winning the hearts of farmers for a long time and being widely recognized. The promise of Kwanmaledphun is, "When you are confident, we are ready to serve."`,
         th: `ยินดีต้อนรับสู่ ขวัญเมล็ดพันธุ์
-            ขวัญเมล็ดพันธุ์ เปิดให้บริการ มาไม่ต่ำกว่า 30ปี โดยการเริ่มต้น ธุรกิจมาจากเมล็ดพันธุ์ โดย คุณไพบูลย์ สินอนันต์จินดาและได้เข้ามาเริ่มต้นธุรกิจ ในจังหวัด นครราชสีมา โดยเริ่ม 
+            ขวัญเมล็ดพันธุ์ เปิดให้บริการ มาไม่ต่ำกว่า 20ปี โดยการเริ่มต้น ธุรกิจมาจากเมล็ดพันธุ์ โดย คุณไพบูลย์ สินอนันต์จินดาและได้เข้ามาเริ่มต้นธุรกิจ ในจังหวัด นครราชสีมา โดยเริ่ม 
             ที่ตลาดกลางสุรนารี   
             จำหน่าย สินค้า เมล็ดพันธุ์ผัก อาหารเสริมพืช สารป้องเชื้อราพืชและแมลง ปุ๋ย อุปกรณ์เพาะปลูก ค้าปลีก-ค้าส่ง สินค้าเราคัดสรรคมาอย่างดีมีคุณภาพ ครองใจเกษตกรมาอย่างยาวนาน และเป็นที่รู้จักโดยทั่วไป โดย คำมั่นของทางขวัญเมล็ดพันธุ์ นั้นคือ “เมื่อคุณมั่นใจ เราพร้อมบริการ”`,
       },
