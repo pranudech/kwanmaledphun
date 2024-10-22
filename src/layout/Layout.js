@@ -76,8 +76,7 @@ const Layout = ({ title, description, children, imagePreview, isLayout = true })
           </>
         ) : <>
           <div className="bg-gray-50 h-[100vh]">{children}</div>
-          {/* <MobileFooter /> */}
-          <div className="w-full">
+          {/* <div className="w-full">
             <FooterTop />
             <div className="hidden relative lg:block mx-auto max-w-screen-2xl py-6 px-3 sm:px-10">
               <FeatureCard />
@@ -86,7 +85,7 @@ const Layout = ({ title, description, children, imagePreview, isLayout = true })
             <div className="border-t border-gray-100 w-full">
               <Footer />
             </div>
-          </div>
+          </div> */}
         </>}
 
       </div>
