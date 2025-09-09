@@ -17,24 +17,22 @@ services:
     networks:
       - proxy
 
-  # Let's Encrypt companion
   letsencrypt:
     image: nginxproxy/acme-companion
     container_name: nginx-letsencrypt
     restart: unless-stopped
+    environment:
+      - DEFAULT_EMAIL=pranudech@gmail.com
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./nginx/certs:/etc/nginx/certs
       - ./nginx/vhost.d:/etc/nginx/vhost.d
       - ./nginx/html:/usr/share/nginx/html
-    environment:
-      - DEFAULT_EMAIL=your@email.com
     depends_on:
       - nginx-proxy
     networks:
       - proxy
 
-  # Next.js App
   web:
     build:
       context: .
@@ -48,6 +46,22 @@ services:
       - NODE_ENV=production
     expose:
       - "3000"
+    networks:
+      - proxy
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-db
+    restart: unless-stopped
+    ports:
+      - "3306:3306"   # เปิดให้เชื่อมต่อจากภายนอก
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword123
+      MYSQL_DATABASE: mydb
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: mypassword
+    volumes:
+      - ./mysql/data:/var/lib/mysql
     networks:
       - proxy
 
