@@ -104,7 +104,7 @@ export const getDynamicAuthOptions = async () => {
         return url.startsWith(baseUrl) ? url : `${baseUrl}/user/dashboard`;
       },
     },
-    secret: process.env.NEXTAUTH_SECRET,
+    secret: process.env.NEXTAUTH_SECRET || "LJyA/lAgrd1LuIoizDs3gWVRSxirO8eSvkTVN40KBIc=",
   };
 
   return authOptions;

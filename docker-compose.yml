@@ -61,6 +61,8 @@ services:
       - DB_USER=kwanmxwf_main
       - DB_PASSWORD=yourpassword
       - DB_NAME=kwanmxwf_main
+      - NEXTAUTH_URL=https://www.kwanmaledphun.com
+      - NEXTAUTH_SECRET=LJyA/lAgrd1LuIoizDs3gWVRSxirO8eSvkTVN40KBIc=
     expose:
       - "3000"
     depends_on:
