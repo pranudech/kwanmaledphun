@@ -1,7 +1,6 @@
-version: '3.8'
+version: "3.8"
 
 services:
-  # Reverse Proxy
   nginx-proxy:
     image: jwilder/nginx-proxy:alpine
     container_name: nginx-proxy
@@ -10,61 +9,59 @@ services:
       - "80:80"
       - "443:443"
     volumes:
+      - ./certs:/etc/nginx/certs:ro
+      - ./vhost.d:/etc/nginx/vhost.d
+      - ./html:/usr/share/nginx/html
       - /var/run/docker.sock:/tmp/docker.sock:ro
-      - ./nginx/certs:/etc/nginx/certs
-      - ./nginx/vhost.d:/etc/nginx/vhost.d
-      - ./nginx/html:/usr/share/nginx/html
     networks:
-      - proxy
+      - proxy-tier
 
-  letsencrypt:
+  nginx-letsencrypt:
     image: nginxproxy/acme-companion
     container_name: nginx-letsencrypt
     restart: unless-stopped
     environment:
-      - DEFAULT_EMAIL=pranudech@gmail.com
+      - NGINX_PROXY_CONTAINER=nginx-proxy
     volumes:
+      - ./certs:/etc/nginx/certs
+      - ./vhost.d:/etc/nginx/vhost.d
+      - ./html:/usr/share/nginx/html
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - ./nginx/certs:/etc/nginx/certs
-      - ./nginx/vhost.d:/etc/nginx/vhost.d
-      - ./nginx/html:/usr/share/nginx/html
-    depends_on:
-      - nginx-proxy
     networks:
-      - proxy
+      - proxy-tier
 
-  web:
-    build:
-      context: .
-      dockerfile: Dockerfile
+  mysql-db:
+    image: mysql:8.0
+    container_name: mysql-db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: P7CcI[T~k)i8
+      MYSQL_DATABASE: kwanmxwf_main
+      MYSQL_USER: kwanmxwf_main
+      MYSQL_PASSWORD: P7CcI[T~k)i8
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - proxy-tier
+
+  nextjs-app:
+    image: web-web
     container_name: nextjs-app
     restart: unless-stopped
     environment:
       - VIRTUAL_HOST=kwanmaledphun.com
       - LETSENCRYPT_HOST=kwanmaledphun.com
       - LETSENCRYPT_EMAIL=pranudech@gmail.com
-      - NODE_ENV=production
     expose:
       - "3000"
     networks:
-      - proxy
+      - proxy-tier
 
-  mysql:
-    image: mysql:8.0
-    container_name: mysql-db
-    restart: unless-stopped
-    ports:
-      - "3306:3306"   # เปิดให้เชื่อมต่อจากภายนอก
-    environment:
-      MYSQL_ROOT_PASSWORD: rootpassword123
-      MYSQL_DATABASE: mydb
-      MYSQL_USER: myuser
-      MYSQL_PASSWORD: mypassword
-    volumes:
-      - ./mysql/data:/var/lib/mysql
-    networks:
-      - proxy
+volumes:
+  db_data:
 
 networks:
-  proxy:
-    external: false
+  proxy-tier:
+    driver: bridge
