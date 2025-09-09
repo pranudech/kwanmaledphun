@@ -51,8 +51,8 @@ services:
     container_name: nextjs-app
     restart: unless-stopped
     environment:
-      - VIRTUAL_HOST=kwanmaledphun.com
-      - LETSENCRYPT_HOST=kwanmaledphun.com
+      - VIRTUAL_HOST=kwanmaledphun.com,www.kwanmaledphun.com
+      - LETSENCRYPT_HOST=kwanmaledphun.com,www.kwanmaledphun.com
       - LETSENCRYPT_EMAIL=pranudech@gmail.com
     expose:
       - "3000"
