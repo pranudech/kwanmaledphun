@@ -47,15 +47,24 @@ services:
       - proxy-tier
 
   nextjs-app:
-    image: web-web
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: nextjs-app
     restart: unless-stopped
     environment:
       - VIRTUAL_HOST=kwanmaledphun.com,www.kwanmaledphun.com
       - LETSENCRYPT_HOST=kwanmaledphun.com,www.kwanmaledphun.com
       - LETSENCRYPT_EMAIL=pranudech@gmail.com
+      - DB_HOST=mysql-db
+      - DB_PORT=3306
+      - DB_USER=kwanmxwf_main
+      - DB_PASSWORD=yourpassword
+      - DB_NAME=kwanmxwf_main
     expose:
       - "3000"
+    depends_on:
+      - mysql-db
     networks:
       - proxy-tier
 
