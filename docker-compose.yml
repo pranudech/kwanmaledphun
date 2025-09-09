@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  # Reverse Proxy
+  nginx-proxy:
+    image: jwilder/nginx-proxy:alpine
+    container_name: nginx-proxy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./nginx/certs:/etc/nginx/certs
+      - ./nginx/vhost.d:/etc/nginx/vhost.d
+      - ./nginx/html:/usr/share/nginx/html
+    networks:
+      - proxy
+
+  # Let's Encrypt companion
+  letsencrypt:
+    image: nginxproxy/acme-companion
+    container_name: nginx-letsencrypt
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./nginx/certs:/etc/nginx/certs
+      - ./nginx/vhost.d:/etc/nginx/vhost.d
+      - ./nginx/html:/usr/share/nginx/html
+    environment:
+      - DEFAULT_EMAIL=your@email.com
+    depends_on:
+      - nginx-proxy
+    networks:
+      - proxy
+
+  # Next.js App
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nextjs-app
+    restart: unless-stopped
+    environment:
+      - VIRTUAL_HOST=kwanmaledphun.com
+      - LETSENCRYPT_HOST=kwanmaledphun.com
+      - LETSENCRYPT_EMAIL=pranudech@gmail.com
+      - NODE_ENV=production
+    expose:
+      - "3000"
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: false
